@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Plugin Tester</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Local harness for testing Photographic Dictionary page modules.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Plugin Tester">
+    <meta property="og:description" content="Local harness for testing Photographic Dictionary page modules.">
+    <meta property="og:image" content="https://photographicdictionary.com/images/pd-home.png">
+    <meta property="og:url" content="https://photographicdictionary.com/shrubs">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://photographicdictionary.com/shrubs">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://photographicdictionary.com/style/navigation.css">
+    <link rel="stylesheet" type="text/css" href="https://photographicdictionary.com/style/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://photographicdictionary.com/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://photographicdictionary.com/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://photographicdictionary.com/favicon-16x16.png">
+    <link rel="manifest" href="https://photographicdictionary.com/site.webmanifest">
+</head>
+<body class="published-route category page listing">
+
+<div id="header">
+    <a href="https://photographicdictionary.com/" title="Home" rel="home" id="logo"><img src="https://photographicdictionary.com/images/photo-logo.png" alt="Home"></a>
+<div id="name-and-slogan">
+    <div id="site-name"><a href="https://photographicdictionary.com/" title="Home" rel="home">Photographic Dictionary</a>
+  <span class="slogan">Lost for words? Let's help you find them!</span>
+    </div>
+  <div id="headernav">
+        <form action="https://photographicdictionary.com/search"><div class="searchbox-wrapper"><input type="text" size="30" name="search" id="searchbox" placeholder="Search the dictionary" value=""><button type="submit" class="search-ui-submit" aria-label="Search" id="searchsubmit"><span class="material-symbols-outlined" aria-hidden="true">search</span></button></div></form>  </div>
+ </div>
+</div>
+<div id="mainmenu-outer">
+    <ul id="navigationmenu">
+<li><a id="letteropen" class="topmenu" href="https://photographicdictionary.com/letter">Letter</a></li>
+<li><a id="catopen" class="topmenu" href="https://photographicdictionary.com/category">Category</a></li>
+<li><a id="themeopen" class="topmenu" href="https://photographicdictionary.com/themes">Themes</a></li>
+<li><a id="idiomopen" class="topmenu" href="https://photographicdictionary.com/idioms">Idioms</a></li>
+</ul>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="contentheader" class="clearfix"><div class="categories">testing surface</div><h1>Plugin Tester</h1><p>Local harness for page-mounted interactive modules on Photographic Dictionary pages.</p>
+    <!-- Plugin test insertion point: #contentheader bottom -->
+    </div>
+
+<div id="workspace">
+    <div id="content">
+        <div class="listgrid">
+            <p>This page is based on the live <code>/shrubs</code> shell and is intended as a local test surface for page modules. Load one with <code>?plugin=zodiac</code> or <code>?plugin=piano</code>.</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="footer-outer">
+    <div id="footer">
+          <a href="https://photographicdictionary.com/search" aria-label="Search" title="Search"><span class="material-symbols-outlined" aria-hidden="true">search</span></a> |
+  <a href="https://photographicdictionary.com/" aria-label="Home" title="Home"><span class="material-symbols-outlined" aria-hidden="true">home</span></a> |
+  <a href="https://photographicdictionary.com/letter">Letter</a> |
+  <a href="https://photographicdictionary.com/category">Category</a> |
+  <a href="https://photographicdictionary.com/themes">Themes</a> |
+  <a href="https://photographicdictionary.com/idioms">Idioms</a>
+<div id="subfooter">
+  <a href="https://photographicdictionary.com/safesearch">SafeSearch</a> |
+  <a href="https://photographicdictionary.com/content/about">About</a> |
+  <a href="https://photographicdictionary.com/contact">Contact</a> |
+  <a href="https://photographicdictionary.com/content/copyright">Copyright</a> © 2009-2026 |
+  Website by <a href="https://armadillosandwich.com" target="_blank" rel="nofollow">Armadillo Sandwich</a>
+</div>
+    </div>
+</div>
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const pluginId = params.get('plugin');
+  const REGION_MAP = {
+    contentheader: document.getElementById('contentheader'),
+    content: document.getElementById('content')
+  };
+
+  function isRemoteAsset(path) {
+    return /^https?:\/\//i.test(path);
+  }
+
+  function resolveAssetPath(path) {
+    if (!path) {
+      return '';
+    }
+
+    return isRemoteAsset(path) ? path : new URL(path, window.location.href).toString();
+  }
+
+  function loadCss(path) {
+    if (!path) {
+      return;
+    }
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = resolveAssetPath(path);
+    document.head.appendChild(link);
+  }
+
+  function loadScript(path) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = resolveAssetPath(path);
+      script.onload = resolve;
+      script.onerror = reject;
+      document.body.appendChild(script);
+    });
+  }
+
+  function injectWrapper(plugin, snippet) {
+    const region = REGION_MAP[plugin.region];
+    if (!region) {
+      throw new Error('Unknown plugin region: ' + plugin.region);
+    }
+
+    const wrapper = document.createElement('div');
+    wrapper.id = 'plugin_' + plugin.id;
+    wrapper.className = 'plugin centered';
+    wrapper.dataset.plugin = plugin.id;
+    wrapper.dataset.pluginSettings = JSON.stringify(plugin.settings || {});
+    wrapper.innerHTML = snippet;
+
+    if (plugin.edge === 'top') {
+      region.prepend(wrapper);
+    } else {
+      region.append(wrapper);
+    }
+  }
+
+  async function loadPlugin(id) {
+    const manifestUrl = new URL(id + '/' + id + '.json', window.location.href);
+    const response = await fetch(manifestUrl);
+    if (!response.ok) {
+      throw new Error('Could not load plugin manifest: ' + manifestUrl);
+    }
+
+    const plugin = await response.json();
+
+    if (plugin.css) {
+      loadCss(plugin.css);
+    }
+
+    const snippetResponse = await fetch(resolveAssetPath(plugin.html));
+    if (!snippetResponse.ok) {
+      throw new Error('Could not load plugin HTML: ' + plugin.html);
+    }
+
+    const snippet = await snippetResponse.text();
+    injectWrapper(plugin, snippet);
+
+    for (const scriptPath of plugin.js || []) {
+      await loadScript(scriptPath);
+    }
+  }
+
+  if (!pluginId) {
+    return;
+  }
+
+  loadPlugin(pluginId).catch((error) => {
+    const region = document.getElementById('contentheader');
+    const failure = document.createElement('p');
+    failure.textContent = 'Plugin load failed: ' + error.message;
+    region.append(failure);
+  });
+})();
+</script>
+</body>
+</html>

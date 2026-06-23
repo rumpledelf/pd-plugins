@@ -1,0 +1,16 @@
+{
+  "id": "zodiac",
+  "title": "Zodiac",
+  "page": "/zodiac",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "zodiac/zodiac.html",
+  "css": "",
+  "js": [
+    "zodiac/zodiac.js"
+  ],
+  "settings": {
+    "label": "Enter your birthday",
+    "button_text": "Find my zodiac sign"
+  }
+}

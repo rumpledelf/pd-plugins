@@ -1,0 +1,16 @@
+{
+  "id": "piano",
+  "title": "Piano",
+  "page": "/piano",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "piano/piano.html",
+  "css": "piano/piano.css",
+  "js": [
+    "piano/piano.js"
+  ],
+  "settings": {
+    "title": "Tiny Piano",
+    "hint": "Click the keys to play a one-octave piano."
+  }
+}
