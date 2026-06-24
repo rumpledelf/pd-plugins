@@ -1,0 +1,50 @@
+#plugin_time .clock-module {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+#plugin_time .clock-face {
+  width: 180px;
+  height: 180px;
+  flex-shrink: 0;
+}
+
+#plugin_time .clock-rim {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+}
+
+#plugin_time .clock-num {
+  font-size: 18px;
+  fill: currentColor;
+}
+
+#plugin_time .clock-hand-hour {
+  stroke: currentColor;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+#plugin_time .clock-hand-minute {
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+#plugin_time .clock-center {
+  fill: currentColor;
+}
+
+#plugin_time .clock-input {
+  width: 3em;
+}
+
+@media (max-width: 480px) {
+  #plugin_time .clock-module {
+    flex-direction: column;
+  }
+}

@@ -50,3 +50,23 @@ The current model is:
 - choose an edge within that region: `top` or `bottom`
 
 For many modules the common placement will probably be the bottom of `#contentheader`, but the system allows other named regions where needed.
+
+## Development and Testing
+
+Modules can be tested locally using `plugin-tester.html`. Because the tester uses `fetch()` to load plugin assets, it must be served over HTTP rather than opened directly as a file.
+
+Serve the project root on port 8080 (avoids the commonly-occupied 8000 and 3000):
+
+```
+python3 -m http.server 8080
+```
+
+Then open:
+
+```
+http://localhost:8080/plugin-tester.html?plugin=time
+http://localhost:8080/plugin-tester.html?plugin=zodiac
+http://localhost:8080/plugin-tester.html?plugin=piano
+```
+
+Replace `time` with the folder name of whichever module you are working on.

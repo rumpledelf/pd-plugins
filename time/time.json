@@ -1,0 +1,13 @@
+{
+  "id": "time",
+  "title": "Read the time",
+  "page": "/time",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "time/time.html",
+  "css": "time/time.css",
+  "js": [
+    "time/time.js"
+  ],
+  "settings": {}
+}
