@@ -23,12 +23,12 @@
     const minuteRad = (minuteAngle * Math.PI) / 180;
 
     const hourTip = {
-      x: 100 + 50 * Math.sin(hourRad),
-      y: 100 - 50 * Math.cos(hourRad)
+      x: 100 + 44 * Math.sin(hourRad),
+      y: 100 - 44 * Math.cos(hourRad)
     };
     const minuteTip = {
-      x: 100 + 68 * Math.sin(minuteRad),
-      y: 100 - 68 * Math.cos(minuteRad)
+      x: 100 + 61 * Math.sin(minuteRad),
+      y: 100 - 61 * Math.cos(minuteRad)
     };
 
     const $hour = root.querySelector('.clock-hand-hour');
@@ -67,12 +67,14 @@
     const $minuteInput = root.querySelector('#clock-minute-input');
     const $check = root.querySelector('#clock-check');
     const $result = root.querySelector('#clock-result');
+    const $feedback = root.querySelector('#clock-feedback');
 
     function newTime() {
       current = randomTime();
       setHands(root, current.hour, current.minute);
-      if ($digital) { $digital.textContent = ''; }
-      if ($result) { $result.textContent = ''; $result.className = ''; }
+      if ($digital) { $digital.innerHTML = '&nbsp;'; }
+      if ($result) { $result.textContent = ''; $result.className = 'clock-result'; }
+      if ($feedback) { $feedback.textContent = ''; $feedback.className = 'clock-feedback'; }
       if ($hourInput) { $hourInput.value = ''; }
       if ($minuteInput) { $minuteInput.value = ''; }
     }
@@ -83,7 +85,7 @@
 
     if ($reveal && $digital) {
       $reveal.addEventListener('click', function () {
-        $digital.textContent = formatTime(current.hour, current.minute);
+        $digital.textContent = 'The time is ' + formatTime(current.hour, current.minute) + '.';
       });
     }
 
@@ -92,18 +94,20 @@
         const h = parseInt($hourInput.value, 10);
         const m = parseInt($minuteInput.value, 10);
 
-        if (isNaN(h) || isNaN(m)) {
-          $result.textContent = 'Enter a time first.';
-          $result.className = '';
-          return;
-        }
-
-        if (h === current.hour && m === current.minute) {
+        if (!isNaN(h) && !isNaN(m) && h === current.hour && m === current.minute) {
           $result.textContent = '✓';
-          $result.className = 'greentext';
+          $result.className = 'clock-result greentext';
+          if ($feedback) {
+            $feedback.textContent = '';
+            $feedback.className = 'clock-feedback';
+          }
         } else {
           $result.textContent = '✗';
-          $result.className = 'magentatext';
+          $result.className = 'clock-result magentatext';
+          if ($feedback) {
+            $feedback.textContent = '';
+            $feedback.className = 'clock-feedback';
+          }
         }
       });
     }

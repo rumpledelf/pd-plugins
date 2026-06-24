@@ -1,0 +1,51 @@
+#plugin_speed .speed-module {
+  display: grid;
+  gap: 8px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+#plugin_speed .speed-stage {
+  padding: 0;
+}
+
+#plugin_speed .speed-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: transparent;
+}
+
+#plugin_speed .speed-controls {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
+
+#plugin_speed .speed-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #666666;
+}
+
+#plugin_speed .speed-slider-label {
+  font-size: 0.95rem;
+  justify-self: center;
+}
+
+#plugin_speed #speed-slider {
+  width: 100%;
+  max-width: 560px;
+  justify-self: center;
+  accent-color: #0585BA;
+}
+
+@media (max-width: 520px) {
+  #plugin_speed .speed-module {
+    max-width: 100%;
+  }
+}

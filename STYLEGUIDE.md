@@ -119,6 +119,29 @@ Add CSS only when the plugin needs:
 - spacing
 - interaction-specific presentation
 
+Default plugin backgrounds to transparent.
+
+Do not add plugin-local background fills unless the plugin has a real visual or
+interaction requirement for one.
+
+If plugin-local colors are necessary and you are not using an explicit host
+utility class, use only shades of pure grey.
+
+Do not invent warm neutrals, tinted blacks, off-whites, or custom accent
+colors.
+
+The default local grey palette here is:
+
+- `white`
+- `whitesmoke`
+- `gainsboro`
+- `#333333`
+
+Do not invent control accent colors.
+
+If a control needs a non-default accent color, use an explicit host utility or
+the documented host color value.
+
 Do not re-declare by default:
 
 - font family
@@ -153,6 +176,14 @@ Text-color utility classes:
 - `.magentatext`
 - `.greentext`
 
+Current host utility values from `photodir/public/style/style.css`:
+
+- `.blue` / `.bluetext`: `#0585BA`
+- `.purple` / `.purpletext`: `#64317B`
+- `.magenta` / `.magentatext`: `#B7287E`
+- `.green` / `.greentext`: `#4CAF50`
+- `.grey`: `#999999`
+
 Use them like this:
 
 - use `.bluetext` when result text should be blue
@@ -165,6 +196,9 @@ Use them like this:
 - do not use `.blue` when you only want blue text
 - do not use `.purple` when you only want purple text
 - do not use `.magenta` when you only want magenta text
+
+Do not infer host utility colors from unrelated plugin code or from browser
+defaults.
 
 ### Form controls
 

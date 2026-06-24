@@ -1,34 +1,47 @@
 <div class="clock-module">
   <svg class="clock-face" viewBox="0 0 200 200" aria-label="Analogue clock" role="img">
     <circle cx="100" cy="100" r="90" class="clock-rim"/>
-    <text x="100" y="24" class="clock-num" text-anchor="middle" dominant-baseline="central">12</text>
-    <text x="140" y="31" class="clock-num" text-anchor="middle" dominant-baseline="central">1</text>
-    <text x="169" y="60" class="clock-num" text-anchor="middle" dominant-baseline="central">2</text>
-    <text x="180" y="100" class="clock-num" text-anchor="middle" dominant-baseline="central">3</text>
-    <text x="169" y="140" class="clock-num" text-anchor="middle" dominant-baseline="central">4</text>
-    <text x="140" y="169" class="clock-num" text-anchor="middle" dominant-baseline="central">5</text>
-    <text x="100" y="180" class="clock-num" text-anchor="middle" dominant-baseline="central">6</text>
-    <text x="60" y="169" class="clock-num" text-anchor="middle" dominant-baseline="central">7</text>
-    <text x="31" y="140" class="clock-num" text-anchor="middle" dominant-baseline="central">8</text>
-    <text x="20" y="100" class="clock-num" text-anchor="middle" dominant-baseline="central">9</text>
-    <text x="31" y="60" class="clock-num" text-anchor="middle" dominant-baseline="central">10</text>
-    <text x="60" y="31" class="clock-num" text-anchor="middle" dominant-baseline="central">11</text>
+    <text x="100" y="26" class="clock-num" text-anchor="middle" dominant-baseline="central">12</text>
+    <text x="140" y="34" class="clock-num" text-anchor="middle" dominant-baseline="central">1</text>
+    <text x="164" y="58" class="clock-num" text-anchor="middle" dominant-baseline="central">2</text>
+    <text x="176" y="100" class="clock-num" text-anchor="middle" dominant-baseline="central">3</text>
+    <text x="164" y="142" class="clock-num" text-anchor="middle" dominant-baseline="central">4</text>
+    <text x="140" y="166" class="clock-num" text-anchor="middle" dominant-baseline="central">5</text>
+    <text x="100" y="174" class="clock-num" text-anchor="middle" dominant-baseline="central">6</text>
+    <text x="60" y="166" class="clock-num" text-anchor="middle" dominant-baseline="central">7</text>
+    <text x="36" y="142" class="clock-num" text-anchor="middle" dominant-baseline="central">8</text>
+    <text x="24" y="100" class="clock-num" text-anchor="middle" dominant-baseline="central">9</text>
+    <text x="36" y="58" class="clock-num" text-anchor="middle" dominant-baseline="central">10</text>
+    <text x="60" y="34" class="clock-num" text-anchor="middle" dominant-baseline="central">11</text>
     <line class="clock-hand-hour" x1="100" y1="100" x2="100" y2="55"/>
     <line class="clock-hand-minute" x1="100" y1="100" x2="100" y2="30"/>
     <circle cx="100" cy="100" r="5" class="clock-center"/>
   </svg>
 
   <div class="clock-controls">
-    <p><button type="button" id="clock-random">Random time</button></p>
-    <p><button type="button" id="clock-reveal">Tell me the time</button> <span id="clock-digital" aria-live="polite"></span></p>
-    <p>
-      <label for="clock-hour-input">What time is this?</label>
-      <input type="number" id="clock-hour-input" min="1" max="12" placeholder="h" class="clock-input">
-      <span aria-hidden="true">:</span>
-      <input type="number" id="clock-minute-input" min="0" max="55" step="5" placeholder="mm" class="clock-input">
-      <span id="clock-result" aria-live="polite"></span>
-      <button type="button" id="clock-check">Check</button>
+
+    <div class="clock-group centered">
+      <div class="clock-row">
+        <label for="clock-hour-input">What time is this?</label>
+        <div class="clock-answer-row">
+          <input type="number" id="clock-hour-input" min="1" max="12" placeholder="h" class="clock-input">
+          <span aria-hidden="true">:</span>
+          <input type="number" id="clock-minute-input" min="0" max="55" step="5" placeholder="mm" class="clock-input">
+          <span id="clock-result" class="clock-result" aria-live="polite"></span>
+        </div>
+        <button type="button" id="clock-check">Check</button>
+      </div>
+    </div>
+
+     <div class="clock-group centered">
+      <p id="clock-digital" class="clock-digital" aria-live="polite">&nbsp;</p>
+      <p class="clock-row">
+        <button type="button" id="clock-reveal">Tell me the time</button>
+      </p>
+    </div>
+
+    <p class="clock-row clock-random-row">
+      <button type="button" id="clock-random">Random time</button>
     </p>
-    
   </div>
 </div>

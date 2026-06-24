@@ -7,13 +7,13 @@
 }
 
 #plugin_time .clock-face {
-  width: 180px;
-  height: 180px;
+  width: 220px;
+  height: 220px;
   flex-shrink: 0;
 }
 
 #plugin_time .clock-rim {
-  fill: none;
+  fill: #ffffff;
   stroke: currentColor;
   stroke-width: 3;
 }
@@ -31,7 +31,7 @@
 
 #plugin_time .clock-hand-minute {
   stroke: currentColor;
-  stroke-width: 4;
+  stroke-width: 5;
   stroke-linecap: round;
 }
 
@@ -40,11 +40,60 @@
 }
 
 #plugin_time .clock-input {
-  width: 3em;
+  width: 2.4em;
+}
+
+#plugin_time .clock-controls {
+  display: grid;
+  gap: 12px;
+  flex: 1;
+}
+
+#plugin_time .clock-group {
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid gainsboro;
+  border-radius: 12px;
+}
+
+#plugin_time .clock-row {
+  margin: 0;
+}
+
+#plugin_time .clock-answer-row {
+  margin: 8px 0;
+}
+
+#plugin_time .clock-digital,
+#plugin_time .clock-feedback {
+  margin: 8px 0;
+}
+
+#plugin_time .clock-digital {
+  min-height: 1.5em;
+}
+
+#plugin_time .clock-result {
+  min-width: 1.25em;
+  text-align: center;
+  font-weight: 700;
+  order: 10;
+}
+
+#plugin_time #clock-check {
+  order: 11;
+}
+
+#plugin_time .clock-random-row {
+  margin: 0;
 }
 
 @media (max-width: 480px) {
   #plugin_time .clock-module {
     flex-direction: column;
+  }
+
+  #plugin_time .clock-group {
+    width: 100%;
   }
 }
