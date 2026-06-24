@@ -1,0 +1,16 @@
+{
+  "id": "sample",
+  "title": "Sample Plugin",
+  "page": "/sample",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "sample/sample.html",
+  "css": "sample/sample.css",
+  "js": [
+    "sample/sample.js"
+  ],
+  "settings": {
+    "label": "Type something",
+    "button_text": "Show it"
+  }
+}

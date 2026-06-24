@@ -1,0 +1,11 @@
+#plugin_sample .sample-module {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+#plugin_sample #sample-result {
+  flex-basis: 100%;
+  margin: 0;
+}
