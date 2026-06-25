@@ -1,0 +1,18 @@
+{
+  "id": "bounce",
+  "title": "Bounce",
+  "page": "/bounce",
+  "region": "content",
+  "edge": "bottom",
+  "html": "bounce/bounce.html",
+  "css": "bounce/bounce.css",
+  "js": [
+    "bounce/bounce.js"
+  ],
+  "settings": {
+    "gravity": 0.4,
+    "elasticity": 0.8,
+    "fps": 60
+  }
+}
+
