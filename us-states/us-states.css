@@ -1,0 +1,85 @@
+#plugin_us-states .us-states-module {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+#plugin_us-states .us-states-map-wrap {
+  position: relative;
+}
+
+#plugin_us-states .us-states-map {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#plugin_us-states .us-state {
+  cursor: pointer;
+  transition: filter 160ms ease, opacity 160ms ease;
+}
+
+#plugin_us-states .us-state.is-active {
+  filter: brightness(1.05);
+  stroke: #333333;
+  stroke-width: 2.5;
+  paint-order: stroke fill;
+}
+
+#plugin_us-states .us-state:focus-visible,
+#plugin_us-states .us-state:focus {
+  outline: none;
+}
+
+#plugin_us-states .us-map .dc,
+#plugin_us-states .us-map .dccircle {
+  display: none;
+}
+
+#plugin_us-states .us-tooltip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 180px;
+  max-width: 240px;
+  padding: 10px 12px;
+  border: 1px solid gainsboro;
+  border-radius: 12px;
+  background: white;
+  pointer-events: auto;
+}
+
+#plugin_us-states .us-tooltip[hidden] {
+  display: none;
+}
+
+#plugin_us-states .us-tooltip-title,
+#plugin_us-states .us-tooltip-link-row,
+#plugin_us-states .us-states-hint,
+#plugin_us-states .us-states-error {
+  margin: 0;
+}
+
+#plugin_us-states .us-tooltip-title {
+  font-weight: 700;
+}
+
+#plugin_us-states .us-tooltip-link-row {
+  margin-top: 4px;
+}
+
+#plugin_us-states .us-states-hint,
+#plugin_us-states .us-states-error {
+  margin-top: 10px;
+}
+
+#plugin_us-states .us-states-error {
+  color: #333333;
+}
+
+@media (max-width: 640px) {
+  #plugin_us-states .us-tooltip {
+    position: static;
+    max-width: none;
+    margin-top: 12px;
+  }
+}

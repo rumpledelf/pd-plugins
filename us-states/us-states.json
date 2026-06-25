@@ -1,0 +1,13 @@
+{
+  "id": "us-states",
+  "title": "US States",
+  "page": "/us-states",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "us-states/us-states.html",
+  "css": "us-states/us-states.css",
+  "js": [
+    "us-states/us-states.js"
+  ],
+  "settings": {}
+}
