@@ -1,0 +1,13 @@
+{
+  "id": "au-states",
+  "title": "Australian States",
+  "page": "/au-states",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "au-states/au-states.html",
+  "css": "au-states/au-states.css",
+  "js": [
+    "au-states/au-states.js"
+  ],
+  "settings": {}
+}

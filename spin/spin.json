@@ -1,0 +1,15 @@
+{
+  "id": "spin",
+  "title": "Spin",
+  "page": "/spin",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "spin/spin.html",
+  "css": "spin/spin.css",
+  "js": [
+    "spin/spin.js"
+  ],
+  "settings": {
+    "default_direction": "clockwise"
+  }
+}

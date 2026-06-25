@@ -1,0 +1,86 @@
+#plugin_spin .spin-module {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+#plugin_spin .spin-stage {
+  margin-bottom: 12px;
+}
+
+#plugin_spin .spin-fan {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#plugin_spin .spin-guard,
+#plugin_spin .spin-guard-inner {
+  fill: white;
+  stroke: #333333;
+}
+
+#plugin_spin .spin-guard {
+  stroke-width: 6;
+}
+
+#plugin_spin .spin-guard-inner {
+  stroke-width: 3;
+}
+
+#plugin_spin .spin-blade {
+  fill: gainsboro;
+  stroke: #333333;
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+
+#plugin_spin .spin-hub,
+#plugin_spin .spin-cap {
+  fill: #333333;
+}
+
+#plugin_spin .spin-rotor {
+  transform-origin: 140px 140px;
+  animation-duration: 1.6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+#plugin_spin .spin-clockwise {
+  animation-name: spin-clockwise;
+}
+
+#plugin_spin .spin-counterclockwise {
+  animation-name: spin-counterclockwise;
+}
+
+#plugin_spin .spin-stopped {
+  animation-play-state: paused;
+}
+
+#plugin_spin .spin-controls {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@keyframes spin-clockwise {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-counterclockwise {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}

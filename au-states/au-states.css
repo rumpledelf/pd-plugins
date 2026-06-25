@@ -1,0 +1,94 @@
+#plugin_au-states .au-states-module {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+#plugin_au-states .au-states-map-wrap {
+  position: relative;
+}
+
+#plugin_au-states .au-states-map {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#plugin_au-states .au-region path,
+#plugin_au-states .au-act-hit {
+  stroke: white;
+  stroke-width: 6;
+  transition: opacity 160ms ease, transform 160ms ease, filter 160ms ease;
+}
+
+#plugin_au-states .au-region {
+  cursor: pointer;
+}
+
+#plugin_au-states .au-region.is-active path,
+#plugin_au-states .au-act-hit.is-active,
+#plugin_au-states .au-act-hit.is-active {
+  filter: brightness(1.05);
+}
+
+#plugin_au-states .au-region:focus-visible,
+#plugin_au-states .au-act-hit:focus-visible {
+  outline: none;
+}
+
+#plugin_au-states .au-region:focus,
+#plugin_au-states .au-act-hit:focus {
+  outline: none;
+}
+
+#plugin_au-states .au-region.is-active path {
+  stroke: #333333;
+}
+
+#plugin_au-states .au-act-hit {
+  fill: transparent;
+  stroke: transparent;
+  cursor: pointer;
+}
+
+#plugin_au-states .au-tooltip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 168px;
+  max-width: 220px;
+  padding: 10px 12px;
+  border: 1px solid gainsboro;
+  border-radius: 12px;
+  background: white;
+  pointer-events: auto;
+}
+
+#plugin_au-states .au-tooltip[hidden] {
+  display: none;
+}
+
+#plugin_au-states .au-tooltip-title,
+#plugin_au-states .au-tooltip-subtitle,
+#plugin_au-states .au-tooltip-link-row {
+  margin: 0;
+}
+
+#plugin_au-states .au-tooltip-title {
+  font-weight: 700;
+}
+
+#plugin_au-states .au-tooltip-link-row {
+  margin-top: 4px;
+}
+
+#plugin_au-states .au-states-hint {
+  margin: 10px 0 0;
+}
+
+@media (max-width: 640px) {
+  #plugin_au-states .au-tooltip {
+    position: static;
+    max-width: none;
+    margin-top: 12px;
+  }
+}
