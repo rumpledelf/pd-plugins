@@ -201,18 +201,6 @@ Current host utility values from `photodir/public/style/style.css`:
 - `.green` / `.greentext`: `#4CAF50`
 - `.grey`: `#999999`
 
-Use them like this:
-
-- use `.bluetext` when result text should be blue
-- use `.purpletext` when result text should be purple
-- use `.greentext` when result text should be green
-- use `.magentatext` when result text should be magenta
-- do not assume there is a matching `*text` class for every background class
-- do not invent classes like `.greytext` unless the host actually adds them
-- do not use `.green` when you only want green text
-- do not use `.blue` when you only want blue text
-- do not use `.purple` when you only want purple text
-- do not use `.magenta` when you only want magenta text
 
 Do not infer host utility colors from unrelated plugin code or from browser
 defaults.
@@ -236,6 +224,15 @@ If you add CSS, start with:
 
 Do not jump straight to custom button chrome, input chrome, or decorative form
 styling.
+
+Be literal about this:
+
+- do not add plugin-local hover, active, disabled, paused, or alternate visual
+  chrome to buttons, inputs, selects, or textareas unless the task explicitly
+  requires a structural exception
+- if a control only needs to show inactive or disabled state, use the host
+  `.grey` class instead of inventing plugin-local control styling
+- if a control is acceptable with inherited host styling, leave it alone
 
 ## Manifest rules
 

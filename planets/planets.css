@@ -19,19 +19,22 @@
   z-index: 10;
 }
 
-#plugin_planets .planets-toggle {
-  background: rgba(128, 128, 128, 0.08);
-  border: 1px solid rgba(128, 128, 128, 0.3);
-  color: inherit;
-  padding: 4px 8px;
-  font-family: inherit;
-  font-size: 11px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
+#plugin_planets .planets-link {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 5;
 }
 
-#plugin_planets .planets-toggle:hover {
-  background: rgba(128, 128, 128, 0.18);
-  border-color: rgba(128, 128, 128, 0.5);
+#plugin_planets .planets-link:focus {
+  outline: none;
+}
+
+#plugin_planets .planets-link:focus-visible {
+  outline: 2px solid #333333;
+  outline-offset: 2px;
 }

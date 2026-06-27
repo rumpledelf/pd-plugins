@@ -18,7 +18,7 @@
     
     const container = root.querySelector('.planets-module');
     const canvas = root.querySelector('.planets-canvas');
-    const toggleButton = root.querySelector('.planets-toggle');
+    const toggleButton = root.querySelector('#planets-toggle');
     
     if (!container || !canvas) {
       return;
@@ -35,21 +35,33 @@
 
     // Orbit speed and layout parameters
     const planets = [
-      { name: 'Mercury', color: '#9E9E9E', radius: 3.5, orbitFraction: 0.16, speed: 0.03, theta: Math.random() * Math.PI * 2 },
-      { name: 'Venus', color: '#FFD54F', radius: 5.5, orbitFraction: 0.26, speed: 0.02, theta: Math.random() * Math.PI * 2 },
-      { name: 'Earth', color: '#4FC3F7', radius: 6, orbitFraction: 0.36, speed: 0.015, theta: Math.random() * Math.PI * 2 },
-      { name: 'Mars', color: '#FF8A65', radius: 4.5, orbitFraction: 0.46, speed: 0.012, theta: Math.random() * Math.PI * 2 },
-      { name: 'Jupiter', color: '#FFB74D', radius: 9, orbitFraction: 0.58, speed: 0.007, theta: Math.random() * Math.PI * 2 },
-      { name: 'Saturn', color: '#E0E0E0', radius: 8, orbitFraction: 0.70, speed: 0.005, theta: Math.random() * Math.PI * 2, hasRings: true },
-      { name: 'Uranus', color: '#81C784', radius: 7, orbitFraction: 0.82, speed: 0.003, theta: Math.random() * Math.PI * 2 },
-      { name: 'Neptune', color: '#64B5F6', radius: 6.5, orbitFraction: 0.94, speed: 0.002, theta: Math.random() * Math.PI * 2 }
+      { id: 'mercury', name: 'Mercury', color: '#9E9E9E', radius: 3.5, orbitFraction: 0.16, speed: 0.03, theta: Math.random() * Math.PI * 2, href: '/m/mercury' },
+      { id: 'venus', name: 'Venus', color: '#FFD54F', radius: 5.5, orbitFraction: 0.26, speed: 0.02, theta: Math.random() * Math.PI * 2, href: '/v/venus' },
+      { id: 'earth', name: 'Earth', color: '#4FC3F7', radius: 6, orbitFraction: 0.36, speed: 0.015, theta: Math.random() * Math.PI * 2, href: '/e/earth' },
+      { id: 'mars', name: 'Mars', color: '#FF8A65', radius: 4.5, orbitFraction: 0.46, speed: 0.012, theta: Math.random() * Math.PI * 2, href: '/m/mars' },
+      { id: 'jupiter', name: 'Jupiter', color: '#FFB74D', radius: 9, orbitFraction: 0.58, speed: 0.007, theta: Math.random() * Math.PI * 2, href: '/j/jupiter' },
+      { id: 'saturn', name: 'Saturn', color: '#E0E0E0', radius: 8, orbitFraction: 0.70, speed: 0.005, theta: Math.random() * Math.PI * 2, hasRings: true, href: '/s/saturn' },
+      { id: 'uranus', name: 'Uranus', color: '#81C784', radius: 7, orbitFraction: 0.82, speed: 0.003, theta: Math.random() * Math.PI * 2, href: '/u/uranus' },
+      { id: 'neptune', name: 'Neptune', color: '#64B5F6', radius: 6.5, orbitFraction: 0.94, speed: 0.002, theta: Math.random() * Math.PI * 2, href: '/n/neptune' }
     ];
 
+    planets.forEach(function (planet) {
+      const link = root.querySelector('#planets-link-' + planet.id);
+
+      if (link) {
+        link.href = planet.href;
+        link.setAttribute('aria-label', planet.name);
+      }
+    });
+
     if (toggleButton) {
+      toggleButton.classList.remove('grey');
+
       toggleButton.addEventListener('click', function () {
         isRunning = !isRunning;
         toggleButton.textContent = isRunning ? 'Pause' : 'Play';
         toggleButton.setAttribute('aria-label', isRunning ? 'Pause simulation' : 'Play simulation');
+        toggleButton.classList.toggle('grey', !isRunning);
       });
     }
 
@@ -163,6 +175,7 @@
           // Parametric equation coordinates
           const x = centerX + a * Math.cos(planet.theta);
           const y = centerY + b * Math.sin(planet.theta);
+          const link = root.querySelector('#planets-link-' + planet.id);
 
           // Draw planet body
           ctx.fillStyle = planet.color;
@@ -199,6 +212,16 @@
           ctx.globalAlpha = 0.85;
           ctx.fillText(planet.name, x, y - planet.radius - 8);
           ctx.restore();
+
+          if (link) {
+            const hitRadius = Math.max(planet.radius + 10, 18);
+            const hitSize = hitRadius * 2;
+
+            link.style.width = hitSize + 'px';
+            link.style.height = hitSize + 'px';
+            link.style.left = x + 'px';
+            link.style.top = y + 'px';
+          }
 
           // Increment angle by fixed step
           if (isRunning) {
