@@ -99,6 +99,14 @@
       regionMap[region.id] = region;
     });
 
+    function getRegionNode(target) {
+      if (!target || typeof target.closest !== 'function') {
+        return null;
+      }
+
+      return target.closest('[data-region-id]');
+    }
+
     regionNodes.forEach(function (node) {
       const region = regionMap[node.dataset.regionId];
 
@@ -176,12 +184,6 @@
         showRegion(id, node);
       });
 
-      node.addEventListener('click', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        showRegion(id, node);
-      });
-
       node.addEventListener('keydown', function (event) {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
@@ -190,6 +192,19 @@
         }
       });
     });
+
+    map.addEventListener('click', function (event) {
+      const node = getRegionNode(event.target);
+
+      if (!node) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      showRegion(node.dataset.regionId, node);
+    });
+
     tooltip.addEventListener('click', function (event) {
       event.stopPropagation();
     });

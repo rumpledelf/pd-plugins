@@ -160,6 +160,14 @@
     const stateMap = {};
     let activeId = '';
 
+    function getRegionNode(target) {
+      if (!target || typeof target.closest !== 'function') {
+        return null;
+      }
+
+      return target.closest('[data-region-id]');
+    }
+
     STATES.forEach(function (state, index) {
       const sourceId = STATE_COLOR_SWAPS[state.id] || state.id;
       const sourceIndex = STATES.findIndex(function (candidate) {
@@ -267,12 +275,6 @@
         nodes.forEach(function (node) {
           const id = node.dataset.regionId;
 
-          node.addEventListener('click', function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            showState(id, node);
-          });
-
           node.addEventListener('keydown', function (event) {
             if (event.key === 'Enter' || event.key === ' ') {
               event.preventDefault();
@@ -280,6 +282,18 @@
               showState(id, node);
             }
           });
+        });
+
+        svg.addEventListener('click', function (event) {
+          const node = getRegionNode(event.target);
+
+          if (!node) {
+            return;
+          }
+
+          event.preventDefault();
+          event.stopPropagation();
+          showState(node.dataset.regionId, node);
         });
 
         tooltip.addEventListener('click', function (event) {

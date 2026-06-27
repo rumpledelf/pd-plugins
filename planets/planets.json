@@ -1,0 +1,13 @@
+{
+  "id": "planets",
+  "title": "Planets",
+  "page": "/planets",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "planets/planets.html",
+  "css": "planets/planets.css",
+  "js": [
+    "planets/planets.js"
+  ],
+  "settings": {}
+}

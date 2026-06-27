@@ -22,6 +22,9 @@ Only change the tester when the task is specifically about the tester itself.
 
 ## What the host does
 
+This repository owns plugin-side assets only.
+The host site owns page structure, placement, loading, and live integration.
+
 The host wraps each plugin in an element with this id:
 
 - `plugin_<id>`
@@ -39,6 +42,8 @@ Assume all of these are true:
 - the host decides final live placement
 
 Do not assume the manifest controls final production placement.
+Do not implement host-side routing, page composition, shared application
+state, or global plugin orchestration from inside a plugin.
 
 ## HTML rules
 
@@ -62,6 +67,12 @@ Use simple semantic markup.
 Wrap plugin code in an IIFE.
 
 Boot from the host wrapper id.
+
+Keep plugin code self-contained, root-scoped, and compatible with being
+mounted by an external host.
+
+Do not introduce cross-plugin dependencies or plugin-to-plugin coordination
+unless the task explicitly requires it.
 
 Use this pattern:
 
@@ -119,10 +130,16 @@ Add CSS only when the plugin needs:
 - spacing
 - interaction-specific presentation
 
+Unless explicitly requested otherwise, keep the plugin's visible UI within a
+maximum height of `250px`.
+
 Default plugin backgrounds to transparent.
 
 Do not add plugin-local background fills unless the plugin has a real visual or
 interaction requirement for one.
+
+Do not add plugin-local borders or decorative colors unless explicitly
+requested.
 
 If plugin-local colors are necessary and you are not using an explicit host
 utility class, use only shades of pure grey.
@@ -239,6 +256,8 @@ Treat `page`, `region`, and `edge` as plugin-side metadata.
 Do not treat them as a guarantee that production placement is fixed forever.
 
 The host owns live placement.
+The manifest is not a license to implement missing host behavior inside the
+plugin.
 
 ## Common mistakes
 
