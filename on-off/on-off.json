@@ -1,0 +1,13 @@
+{
+  "id": "on-off",
+  "title": "On Off",
+  "page": "/on-off",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "on-off/on-off.html",
+  "css": "on-off/on-off.css",
+  "js": [
+    "on-off/on-off.js"
+  ],
+  "settings": {}
+}

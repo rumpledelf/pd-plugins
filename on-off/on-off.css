@@ -1,0 +1,141 @@
+#plugin_on-off .on-off-container {
+  max-width: 600px;
+  height: 250px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.2s;
+  border: 1px solid gainsboro;
+  border-radius: 4px;
+}
+
+#plugin_on-off .on-off-container.light-on {
+  background-color: white;
+}
+
+#plugin_on-off .on-off-container.light-off {
+  background-color: black;
+}
+
+/* Floor Line */
+#plugin_on-off .floor-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  height: 2px;
+  transition: background-color 0.2s;
+}
+
+#plugin_on-off .light-on .floor-line {
+  background-color: #333333;
+}
+
+#plugin_on-off .light-off .floor-line {
+  background-color: gainsboro;
+}
+
+/* Wall Switch */
+#plugin_on-off .switch-box {
+  position: absolute;
+  left: 30px;
+  top: 70px; /* ~2/3 of the way up in 250px height */
+  width: 60px;
+  height: 90px;
+  border: 2px solid;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  user-select: none;
+}
+
+#plugin_on-off .light-on .switch-box {
+  background-color: whitesmoke;
+  border-color: #333333;
+  color: #333333;
+}
+
+#plugin_on-off .light-off .switch-box {
+  background-color: #999999;
+  border-color: gainsboro;
+  color: white;
+}
+
+#plugin_on-off #on-off-switch {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  cursor: pointer;
+}
+
+#plugin_on-off .switch-label {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Cat Positioning */
+#plugin_on-off .cat-wrapper {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  height: 160px;
+  width: auto;
+}
+
+#plugin_on-off .cat-wrapper svg {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+/* Eye Blinking Animation */
+@keyframes eyeOpenBlink {
+  0%, 90%, 94%, 100% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 0;
+  }
+}
+
+@keyframes eyeClosedBlink {
+  0%, 90%, 94%, 100% {
+    opacity: 0;
+  }
+  92% {
+    opacity: 1;
+  }
+}
+
+#plugin_on-off .eye-open {
+  animation: eyeOpenBlink 4s infinite;
+}
+
+#plugin_on-off .eye-closed {
+  animation: eyeClosedBlink 4s infinite;
+  stroke: #000000;
+}
+
+/* Dark Mode Cat Override */
+#plugin_on-off .light-off svg path,
+#plugin_on-off .light-off svg polygon {
+  fill: #000000 !important;
+  stroke: #000000 !important;
+  stroke-opacity: 1 !important;
+  fill-opacity: 1 !important;
+}
+
+#plugin_on-off .light-off svg .eye-open {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+#plugin_on-off .light-off svg .eye-closed {
+  stroke: #ffffff !important;
+}
