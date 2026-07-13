@@ -25,13 +25,13 @@
 
     function updateState() {
       if (checkbox.checked) {
-        container.classList.remove('light-on');
-        container.classList.add('light-off');
-        label.textContent = 'OFF';
-      } else {
         container.classList.remove('light-off');
         container.classList.add('light-on');
         label.textContent = 'ON';
+      } else {
+        container.classList.remove('light-on');
+        container.classList.add('light-off');
+        label.textContent = 'OFF';
       }
     }
 
