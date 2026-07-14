@@ -141,6 +141,8 @@ interaction requirement for one.
 Do not add plugin-local borders or decorative colors unless explicitly
 requested.
 
+Do not add rounded corners (`border-radius`) on the outside of elements or root containers.
+
 If plugin-local colors are necessary and you are not using an explicit host
 utility class, use only shades of pure grey.
 

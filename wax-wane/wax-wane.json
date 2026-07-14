@@ -1,0 +1,13 @@
+{
+  "id": "wax-wane",
+  "title": "Wax Wane Moon Phase Simulation",
+  "page": "/wax-wane",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "wax-wane/wax-wane.html",
+  "css": "wax-wane/wax-wane.css",
+  "js": [
+    "wax-wane/wax-wane.js"
+  ],
+  "settings": {}
+}

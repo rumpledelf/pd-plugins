@@ -1,0 +1,38 @@
+#plugin_wax-wane .wax-wane-module {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#plugin_wax-wane .wax-wane-canvas {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 600 / 400;
+  display: block;
+}
+
+#plugin_wax-wane .wax-wane-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 4px;
+}
+
+#plugin_wax-wane .wax-wane-buttons-column {
+  display: flex;
+  gap: 8px;
+}
+
+/* Time-lapse shutter transition effect */
+#plugin_wax-wane .time-lapse-group {
+  transition: opacity 0.15s ease-in-out;
+  opacity: 1;
+}
+
+#plugin_wax-wane .time-lapse-group.fading {
+  opacity: 0 !important;
+}
