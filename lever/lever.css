@@ -1,0 +1,142 @@
+#plugin_lever .lever-module {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#plugin_lever .lever-canvas-wrapper {
+  width: 100%;
+  aspect-ratio: 600 / 400;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+/* SVG Shapes */
+#plugin_lever .sky-rect {
+  fill: transparent;
+}
+
+#plugin_lever .grass-line {
+  stroke: gainsboro;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+#plugin_lever .fulcrum-poly {
+  fill: #64317B;
+  stroke: #333333;
+  stroke-width: 2;
+  cursor: grab;
+  transition: fill 0.1s ease-out;
+}
+
+#plugin_lever .fulcrum-poly:hover {
+  fill: #793f93;
+}
+
+#plugin_lever .fulcrum-poly.dragging {
+  cursor: grabbing;
+  fill: #4f2662;
+}
+
+#plugin_lever .beam-rect {
+  fill: #DCDCDC;
+  stroke: #333333;
+  stroke-width: 2;
+}
+
+#plugin_lever .slot-circle {
+  fill: #999999;
+  stroke: #333333;
+  stroke-width: 1;
+}
+
+
+
+/* Boulders */
+#plugin_lever .boulder {
+  cursor: grab;
+  user-select: none;
+}
+
+#plugin_lever .boulder.dragging {
+  cursor: grabbing;
+}
+
+#plugin_lever .boulder-outline {
+  fill: #999999;
+  stroke: #444444;
+  stroke-width: 1.5;
+}
+
+#plugin_lever .boulder-highlight {
+  fill: #bbb;
+  stroke: none;
+  pointer-events: none;
+}
+
+#plugin_lever .boulder-shadow {
+  fill: rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  transition: opacity 0.2s ease-out;
+}
+
+#plugin_lever .boulder-detail {
+  fill: none;
+  stroke: #444444;
+  stroke-width: 1;
+}
+
+/* Physics Snapping Transitions */
+#plugin_lever #beam-group {
+  transform-origin: 300px 160px; /* Will be updated in JS dynamically to match X_f */
+}
+
+#plugin_lever .boulder.snapping {
+  transition: transform 0.2s ease-out;
+}
+
+/* Controls */
+#plugin_lever .lever-controls {
+  width: 100%;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#plugin_lever .buttons-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#plugin_lever #reset-button {
+  min-width: 70px;
+}
+
+#plugin_lever .status-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: whitesmoke;
+  border-top: 1px solid gainsboro;
+}
+
+#plugin_lever .balance-state {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 2px 8px;
+}
+
+#plugin_lever .status-balanced {
+  color: #4CAF50;
+}
+
+#plugin_lever .status-unbalanced {
+  color: #B7287E;
+}

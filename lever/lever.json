@@ -1,0 +1,15 @@
+{
+  "id": "lever",
+  "title": "Lever, Fulcrum and Balance Simulation",
+  "page": "/lever",
+  "region": "content",
+  "edge": "bottom",
+  "html": "lever/lever.html",
+  "css": "lever/lever.css",
+  "js": [
+    "lever/lever.js"
+  ],
+  "settings": {
+    "title": "Lever & Fulcrum Balance"
+  }
+}
