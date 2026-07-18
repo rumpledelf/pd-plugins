@@ -1,0 +1,36 @@
+#plugin_bubbles .bubbles-module {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#plugin_bubbles .bubbles-canvas-container {
+  width: 100%;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+#plugin_bubbles #bubbles-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+}
+
+#plugin_bubbles .bubbles-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+#plugin_bubbles #bubbles-stats {
+  margin-left: auto;
+  font-size: 0.9em;
+}

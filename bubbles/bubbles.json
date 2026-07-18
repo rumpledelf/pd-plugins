@@ -1,0 +1,16 @@
+{
+  "id": "bubbles",
+  "title": "Bubbles",
+  "page": "/bubbles",
+  "region": "content",
+  "edge": "bottom",
+  "html": "bubbles/bubbles.html",
+  "css": "bubbles/bubbles.css",
+  "js": [
+    "bubbles/bubbles.js"
+  ],
+  "settings": {
+    "base_speed": 1.0,
+    "spawn_rate": 1.5
+  }
+}
