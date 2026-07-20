@@ -1,0 +1,132 @@
+#plugin_displacement .displacement-module {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+#plugin_displacement .displacement-instruction {
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  color: #333333;
+}
+
+#plugin_displacement .displacement-sandbox {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 160px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#plugin_displacement .displacement-tabletop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 150px;
+  height: 2px;
+  background-color: gainsboro;
+}
+
+#plugin_displacement .displacement-glass {
+  position: absolute;
+  left: 80px;
+  top: 40px;
+  width: 90px;
+  height: 110px;
+  z-index: 4; /* Sits above marbles to act as front-layer overlay */
+  pointer-events: none; /* Let clicks pass through to drag marbles inside */
+}
+
+#plugin_displacement .displacement-glass-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#plugin_displacement .displacement-water-poly {
+  fill: rgba(5, 133, 186, 0.4);
+  pointer-events: none;
+}
+
+#plugin_displacement .displacement-marble {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
+  z-index: 2; /* Sits behind glass outline overlay */
+}
+
+/* Pseudo-element to make grabbing small marbles easier on desktop & touch screens */
+#plugin_displacement .displacement-marble::after {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+}
+
+/* Palette consisting of host colors and vibrantly jittered variations */
+#plugin_displacement .displacement-marble.blue {
+  background-color: #0585BA;
+}
+
+#plugin_displacement .displacement-marble.blue-light {
+  background-color: #2696C7;
+}
+
+#plugin_displacement .displacement-marble.purple {
+  background-color: #64317B;
+}
+
+#plugin_displacement .displacement-marble.magenta {
+  background-color: #B7287E;
+}
+
+#plugin_displacement .displacement-marble.magenta-light {
+  background-color: #C93D90;
+}
+
+#plugin_displacement .displacement-marble.green {
+  background-color: #4CAF50;
+}
+
+#plugin_displacement .displacement-marble.green-light {
+  background-color: #5EBF62;
+}
+
+#plugin_displacement .displacement-marble.orange {
+  background-color: #E67E22;
+}
+
+#plugin_displacement .displacement-marble.orange-light {
+  background-color: #F39C12;
+}
+
+#plugin_displacement .displacement-marble:active {
+  cursor: grabbing;
+}
+
+#plugin_displacement .displacement-marble.dragging {
+  z-index: 100 !important;
+  cursor: grabbing;
+}
+
+#plugin_displacement .displacement-marble.animating {
+  transition: left 0.3s ease-out, top 0.3s ease-out;
+}
+
+#plugin_displacement .displacement-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}

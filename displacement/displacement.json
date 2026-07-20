@@ -1,0 +1,13 @@
+{
+  "id": "displacement",
+  "title": "Displacement",
+  "page": "/displacement",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "displacement/displacement.html",
+  "css": "displacement/displacement.css",
+  "js": [
+    "displacement/displacement.js"
+  ],
+  "settings": {}
+}

@@ -1,0 +1,30 @@
+<div class="displacement-module">
+  <p class="displacement-instruction">Drag the marbles into the glass to observe displacement.</p>
+  
+  <div class="displacement-sandbox">
+    <div class="displacement-tabletop"></div>
+    
+    <!-- Glass SVG (wider drinking glass with sloped sides, adjusted bottom coordinate to sit flat on tabletop) -->
+    <div class="displacement-glass">
+      <svg class="displacement-glass-svg" width="90" height="110" viewBox="0 0 90 110">
+        <polygon class="displacement-water-poly" points="21.5,62.0 68.5,62.0 62,107 28,107" />
+        <polyline points="10,3 25,108.5 65,108.5 80,3" fill="none" stroke="#333333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+    
+    <!-- 9 Marbles initialized in an interleaved-color nesting pile sitting directly on the tabletop -->
+    <div class="displacement-marble blue" data-index="0" style="left: 312px; top: 135px;"></div>
+    <div class="displacement-marble green" data-index="1" style="left: 328px; top: 135px;"></div>
+    <div class="displacement-marble purple" data-index="2" style="left: 344px; top: 135px;"></div>
+    <div class="displacement-marble orange" data-index="3" style="left: 360px; top: 135px;"></div>
+    <div class="displacement-marble magenta-light" data-index="4" style="left: 320px; top: 122px;"></div>
+    <div class="displacement-marble blue-light" data-index="5" style="left: 336px; top: 122px;"></div>
+    <div class="displacement-marble green-light" data-index="6" style="left: 352px; top: 122px;"></div>
+    <div class="displacement-marble orange-light" data-index="7" style="left: 328px; top: 109px;"></div>
+    <div class="displacement-marble magenta" data-index="8" style="left: 344px; top: 109px;"></div>
+  </div>
+  
+  <div class="displacement-controls">
+    <button type="button" class="displacement-reset-btn">Reset</button>
+  </div>
+</div>
