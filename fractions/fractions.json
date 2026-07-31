@@ -1,0 +1,13 @@
+{
+  "id": "fractions",
+  "title": "Fractions",
+  "page": "/fractions",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "fractions/fractions.html",
+  "css": "fractions/fractions.css",
+  "js": [
+    "fractions/fractions.js"
+  ],
+  "settings": {}
+}

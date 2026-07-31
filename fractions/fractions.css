@@ -1,0 +1,108 @@
+#plugin_fractions .fractions-module {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-height: 250px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+#plugin_fractions .fractions-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+#plugin_fractions .fractions-pizza-col {
+  align-items: center;
+  max-width: 230px;
+}
+
+#plugin_fractions .fractions-controls-col {
+  align-items: flex-start;
+}
+
+#plugin_fractions .fractions-pizza-container {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#plugin_fractions .fractions-pizza-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#plugin_fractions .fractions-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+#plugin_fractions .fractions-fieldset legend {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+#plugin_fractions .fractions-radio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+  width: 100%;
+}
+
+#plugin_fractions .fractions-radio-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+
+#plugin_fractions .fractions-status {
+  margin-top: 14px;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 14px;
+  min-height: 22px;
+}
+
+#plugin_fractions .fractions-cut-line {
+  transition: stroke-dashoffset 0.35s ease-in-out;
+}
+
+#plugin_fractions .fractions-slice-overlay {
+  transition: opacity 0.35s ease-in-out;
+}
+
+/* Responsive mobile layout */
+@media (max-width: 600px) {
+  #plugin_fractions .fractions-module {
+    flex-direction: column;
+    max-height: none;
+    gap: 16px;
+  }
+
+  #plugin_fractions .fractions-controls-col {
+    align-items: center;
+  }
+
+  #plugin_fractions .fractions-fieldset legend {
+    text-align: center;
+  }
+
+  #plugin_fractions .fractions-status {
+    text-align: center;
+  }
+}
