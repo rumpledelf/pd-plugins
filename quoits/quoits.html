@@ -1,0 +1,16 @@
+<div class="quoits-game">
+  <div class="quoits-score"><strong>Quoits</strong><span data-score>Score: 0 · Rings: 6</span></div>
+  <div class="quoits-play" role="button" tabindex="0" aria-label="Throw a quoit. Aim straight ahead." aria-describedby="quoits-help">
+    <svg class="quoits-board" viewBox="0 0 480 260" aria-hidden="true">
+      <path d="M95 18 H385 L450 185 H30 Z" fill="whitesmoke" stroke="gainsboro" stroke-width="2" vector-effect="non-scaling-stroke"/>
+      <g data-rings></g>
+      <g data-pegs></g>
+      <path data-arc d="M197 209 A50 50 0 0 1 283 209" fill="none" stroke="gainsboro" stroke-width="1"/>
+      <path data-guide d="M240 234 V169" fill="none" stroke="#999999" stroke-width="1.5" stroke-dasharray="2 5" stroke-linecap="round"/>
+      <ellipse data-ring cx="240" cy="234" rx="19" ry="9" fill="none" stroke="#0585BA" stroke-width="5"/>
+    </svg>
+    <div class="quoits-power" role="progressbar" aria-label="Throw power" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span data-power></span></div>
+  </div>
+  <p class="quoits-help" id="quoits-help">Drag to aim, then lift. Press and hold again for power; release to throw.</p>
+  <div class="quoits-controls"><span data-result role="status">Six rings. How many can you land?</span><button type="button" data-reset>New game</button></div>
+</div>

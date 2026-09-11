@@ -1,0 +1,11 @@
+{
+  "id": "quoits",
+  "title": "Quoits",
+  "page": "/quoits",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "quoits/quoits.html",
+  "css": "quoits/quoits.css",
+  "js": ["quoits/quoits.js"],
+  "settings": {}
+}

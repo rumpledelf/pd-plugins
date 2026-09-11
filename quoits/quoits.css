@@ -1,0 +1,77 @@
+#plugin_quoits .quoits-game {
+  width: 100%;
+  max-width: 480px;
+  margin-inline: auto;
+}
+
+#plugin_quoits .quoits-score,
+#plugin_quoits .quoits-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+#plugin_quoits .quoits-help {
+  margin: 10px 0;
+  font-size: 0.9em;
+}
+
+#plugin_quoits .quoits-play {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  cursor: grab;
+}
+
+#plugin_quoits .quoits-play:focus {
+  outline: none;
+}
+
+#plugin_quoits .quoits-play:focus-visible [data-ring] {
+  stroke: #333333;
+}
+
+#plugin_quoits .quoits-board {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#plugin_quoits .quoits-power {
+  height: 2px;
+  margin: 0 5%;
+  background: gainsboro;
+}
+
+#plugin_quoits [data-power] {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: #999999;
+}
+
+#plugin_quoits .quoits-controls {
+  flex-wrap: wrap;
+}
+
+#plugin_quoits [data-result] {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 4.5em;
+  height: 3lh;
+  overflow: auto;
+}
+
+@media (max-width: 600px) {
+  #plugin_quoits .quoits-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #plugin_quoits [data-result] {
+    flex: none;
+    width: 100%;
+  }
+}
