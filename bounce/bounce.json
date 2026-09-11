@@ -1,8 +1,9 @@
 {
   "id": "bounce",
   "title": "Bounce",
+  "description": "A playful bouncing ball activity. Catch the ball with a click or tap to kick it sideways and watch it ricochet around its box.",
   "page": "/bounce",
-  "region": "content",
+  "region": "contentheader",
   "edge": "bottom",
   "html": "bounce/bounce.html",
   "css": "bounce/bounce.css",
@@ -15,4 +16,3 @@
     "fps": 60
   }
 }
-

@@ -27,6 +27,8 @@
 }
 
 #plugin_bounce .bounce-ball {
+  cursor: pointer;
+  touch-action: manipulation;
   position: absolute;
   width: 40px;
   height: 40px;
@@ -36,5 +38,4 @@
   transform-origin: bottom center;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
-
 
