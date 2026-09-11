@@ -1,0 +1,16 @@
+{
+  "id": "metronome",
+  "title": "Metronome",
+  "page": "/metronome",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "metronome/metronome.html",
+  "css": "metronome/metronome.css",
+  "js": [
+    "metronome/metronome.js"
+  ],
+  "settings": {
+    "default_bpm": 108,
+    "sound_enabled": true
+  }
+}

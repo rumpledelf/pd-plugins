@@ -1,0 +1,30 @@
+<div class="metronome-module">
+  <div class="metronome-visual">
+    <svg viewBox="0 0 200 120" width="200" height="120" aria-hidden="true">
+      <polygon points="100,10 45,110 155,110" fill="none" stroke="#333333" stroke-width="2" stroke-linejoin="round" />
+      <line x1="100" y1="18" x2="100" y2="105" stroke="gainsboro" stroke-width="1" stroke-dasharray="2 2" />
+      <g class="metronome-arm" transform="rotate(0 100 105)">
+        <line x1="100" y1="105" x2="100" y2="20" stroke="#333333" stroke-width="3" stroke-linecap="round" />
+        <rect class="metronome-weight" x="93" y="55" width="14" height="10" fill="#333333" />
+      </g>
+      <circle cx="100" cy="105" r="4" fill="#333333" />
+    </svg>
+  </div>
+
+  <div class="metronome-controls">
+    <button type="button" id="metronome-toggle">Start</button>
+    <span id="metronome-bpm-display" aria-live="polite">108 BPM</span>
+    <label class="metronome-sound-label">
+      <input type="checkbox" id="metronome-sound" checked> Sound
+    </label>
+  </div>
+
+  <div class="metronome-speeds" role="radiogroup" aria-label="Musical timing speeds">
+    <label><input type="radio" name="metronome-speed" value="50"> Largo (50)</label>
+    <label><input type="radio" name="metronome-speed" value="70"> Adagio (70)</label>
+    <label><input type="radio" name="metronome-speed" value="92"> Andante (92)</label>
+    <label><input type="radio" name="metronome-speed" value="108" checked> Moderato (108)</label>
+    <label><input type="radio" name="metronome-speed" value="132"> Allegro (132)</label>
+    <label><input type="radio" name="metronome-speed" value="168"> Presto (168)</label>
+  </div>
+</div>

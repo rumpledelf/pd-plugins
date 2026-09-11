@@ -1,0 +1,48 @@
+#plugin_metronome .metronome-module {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  padding: 6px 8px;
+}
+
+#plugin_metronome .metronome-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#plugin_metronome .metronome-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#plugin_metronome #metronome-bpm-display {
+  font-weight: bold;
+  min-width: 75px;
+  text-align: center;
+}
+
+#plugin_metronome .metronome-sound-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+#plugin_metronome .metronome-speeds {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+#plugin_metronome .metronome-speeds label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
