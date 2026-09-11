@@ -1,6 +1,7 @@
 {
   "id": "quoits",
   "title": "Quoits",
+  "description": "A playable ring toss game. Aim and throw six quoits onto five pegs, controlling the angle and power to score points.",
   "page": "/quoits",
   "region": "contentheader",
   "edge": "bottom",

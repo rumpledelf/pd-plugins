@@ -1,6 +1,7 @@
 {
   "id": "metronome",
   "title": "Metronome",
+  "description": "An interactive metronome. Adjust the tempo and follow a swinging pendulum with an optional audible beat.",
   "page": "/metronome",
   "region": "contentheader",
   "edge": "bottom",

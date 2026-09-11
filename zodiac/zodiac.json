@@ -1,6 +1,7 @@
 {
   "id": "zodiac",
   "title": "Zodiac",
+  "description": "An interactive zodiac sign finder. Enter your birthday to discover your zodiac sign and open its dictionary page.",
   "page": "/zodiac",
   "region": "contentheader",
   "edge": "bottom",

@@ -1,6 +1,7 @@
 {
   "id": "au-states",
   "title": "Australian States",
+  "description": "An interactive map of Australia. Tap a state or territory to find its capital city and open its dictionary page.",
   "page": "/au-states",
   "region": "contentheader",
   "edge": "bottom",

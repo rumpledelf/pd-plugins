@@ -1,6 +1,7 @@
 {
   "id": "time",
   "title": "Read the time",
+  "description": "An interactive clock-reading activity. Read the analogue clock, check your answer, or reveal the time and try another.",
   "page": "/time",
   "region": "contentheader",
   "edge": "bottom",

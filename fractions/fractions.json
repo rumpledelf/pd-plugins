@@ -1,6 +1,7 @@
 {
   "id": "fractions",
   "title": "Fractions",
+  "description": "An interactive fractions activity. Choose a fraction to see that portion of a pizza illustrated.",
   "page": "/fractions",
   "region": "contentheader",
   "edge": "bottom",

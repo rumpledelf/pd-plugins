@@ -1,6 +1,7 @@
 {
   "id": "wax-wane",
   "title": "Wax Wane Moon Phase Simulation",
+  "description": "An animated Moon phase demonstration. Watch the Moon wax and wane through its cycle, with controls to start and stop.",
   "page": "/wax-wane",
   "region": "contentheader",
   "edge": "bottom",

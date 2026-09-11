@@ -1,6 +1,7 @@
 {
   "id": "us-states",
   "title": "US States",
+  "description": "An interactive map of the United States. Tap a state to see its name and open its dictionary page.",
   "page": "/us-states",
   "region": "contentheader",
   "edge": "bottom",

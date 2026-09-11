@@ -1,6 +1,7 @@
 {
   "id": "lever",
   "title": "Lever, Fulcrum and Balance Simulation",
+  "description": "An interactive lever and balance demonstration. Move the fulcrum and place rocks on the beam to explore how it balances.",
   "page": "/lever",
   "region": "content",
   "edge": "bottom",

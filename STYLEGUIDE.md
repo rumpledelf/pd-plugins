@@ -242,6 +242,7 @@ Each plugin manifest should include:
 
 - `id`
 - `title`
+- `description`: a short, plain-text explanation of the activity and what the visitor can do
 - `page`
 - `region`
 - `edge`
@@ -257,6 +258,10 @@ Do not treat them as a guarantee that production placement is fixed forever.
 The host owns live placement.
 The manifest is not a license to implement missing host behavior inside the
 plugin.
+
+The host uses `description` to emit structured metadata for each embedded
+activity. Keep it accurate for games, demonstrations, maps, and tools alike.
+Do not add plugin-local JSON-LD or hidden SEO copy to the HTML fragment.
 
 ## Common mistakes
 

@@ -1,6 +1,7 @@
 {
   "id": "spin",
   "title": "Spin",
+  "description": "An interactive spinning fan demonstration. Switch between clockwise and counterclockwise rotation or stop the fan.",
   "page": "/spin",
   "region": "contentheader",
   "edge": "bottom",

@@ -1,6 +1,7 @@
 {
   "id": "planets",
   "title": "Planets",
+  "description": "An animated solar system activity. Watch the planets orbit the Sun and select a planet to open its dictionary page.",
   "page": "/planets",
   "region": "contentheader",
   "edge": "bottom",

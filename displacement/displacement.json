@@ -1,6 +1,7 @@
 {
   "id": "displacement",
   "title": "Displacement",
+  "description": "An interactive water displacement demonstration. Drag marbles into a glass and watch the water level rise.",
   "page": "/displacement",
   "region": "contentheader",
   "edge": "bottom",

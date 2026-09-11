@@ -1,6 +1,7 @@
 {
   "id": "piano",
   "title": "Piano",
+  "description": "A playable one-octave piano. Tap the keys to hear notes and make a tune.",
   "page": "/piano",
   "region": "contentheader",
   "edge": "bottom",

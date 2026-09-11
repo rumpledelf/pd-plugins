@@ -1,6 +1,7 @@
 {
   "id": "speed",
   "title": "Walking and running speed",
+  "description": "An interactive walking and running demonstration. Adjust the speed to change how an animated stick figure moves.",
   "page": "/speed",
   "region": "contentheader",
   "edge": "bottom",

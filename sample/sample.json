@@ -1,6 +1,7 @@
 {
   "id": "sample",
   "title": "Sample Plugin",
+  "description": "A small interactive text activity. Type a message and press the button to display it.",
   "page": "/sample",
   "region": "contentheader",
   "edge": "bottom",

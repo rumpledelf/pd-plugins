@@ -1,6 +1,7 @@
 {
   "id": "on-off",
   "title": "On Off",
+  "description": "An interactive on-and-off demonstration. Use the switch to turn the light on or off.",
   "page": "/on-off",
   "region": "contentheader",
   "edge": "bottom",

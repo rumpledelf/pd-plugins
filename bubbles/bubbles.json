@@ -1,6 +1,7 @@
 {
   "id": "bubbles",
   "title": "Bubbles",
+  "description": "A playable bubble-popping activity. Tap the floating bubbles and see how many you can pop as the speed increases.",
   "page": "/bubbles",
   "region": "content",
   "edge": "bottom",
