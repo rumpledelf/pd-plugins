@@ -1,0 +1,12 @@
+#plugin_sort .sort-module { max-width: 640px; margin-inline: auto; }
+#plugin_sort .sort-stage { display: block; width: 100%; height: 200px; overflow: visible; user-select: none; touch-action: none; }
+#plugin_sort .sort-doll { cursor: grab; touch-action: none; outline: none; }
+#plugin_sort .sort-doll[data-held="true"] { cursor: grabbing; }
+#plugin_sort .sort-focus { opacity: 0; fill: none; stroke: #0585BA; stroke-width: 3; stroke-linecap: round; }
+#plugin_sort .sort-doll:focus-visible:not([data-held="true"]) .sort-focus { opacity: 1; }
+#plugin_sort .sort-shell { stroke: #333333; stroke-opacity: .45; stroke-width: 1.25; stroke-linejoin: round; }
+#plugin_sort .sort-line { fill: none; stroke: #333333; stroke-opacity: .65; stroke-width: 1.15; stroke-linecap: round; }
+#plugin_sort .sort-footer { display: flex; gap: 8px; justify-content: space-between; align-items: center; min-height: 40px; }
+#plugin_sort .sort-message { font-size: .9em; }
+#plugin_sort .sort-help { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media (max-width: 420px) { #plugin_sort .sort-stage { height: 180px; } }

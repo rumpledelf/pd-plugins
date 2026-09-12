@@ -1,0 +1,14 @@
+{
+  "id": "sort",
+  "title": "Sort",
+  "description": "Drag Russian dolls into size order, smallest to largest or largest to smallest, and watch them wiggle when sorted.",
+  "page": "/s/sort",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "sort/sort.html",
+  "css": "sort/sort.css",
+  "js": [
+    "sort/sort.js"
+  ],
+  "settings": {}
+}
