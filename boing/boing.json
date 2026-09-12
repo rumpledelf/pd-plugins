@@ -1,0 +1,14 @@
+{
+  "id": "boing",
+  "title": "Boing",
+  "description": "Pull, squash or tilt a spring toy and let go. Watch a wobble travel down its coils and gradually settle.",
+  "page": "/b/boing",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "boing/boing.html",
+  "css": "boing/boing.css",
+  "js": [
+    "boing/boing.js"
+  ],
+  "settings": {}
+}

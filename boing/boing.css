@@ -1,0 +1,5 @@
+#plugin_boing .boing-module { max-width: 440px; margin: auto; text-align: center; }
+#plugin_boing .boing-stage { display: block; width: 100%; height: 224px; user-select: none; touch-action: none; }
+#plugin_boing .boing-top { cursor: grab; touch-action: none; outline: none; }
+#plugin_boing .boing-top:active { cursor: grabbing; }
+#plugin_boing .boing-hint { margin: 0; height: 24px; font-size: 14px; }
