@@ -1,0 +1,14 @@
+{
+  "id": "russian-doll",
+  "title": "Russian doll",
+  "description": "Open a Russian doll to discover a smaller doll inside. Reveal all five, then watch them nest together again.",
+  "page": "/r/russian-doll",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "russian-doll/russian-doll.html",
+  "css": "russian-doll/russian-doll.css",
+  "js": [
+    "russian-doll/russian-doll.js"
+  ],
+  "settings": {}
+}
