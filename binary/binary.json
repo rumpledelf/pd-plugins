@@ -1,0 +1,12 @@
+{
+  "id": "binary",
+  "title": "Binary",
+  "description": "Enter a decimal integer and convert it into a binary number.",
+  "page": "/b/binary",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "binary/binary.html",
+  "css": "binary/binary.css",
+  "js": ["binary/binary.js"],
+  "settings": {}
+}

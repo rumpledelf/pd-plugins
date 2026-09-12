@@ -1,0 +1,42 @@
+#plugin_binary .binary-converter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto;
+  column-gap: 16px;
+  row-gap: 8px;
+  align-items: center;
+  width: min(100%, 680px);
+  margin-inline: auto;
+  text-align: center;
+}
+#plugin_binary .binary-source { grid-column: 1; grid-row: 1; }
+#plugin_binary .binary-destination { grid-column: 3; grid-row: 1; }
+#plugin_binary label { margin: 0; font: inherit; }
+#plugin_binary input,
+#plugin_binary output {
+  grid-row: 2;
+  min-width: 0;
+  width: 100%;
+  height: 3rem;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 1.6rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+#plugin_binary input { grid-column: 1; }
+#plugin_binary output {
+  outline: none;
+  grid-column: 3;
+  display: block;
+  line-height: 3rem;
+  white-space: nowrap;
+  overflow: auto;
+}
+#plugin_binary button { grid-column: 2; grid-row: 2; margin: 0; }
+#plugin_binary #binary-message { grid-column: 1 / -1; grid-row: 3; min-height: 1.5em; margin: 0; }
+@media (max-width: 480px) {
+  #plugin_binary .binary-converter { column-gap: 8px; }
+  #plugin_binary input,
+  #plugin_binary output { font-size: 1.25rem; }
+}
