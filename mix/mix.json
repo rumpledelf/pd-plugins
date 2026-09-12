@@ -1,0 +1,14 @@
+{
+  "id": "mix",
+  "title": "Mix",
+  "description": "Hold the stick to mix layers of colour into swirling ribbons, then a blended colour. Release to pause or reset to separate the layers again.",
+  "page": "/m/mix",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "mix/mix.html",
+  "css": "mix/mix.css",
+  "js": [
+    "mix/mix.js"
+  ],
+  "settings": {}
+}
