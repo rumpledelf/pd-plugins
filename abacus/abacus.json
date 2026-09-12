@@ -1,0 +1,14 @@
+{
+  "id": "abacus",
+  "title": "Abacus",
+  "description": "Move beads on a four-column soroban to make numbers. Discover how the five-bead, one-beads and decimal place values work together.",
+  "page": "/a/abacus",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "abacus/abacus.html",
+  "css": "abacus/abacus.css",
+  "js": [
+    "abacus/abacus.js"
+  ],
+  "settings": {}
+}
