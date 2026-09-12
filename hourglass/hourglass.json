@@ -1,0 +1,16 @@
+{
+  "id": "hourglass",
+  "title": "Hourglass",
+  "description": "Turn an hourglass and watch the sand drain into the lower bulb. Turn it again at any time to send the sand back.",
+  "page": "/h/hourglass",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "hourglass/hourglass.html",
+  "css": "hourglass/hourglass.css",
+  "js": [
+    "hourglass/hourglass.js"
+  ],
+  "settings": {
+    "seconds": 30
+  }
+}

@@ -1,0 +1,18 @@
+<div class="hourglass-module">
+  <svg class="hourglass-timer" viewBox="0 0 200 232" role="button" tabindex="0" aria-label="Flip the hourglass to start a 30 second timer">
+    <defs><clipPath id="hourglass-glass-clip"><path d="M53 31H147C147 76 119 87 104 110Q100 116 104 122C119 145 147 156 147 201H53C53 156 81 145 96 122Q100 116 96 110C81 87 53 76 53 31Z"/></clipPath></defs>
+    <g class="hourglass-body">
+      <path d="M43 27V205M157 27V205" stroke="#64317B" stroke-width="7" stroke-linecap="round"/>
+      <path class="hourglass-glass" d="M53 31H147C147 76 119 87 104 110Q100 116 104 122C119 145 147 156 147 201H53C53 156 81 145 96 122Q100 116 96 110C81 87 53 76 53 31Z" fill="whitesmoke" stroke="#999999" stroke-width="2"/>
+      <g clip-path="url(#hourglass-glass-clip)" fill="orange">
+        <rect class="hourglass-top-sand" x="50" y="115" width="100" height="0"/>
+        <path class="hourglass-bottom-sand" d="M49 201V151Q100 112 151 151V205H49Z"/>
+        <path class="hourglass-stream" d="M100 114V197" stroke="orange" stroke-width="2" stroke-dasharray="2 3" fill="none" visibility="hidden"/>
+        <g class="hourglass-grains" fill="orange"><circle cx="95" cy="198" r="1.5"/><circle cx="106" cy="197" r="1"/><circle cx="101" cy="194" r="1"/></g>
+      </g>
+      <path class="hourglass-caps" d="M36 25H164M36 207H164" stroke="#64317B" stroke-width="11" stroke-linecap="round"/>
+    </g>
+  </svg>
+  <p class="hourglass-caption">Tap to turn · 30 seconds</p>
+  <span class="hourglass-announcement" aria-live="polite"></span>
+</div>
