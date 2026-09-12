@@ -1,0 +1,14 @@
+{
+  "id": "jigsaw",
+  "title": "Jigsaw",
+  "description": "Solve an animal jigsaw by fitting six or twelve curved pieces together. Drag pieces into place, then choose another animal.",
+  "page": "/j/jigsaw",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "jigsaw/jigsaw.html",
+  "css": "jigsaw/jigsaw.css",
+  "js": [
+    "jigsaw/jigsaw.js"
+  ],
+  "settings": {}
+}

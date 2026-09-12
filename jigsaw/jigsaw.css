@@ -1,0 +1,15 @@
+#plugin_jigsaw .jigsaw-module { max-width: 660px; margin: auto; }
+#plugin_jigsaw .jigsaw-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+#plugin_jigsaw .jigsaw-controls { display: flex; align-items: center; gap: 12px; }
+#plugin_jigsaw .jigsaw-difficulty { display: flex; align-items: center; gap: 10px; }
+#plugin_jigsaw .jigsaw-difficulty label { display: flex; align-items: center; white-space: nowrap; gap: 3px; }
+#plugin_jigsaw .jigsaw-toolbar p { margin: 0; }
+#plugin_jigsaw .jigsaw-stage { display: block; width: 100%; height: auto; overflow: visible; touch-action: none; user-select: none; }
+#plugin_jigsaw .jigsaw-piece { cursor: grab; outline: none; }
+#plugin_jigsaw .jigsaw-piece[data-locked="true"] { cursor: default; }
+#plugin_jigsaw .jigsaw-piece:focus-visible .jigsaw-edge { stroke-width: 3; stroke-dasharray: 4 2; }
+#plugin_jigsaw .jigsaw-edge { fill: none; stroke: white; stroke-width: 1.2; stroke-linejoin: round; transition: opacity 350ms; pointer-events: none; }
+#plugin_jigsaw .jigsaw-stage[data-complete="true"] .jigsaw-edge { opacity: 0; }
+#plugin_jigsaw .jigsaw-status { margin: 0; height: 40px; display: flex; align-items: flex-end; justify-content: center; text-align: center; overflow: auto; font-size: 14px; }
+#plugin_jigsaw .jigsaw-credit { display: block; text-align: center; margin-top: 6px; font-size: 11px; }
+@media (prefers-reduced-motion: reduce) { #plugin_jigsaw .jigsaw-edge { transition: none; } }
