@@ -8,11 +8,11 @@ This deliberately uses a larger playfield than 250px: a 270px square photo plus 
 
 ## Photographs
 
-tiger.jpg is copied unchanged from the site's existing images/t/tiger.jpg (photo188, word188, Animals). Photo by S.Brickman, https://www.flickr.com/photos/s-brickman/33450410056/, licensed CC BY-SA3.0 https://creativecommons.org/licenses/by-sa/3.0/. Visible attribution is included. The interactive display clips the photograph into pieces; the downloaded JPEG is unmodified.
+tiger.jpg is loaded from https://photographicdictionary.com/images/t/tiger.jpg (photo188, word188, Animals). Photo by S.Brickman, https://www.flickr.com/photos/s-brickman/33450410056/, licensed CC BY-SA3.0 https://creativecommons.org/licenses/by-sa/3.0/. Visible attribution is included. The interactive display clips the photograph into pieces; the source image is unmodified.
 
 The animal link /t/tiger matches the local routes table. At implementation time the local web server returns404 for that route; this plugin does not modify host routing.
 
-The other photographs are also copied unchanged from the local site's `public/images/` collection. All have license 1 (CC BY-SA 3.0) in the local database snapshot. The visible author credit and animal link change with the photograph. Cropping into puzzle pieces is a display adaptation; original assets are preserved.
+All photographs load directly from fully qualified production URLs of the form `https://photographicdictionary.com/images/<letter>/<animal>.jpg`, including in the local tester. No duplicate image files are bundled. All have license 1 (CC BY-SA 3.0) in the local database snapshot. The visible author credit and animal link change with the photograph. Cropping into puzzle pieces is a display adaptation; original assets are unchanged. Image loading requires network access.
 
 | File | Source photo ID | Photographer | Original source |
 | --- | --- | --- | --- |

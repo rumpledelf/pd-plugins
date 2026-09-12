@@ -1,5 +1,4 @@
 (function () {
-  const scriptSource = document.currentScript && document.currentScript.src;
   function boot(root) {
     if (!root || root.dataset.pluginBooted === 'true') return;
     root.dataset.pluginBooted = 'true';
@@ -60,7 +59,7 @@
     cols = harder ? 4 : 3; rows = harder ? 3 : 2;
     w = 270 / cols; h = 270 / rows;
     const animal = animals[animalIndex];
-    photo = new URL(animal[0] + '.jpg', scriptSource || new URL('jigsaw/jigsaw.js', document.baseURI)).href;
+    photo = 'https://photographicdictionary.com/images/' + animal[0][0] + '/' + animal[0] + '.jpg';
     const link = root.querySelector('.jigsaw-animal'), credit = root.querySelector('.jigsaw-credit a');
     link.textContent = animal[0]; link.setAttribute('href', '/' + animal[0][0] + '/' + animal[0]);
     root.querySelector('.jigsaw-article').textContent = /^[aeiou]/.test(animal[0]) ? 'an' : 'a';
