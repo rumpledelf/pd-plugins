@@ -1,0 +1,14 @@
+{
+  "id": "dice",
+  "title": "Dice",
+  "description": "Roll two three-dimensional dice. They tumble and settle, then show the total of their top faces.",
+  "page": "/d/dice",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "dice/dice.html",
+  "css": "dice/dice.css",
+  "js": [
+    "dice/dice.js"
+  ],
+  "settings": {}
+}
