@@ -1,0 +1,14 @@
+{
+  "id": "open-close",
+  "title": "Open and close",
+  "description": "Click an old-fashioned panel door to swing it open, then click again to close it.",
+  "page": "/o/open",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "open-close/open-close.html",
+  "css": "open-close/open-close.css",
+  "js": [
+    "open-close/open-close.js"
+  ],
+  "settings": {}
+}

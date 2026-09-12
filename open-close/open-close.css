@@ -1,0 +1,19 @@
+#plugin_open-close .oc-module { width: 300px; max-width: 100%; margin-inline: auto; }
+#plugin_open-close .oc-scene { height: 222px; position: relative; perspective: 650px; perspective-origin: 50% 45%; cursor: pointer; outline: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+#plugin_open-close .oc-frame { position: absolute; width: 112px; height: 190px; left: calc(50% - 56px); top: 12px; border: 8px solid gainsboro; border-bottom-width: 0; box-sizing: content-box; transform-style: preserve-3d; box-shadow: 0 0 0 1px #999999; }
+#plugin_open-close .oc-frame::before { content: ''; position: absolute; inset: -1px; border: 1px solid #999999; pointer-events: none; transform: translateZ(1px); }
+#plugin_open-close .oc-room { position: absolute; inset: 0; overflow: hidden; background: #333333; }
+#plugin_open-close .oc-light { position: absolute; inset: 0; background: linear-gradient(100deg, #999999, gainsboro); opacity: 0; transition: opacity 1s ease; }
+#plugin_open-close .oc-light::after { content: ''; position: absolute; inset: 76% 0 0; background: #999999; }
+#plugin_open-close .oc-door { position: absolute; inset: 0; transform-origin: left center; transform: rotateY(0deg); transition: transform 1100ms cubic-bezier(.22,.7,.25,1); transform-style: preserve-3d; }
+#plugin_open-close .oc-door svg { display: block; width: 100%; height: 100%; overflow: visible; }
+#plugin_open-close .oc-door::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 4px; background: #333333; transform: rotateY(90deg); transform-origin: right; }
+#plugin_open-close .oc-floor { position: absolute; left: calc(50% - 62px); top: 205px; width: 141px; height: 12px; background: #333333; opacity: .14; transform: skewX(-28deg); filter: blur(3px); transition: width 1100ms ease, transform 1100ms ease; }
+#plugin_open-close .oc-scene.is-open .oc-door { transform: rotateY(-105deg); }
+#plugin_open-close .oc-scene.is-open .oc-light { opacity: 1; }
+#plugin_open-close .oc-scene.is-open .oc-floor { width: 90px; transform: translateX(-50px) skewX(-45deg); }
+#plugin_open-close .oc-scene:focus-visible .oc-handle { stroke-width: 5; }
+#plugin_open-close .oc-caption { height: 28px; margin: 0; text-align: center; font-size: .85em; }
+@media (prefers-reduced-motion: reduce) {
+  #plugin_open-close .oc-door, #plugin_open-close .oc-light, #plugin_open-close .oc-floor { transition-duration: 80ms; }
+}
