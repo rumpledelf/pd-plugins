@@ -104,23 +104,32 @@
       animationFrameId = requestAnimationFrame(loop);
     }
 
-    function kick() {
-      const direction = vx === 0 ? (Math.random() < 0.5 ? -1 : 1) : -Math.sign(vx);
-      vx = direction * (4 + Math.random() * 2);
-      vy = Math.sqrt(2 * gravity * getStageMetrics().maxTravel);
-      squash = 0.2;
+    function nudge() {
+      const direction = Math.random() * Math.PI * 2;
+      const speed = 3 + Math.random() * 4;
+      vx += Math.cos(direction) * speed;
+      vy += Math.sin(direction) * speed;
+
+      const velocity = Math.hypot(vx, vy);
+      const maximumVelocity = 16;
+      if (velocity > maximumVelocity) {
+        vx = vx / velocity * maximumVelocity;
+        vy = vy / velocity * maximumVelocity;
+      }
+
+      squash = 0.14;
       render();
     }
 
     ball.addEventListener('pointerdown', function (event) {
       if (event.button !== 0 || event.isPrimary === false) return;
       event.preventDefault();
-      kick();
+      nudge();
     });
     ball.addEventListener('keydown', function (event) {
       if (event.key !== ' ' && event.key !== 'Enter') return;
       event.preventDefault();
-      if (!event.repeat) kick();
+      if (!event.repeat) nudge();
     });
 
     loop();
@@ -134,4 +143,3 @@
 
   boot(document.getElementById('plugin_bounce'));
 })();
-

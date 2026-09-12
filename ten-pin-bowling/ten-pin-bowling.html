@@ -1,0 +1,30 @@
+<div class="bowling-game">
+  <div class="bowling-play" role="button" tabindex="0" aria-label="Bowl a ball from the centre, aimed straight ahead." aria-describedby="bowling-help">
+    <div class="bowling-score"><strong>10 Pin Bowling</strong><span data-score>Score: 0 · Balls: 2</span></div>
+    <svg class="bowling-lane" viewBox="0 0 480 340" aria-hidden="true">
+      <path d="M190 20 H290 L390 330 H90 Z" fill="#F2D6A2" stroke="#C9A66B" stroke-width="2" vector-effect="non-scaling-stroke"/>
+      <g fill="none" stroke="#DDBB7C" stroke-width="1" opacity="0.72">
+        <path d="M210 20 L150 330"/>
+        <path d="M230 20 L210 330"/>
+        <path d="M250 20 L270 330"/>
+        <path d="M270 20 L330 330"/>
+      </g>
+      <path data-arc d="M185 312 A55 55 0 0 1 295 312" fill="none" stroke="gainsboro" stroke-width="1"/>
+      <path data-guide d="M240 312 V48" fill="none" stroke="#999999" stroke-width="1.5" stroke-dasharray="2 5" stroke-linecap="round"/>
+      <g data-ball transform="translate(240 312)">
+        <ellipse cx="0" cy="6" rx="19" ry="7" fill="#333333" opacity="0.16"/>
+        <g data-ball-spin>
+          <circle data-ball-core cx="0" cy="0" r="18" fill="#0585BA"/>
+          <circle cx="-5" cy="-6" r="2.3" fill="white"/>
+          <circle cx="4" cy="-7" r="2.3" fill="white"/>
+          <circle cx="5" cy="0" r="2.3" fill="white"/>
+        </g>
+      </g>
+      <g data-standing-pins></g>
+      <g data-cleanup-effects></g>
+    </svg>
+    <div class="bowling-power" role="progressbar" aria-label="Bowling power" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span data-power></span></div>
+  </div>
+  <p class="bowling-help" id="bowling-help">Drag ball to position; lane to aim. Hold and release to bowl.</p>
+  <div class="bowling-controls"><span data-result role="status">Two balls. Can you clear all ten pins?</span><button type="button" data-reset>New frame</button></div>
+</div>

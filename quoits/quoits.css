@@ -52,11 +52,21 @@
   background: #999999;
 }
 
+#plugin_quoits .quoits-score.is-scoring {
+  animation: quoits-score-pop 420ms cubic-bezier(0.2, 0.9, 0.3, 1.35);
+}
+
+@keyframes quoits-score-pop {
+  45% { transform: scale(1.06); }
+}
+
 #plugin_quoits .quoits-controls {
   flex-wrap: wrap;
 }
 
 #plugin_quoits [data-result] {
+  display: grid;
+  align-content: end;
   flex: 1 1 0;
   min-width: 0;
   height: 4.5em;
@@ -73,5 +83,11 @@
   #plugin_quoits [data-result] {
     flex: none;
     width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #plugin_quoits .quoits-score.is-scoring {
+    animation: none;
   }
 }

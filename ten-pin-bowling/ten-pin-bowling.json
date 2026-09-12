@@ -1,0 +1,12 @@
+{
+  "id": "ten-pin-bowling",
+  "title": "10 Pin Bowling",
+  "description": "A playable two-ball bowling frame. Position the ball, choose an angle, control the power, and knock down all ten pins.",
+  "page": "/ten-pin-bowling",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "ten-pin-bowling/ten-pin-bowling.html",
+  "css": "ten-pin-bowling/ten-pin-bowling.css",
+  "js": ["ten-pin-bowling/ten-pin-bowling.js"],
+  "settings": {}
+}

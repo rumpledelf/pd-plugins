@@ -13,9 +13,10 @@
     const meter = root.querySelector('.quoits-power');
     const powerLine = root.querySelector('[data-power]');
     const resetButton = root.querySelector('[data-reset]');
+    const scorePanel = root.querySelector('.quoits-score');
     const scoreLabel = root.querySelector('[data-score]');
     const result = root.querySelector('[data-result]');
-    if (!board || !pegsLayer || !ringsLayer || !ring || !guide || !play || !arc || !meter || !powerLine || !resetButton || !scoreLabel || !result) return;
+    if (!board || !pegsLayer || !ringsLayer || !ring || !guide || !play || !arc || !meter || !powerLine || !resetButton || !scorePanel || !scoreLabel || !result) return;
 
     const pegs = [
       { x: 240, y: 44, points: 30 },
@@ -24,6 +25,7 @@
       { x: 130, y: 150, points: 10 },
       { x: 350, y: 150, points: 10 }
     ];
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let score = 0;
     let remaining = 6;
     let phase = 'ready';
@@ -72,22 +74,58 @@
       frame = requestAnimationFrame(charge);
     }
 
-    function land(x, y) {
-      const peg = pegs.find(function (target) {
-        return Math.pow((x - target.x) / 17, 2) + Math.pow((y - target.y) / 11, 2) <= 1;
-      });
+    function resetThrowingRing() {
+      ring.setAttribute('cx', 240);
+      ring.setAttribute('cy', 234);
+      ring.setAttribute('rx', 19);
+      ring.setAttribute('ry', 9);
+      ring.removeAttribute('transform');
+    }
+
+    function land(x, y, peg) {
       shape('ellipse', { cx: peg ? peg.x : x, cy: peg ? peg.y : y, rx: 19, ry: 9, fill: 'none', stroke: peg ? '#0585BA' : '#999999', 'stroke-width': 4 }, ringsLayer);
       remaining -= 1;
-      if (peg) score += peg.points;
+      if (peg) {
+        score += peg.points;
+        scorePanel.classList.remove('is-scoring');
+        void scorePanel.offsetWidth;
+        scorePanel.classList.add('is-scoring');
+      }
       updateScore();
       result.textContent = (peg ? '+' + peg.points + '! Ring on the peg.' : 'Missed. Try a different aim or power.') + (remaining ? '' : ' Final score: ' + score + '.');
       phase = remaining ? 'ready' : 'finished';
       play.setAttribute('aria-disabled', String(!remaining));
       arc.style.visibility = remaining ? 'visible' : 'hidden';
-      ring.setAttribute('cx', 240);
-      ring.setAttribute('cy', 234);
+      resetThrowingRing();
       ring.style.visibility = remaining ? 'visible' : 'hidden';
       guide.style.visibility = remaining ? 'visible' : 'hidden';
+    }
+
+    function settle(x, y) {
+      phase = 'landing';
+      result.textContent = 'Landing…';
+      const peg = pegs.find(function (target) {
+        return Math.pow((x - target.x) / 17, 2) + Math.pow((y - target.y) / 11, 2) <= 1;
+      });
+      const targetX = peg ? peg.x : x;
+      const targetY = peg ? peg.y : y;
+      const startedLanding = performance.now();
+      const duration = reducedMotion ? 0 : 420;
+      function finishLanding(now) {
+        if (!root.isConnected || phase !== 'landing') return;
+        const t = duration ? Math.min(1, (now - startedLanding) / duration) : 1;
+        const eased = 1 - Math.pow(1 - t, 3);
+        const currentX = x + (targetX - x) * eased;
+        const currentY = y + (targetY - y) * eased - Math.sin(Math.PI * t) * (peg ? 9 : 4);
+        ring.setAttribute('cx', currentX);
+        ring.setAttribute('cy', currentY);
+        ring.setAttribute('rx', 19 + Math.sin(Math.PI * t) * 2);
+        ring.setAttribute('ry', 9 - Math.sin(Math.PI * t) * 2);
+        ring.setAttribute('transform', 'rotate(' + ((1 - eased) * 24) + ' ' + currentX + ' ' + currentY + ')');
+        if (t < 1) frame = requestAnimationFrame(finishLanding);
+        else land(x, y, peg);
+      }
+      frame = requestAnimationFrame(finishLanding);
     }
 
     function toss() {
@@ -102,14 +140,19 @@
       const x = 240 + Math.sin(radians) * distance;
       const y = 234 - Math.cos(radians) * distance;
       const launch = performance.now();
-      const duration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 700;
+      const duration = reducedMotion ? 0 : 900;
       function fly(now) {
         if (!root.isConnected || phase !== 'flying') return;
         const t = duration ? Math.min(1, (now - launch) / duration) : 1;
-        ring.setAttribute('cx', 240 + (x - 240) * t);
-        ring.setAttribute('cy', 234 + (y - 234) * t - Math.sin(Math.PI * t) * 65);
+        const currentX = 240 + (x - 240) * t;
+        const currentY = 234 + (y - 234) * t - Math.sin(Math.PI * t) * 65;
+        ring.setAttribute('cx', currentX);
+        ring.setAttribute('cy', currentY);
+        ring.setAttribute('rx', 17 + Math.abs(Math.cos(t * Math.PI * 2.5)) * 2);
+        ring.setAttribute('ry', 2 + Math.abs(Math.cos(t * Math.PI * 2.5)) * 7);
+        ring.setAttribute('transform', 'rotate(' + (t * 300) + ' ' + currentX + ' ' + currentY + ')');
         if (t < 1) frame = requestAnimationFrame(fly);
-        else land(x, y);
+        else settle(x, y);
       }
       frame = requestAnimationFrame(fly);
     }
@@ -214,11 +257,11 @@
       throwPointer = null;
       throwKey = null;
       arc.style.visibility = 'visible';
-      ring.setAttribute('cx', 240);
-      ring.setAttribute('cy', 234);
+      resetThrowingRing();
       ring.style.visibility = 'visible';
       guide.style.visibility = 'visible';
       result.textContent = 'Six rings. How many can you land?';
+      scorePanel.classList.remove('is-scoring');
       updateScore();
       updateAim();
     });
