@@ -1,0 +1,14 @@
+{
+  "id": "magnify",
+  "title": "Magnify",
+  "description": "Move a magnifying glass over a tiny bug to see it enlarged through the lens. Look closely and it smiles and waves.",
+  "page": "/m/magnify",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "magnify/magnify.html",
+  "css": "magnify/magnify.css",
+  "js": [
+    "magnify/magnify.js"
+  ],
+  "settings": {}
+}

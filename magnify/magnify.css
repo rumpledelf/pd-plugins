@@ -1,0 +1,6 @@
+#plugin_magnify .magnify-module { max-width: 600px; margin-inline: auto; }
+#plugin_magnify .magnify-stage { width: 100%; height: 222px; display: block; outline: none; touch-action: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+#plugin_magnify .magnify-lens, #plugin_magnify .magnify-rim { cursor: grab; }
+#plugin_magnify .is-dragging .magnify-lens, #plugin_magnify .is-dragging .magnify-rim { cursor: grabbing; }
+#plugin_magnify .magnify-stage:focus-visible .magnify-focus { stroke: #0585BA; stroke-width: 4; }
+#plugin_magnify .magnify-hint { height: 28px; margin: 0; font-size: .85em; text-align: center; }
