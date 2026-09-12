@@ -1,0 +1,14 @@
+{
+  "id": "kaleidoscope",
+  "title": "Kaleidoscope",
+  "description": "Turn a kaleidoscope to tumble little coloured shapes into a changing mirrored pattern. Drag or twist the view, or shake the pieces and watch them settle.",
+  "page": "/k/kaleidoscope",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "kaleidoscope/kaleidoscope.html",
+  "css": "kaleidoscope/kaleidoscope.css",
+  "js": [
+    "kaleidoscope/kaleidoscope.js"
+  ],
+  "settings": {}
+}

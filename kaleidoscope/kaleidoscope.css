@@ -1,0 +1,15 @@
+#plugin_kaleidoscope .kaleidoscope-module { max-width: 360px; margin-inline: auto; }
+#plugin_kaleidoscope .kaleidoscope-view { display: block; width: 214px; height: 214px; max-width: 100%; margin-inline: auto; outline: none; touch-action: none; user-select: none; cursor: grab; -webkit-tap-highlight-color: transparent; }
+#plugin_kaleidoscope .kaleidoscope-view.is-held { cursor: grabbing; }
+#plugin_kaleidoscope .kaleidoscope-view.is-shaking { animation: kaleidoscope-shake 300ms ease-in-out 3; }
+@keyframes kaleidoscope-shake {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  15% { transform: translateX(-5px) rotate(-3deg); }
+  30% { transform: translateX(5px) rotate(3deg); }
+  45% { transform: translateX(-4px) rotate(-2deg); }
+  60% { transform: translateX(3px) rotate(2deg); }
+  80% { transform: translateX(-1px) rotate(-1deg); }
+}
+@media (prefers-reduced-motion: reduce) { #plugin_kaleidoscope .kaleidoscope-view.is-shaking { animation: none; } }
+#plugin_kaleidoscope .kaleidoscope-controls { display: flex; align-items: center; justify-content: center; gap: 12px; height: 36px; }
+#plugin_kaleidoscope .kaleidoscope-controls span { font-size: .8em; }
