@@ -1,0 +1,7 @@
+#plugin_pendulum .pendulum-module { height: 250px; text-align: center; }
+#plugin_pendulum .pendulum-stage { display: block; width: 420px; max-width: 100%; height: 214px; margin: auto; overflow: visible; user-select: none; touch-action: none; }
+#plugin_pendulum .pendulum-bob { cursor: grab; touch-action: none; outline: none; }
+#plugin_pendulum .pendulum-bob:active { cursor: grabbing; }
+#plugin_pendulum .pendulum-bob:focus-visible .pendulum-disc { r: 22px; }
+#plugin_pendulum .pendulum-hint { margin: 0; font-size: 14px; }
+#plugin_pendulum .pendulum-controls { height: 36px; display: flex; align-items: center; justify-content: center; }

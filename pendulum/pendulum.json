@@ -1,0 +1,14 @@
+{
+  "id": "pendulum",
+  "title": "Pendulum",
+  "description": "Pull the pendulum bob to one side and release it. Watch gravity swing it back and forth as it gradually settles.",
+  "page": "/p/pendulum",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "pendulum/pendulum.html",
+  "css": "pendulum/pendulum.css",
+  "js": [
+    "pendulum/pendulum.js"
+  ],
+  "settings": {}
+}
