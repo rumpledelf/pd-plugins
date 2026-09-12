@@ -1,0 +1,14 @@
+{
+  "id": "stopwatch",
+  "title": "Stopwatch",
+  "description": "Tap the stopwatch to measure elapsed time, pause it, and resume. Watch the second hand sweep around the dial, or reset to zero.",
+  "page": "/s/stopwatch",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "stopwatch/stopwatch.html",
+  "css": "stopwatch/stopwatch.css",
+  "js": [
+    "stopwatch/stopwatch.js"
+  ],
+  "settings": {}
+}
