@@ -1,0 +1,14 @@
+{
+  "id": "roulette",
+  "title": "Roulette",
+  "description": "Spin a European roulette wheel and watch the ball travel the opposite way, slow down, and settle into a numbered pocket. A demonstration without betting.",
+  "page": "/r/roulette",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "roulette/roulette.html",
+  "css": "roulette/roulette.css",
+  "js": [
+    "roulette/roulette.js"
+  ],
+  "settings": {}
+}

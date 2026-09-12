@@ -1,0 +1,4 @@
+#plugin_roulette .roulette-module { max-width: 370px; margin-inline: auto; }
+#plugin_roulette .roulette-wheel { display: block; width: 100%; height: 320px; touch-action: manipulation; user-select: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+#plugin_roulette .roulette-controls { display: grid; grid-template-columns: max-content minmax(0,1fr); align-items: center; gap: 16px; height: 42px; width: 240px; max-width: 100%; margin-inline: auto; }
+#plugin_roulette .roulette-result { font-variant-numeric: tabular-nums; }
