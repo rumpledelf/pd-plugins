@@ -1,0 +1,14 @@
+{
+  "id": "fill-drain",
+  "title": "Fill, drain and overflow",
+  "description": "Turn the taps on to fill a claw-foot bath, let it overflow, or pull the plug to drain it.",
+  "page": "/f/fill",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "fill-drain/fill-drain.html",
+  "css": "fill-drain/fill-drain.css",
+  "js": [
+    "fill-drain/fill-drain.js"
+  ],
+  "settings": {}
+}
