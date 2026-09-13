@@ -1,0 +1,25 @@
+<div class="top-activity">
+  <svg class="top-playfield" viewBox="100 0 400 210" role="button" tabindex="0" aria-label="Spinning top. Hold then release to spin. Hold longer for more power." aria-describedby="top-status">
+    <defs>
+      <clipPath id="top-body-clip"><path d="M-47-77 C-59-58-28-31-5-9 Q0-3 5-9 C28-31 59-58 47-77Z"/></clipPath>
+    </defs>
+    <ellipse class="top-shadow" cx="300" cy="188" rx="49" ry="7" fill="#333333" opacity=".12"/>
+    <g class="top-position" transform="translate(300 184)">
+      <g class="top-lean"><g transform="scale(1.35)">
+        <path d="M-3-12 L0 0 3-12" fill="#333333"/>
+        <path d="M-47-77 C-59-58-28-31-5-9 Q0-3 5-9 C28-31 59-58 47-77Z" fill="#0585BA"/>
+        <g clip-path="url(#top-body-clip)">
+          <path d="M-65-74 Q0-44 65-74 V-56 Q0-27-65-56Z" fill="#B7287E"/>
+          <path d="M-55-45 Q0-20 55-45 V-35 Q0-11-55-35Z" fill="#4CAF50"/>
+          <g class="top-ribs" fill="none" stroke="white" stroke-width="2" opacity=".55"></g>
+        </g>
+        <ellipse cx="0" cy="-77" rx="47" ry="15" fill="#64317B"/>
+        <rect x="-5" y="-111" width="10" height="35" rx="3" fill="#999999"/>
+        <ellipse cx="0" cy="-111" rx="5" ry="2" fill="#999999"/>
+      </g></g>
+    </g>
+    <path class="top-power-track" d="M250 204H350" stroke="gainsboro" stroke-width="4"/>
+    <path class="top-power" d="M250 204H350" stroke="#0585BA" stroke-width="4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+  </svg>
+  <p id="top-status" aria-live="polite">Hold to wind up · release to spin</p>
+</div>

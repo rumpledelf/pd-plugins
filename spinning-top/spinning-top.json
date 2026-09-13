@@ -1,0 +1,12 @@
+{
+  "id": "spinning-top",
+  "title": "Spinning top",
+  "description": "Hold to wind up an old-fashioned spinning top, then release. Watch it wander, slow down, wobble and fall over.",
+  "page": "/s/spinning-top",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "spinning-top/spinning-top.html",
+  "css": "spinning-top/spinning-top.css",
+  "js": ["spinning-top/spinning-top.js"],
+  "settings": {}
+}
