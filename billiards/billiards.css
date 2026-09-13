@@ -1,0 +1,11 @@
+#plugin_billiards .billiards-module { max-width: 520px; margin-inline: auto; }
+#plugin_billiards .billiards-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+#plugin_billiards .billiards-score { font-variant-numeric: tabular-nums; }
+#plugin_billiards .billiards-table { display: block; width: 100%; height: auto; aspect-ratio: 800 / 440; outline: none; user-select: none; touch-action: none; cursor: crosshair; }
+#plugin_billiards #billiards-status { height: 3em; overflow: auto; display: flex; justify-content: center; align-items: end; text-align: center; margin: 0; font-size: .9em; }
+#plugin_billiards,
+#plugin_billiards * { -webkit-tap-highlight-color: transparent; }
+#plugin_billiards:focus,
+#plugin_billiards :focus,
+#plugin_billiards:focus-visible,
+#plugin_billiards :focus-visible { outline: none; box-shadow: none; }

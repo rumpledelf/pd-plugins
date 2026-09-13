@@ -1,0 +1,22 @@
+<div class="billiards-module">
+  <div class="billiards-header"><button type="button" class="billiards-reset">New table</button><span class="billiards-score" aria-live="polite">Pocketed: 0 / 6</span></div>
+  <svg class="billiards-table" viewBox="0 0 800 440" role="button" tabindex="0" aria-label="Solo billiards. Drag to aim only. A fresh hold builds power; release to shoot." aria-describedby="billiards-status">
+    <defs><clipPath id="billiards-table-clip"><rect x="18" y="18" width="764" height="404"/></clipPath></defs>
+    <g class="billiards-world">
+    <rect x="20" y="20" width="760" height="400" fill="#333333"/>
+    <rect x="40" y="40" width="720" height="360" fill="#4CAF50"/>
+    <path d="M64 40H376M424 40H736M64 400H376M424 400H736M40 64V376M760 64V376" fill="none" stroke="black" stroke-opacity=".32" stroke-width="7"/>
+    <g fill="black"><circle cx="40" cy="40" r="22"/><circle cx="400" cy="34" r="22"/><circle cx="760" cy="40" r="22"/><circle cx="40" cy="400" r="22"/><circle cx="400" cy="406" r="22"/><circle cx="760" cy="400" r="22"/></g>
+    <g fill="gainsboro"><circle cx="220" cy="29" r="2"/><circle cx="580" cy="29" r="2"/><circle cx="220" cy="411" r="2"/><circle cx="580" cy="411" r="2"/><circle cx="29" cy="220" r="2"/><circle cx="771" cy="220" r="2"/></g>
+    <g class="billiards-aim" clip-path="url(#billiards-table-clip)">
+      <path class="billiards-guide" fill="none" stroke="white" stroke-width="2" stroke-dasharray="6 7" opacity=".65"/>
+      <circle class="billiards-aim-handle" r="7" fill="none" stroke="white" stroke-width="2" opacity=".8"/>
+      <path class="billiards-cue" fill="none" stroke="#333333" stroke-width="8" stroke-linecap="round"/>
+      <path class="billiards-cue-tip" fill="none" stroke="gainsboro" stroke-width="7"/>
+    </g>
+    <g class="billiards-balls"></g>
+    <g class="billiards-power" visibility="hidden"><path d="M270 431H530" stroke="gainsboro" stroke-width="4"/><path class="billiards-power-fill" d="M270 431H270" stroke="#333333" stroke-width="4"/></g>
+    </g>
+  </svg>
+  <p id="billiards-status" aria-live="polite">Drag to aim. Hold still, then release to shoot.</p>
+</div>

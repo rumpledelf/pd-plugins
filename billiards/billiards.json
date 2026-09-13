@@ -1,0 +1,15 @@
+{
+  "id": "billiards",
+  "title": "Billiards",
+  "description": "Practise solo billiards. Drag to aim the cue, then hold still and release to shoot. Pocket six balls, with rolling collisions and cushion rebounds.",
+  "page": "/b/billiards",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "billiards/billiards.html",
+  "css": "billiards/billiards.css",
+  "js": [
+    "billiards/physics.js",
+    "billiards/billiards.js"
+  ],
+  "settings": {}
+}
