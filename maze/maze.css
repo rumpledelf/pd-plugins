@@ -1,0 +1,11 @@
+#plugin_maze .maze-module { max-width: 360px; margin: auto; }
+#plugin_maze .maze-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; }
+#plugin_maze .maze-stage { display: block; width: 100%; max-width: 330px; height: auto; margin: 8px auto; user-select: none; touch-action: none; outline: none; }
+#plugin_maze .maze-player { cursor: grab; }
+#plugin_maze .maze-controls { display: flex; justify-content: center; gap: 8px; }
+#plugin_maze .maze-controls button { box-sizing: border-box; width: 36px; min-width: 36px; height: 36px; padding: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+#plugin_maze .maze-caret { display: block; width: 24px; height: 24px; font-size: 24px; line-height: 1; }
+#plugin_maze [data-direction="3"] .maze-caret { transform: rotate(180deg); }
+#plugin_maze [data-direction="0"] .maze-caret { transform: rotate(-90deg); }
+#plugin_maze [data-direction="2"] .maze-caret { transform: rotate(90deg); }
+#plugin_maze .maze-status { height: 36px; display: flex; align-items: flex-end; justify-content: center; text-align: center; margin: 0; overflow: auto; font-size: 13px; }

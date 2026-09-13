@@ -1,0 +1,14 @@
+{
+  "id": "maze",
+  "title": "Maze",
+  "description": "Guide a mouse through a freshly generated maze to the cheese. Drag along corridors, swipe, or use the arrow buttons. Every maze has a route to the goal.",
+  "page": "/m/maze",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "maze/maze.html",
+  "css": "maze/maze.css",
+  "js": [
+    "maze/maze.js"
+  ],
+  "settings": {}
+}
