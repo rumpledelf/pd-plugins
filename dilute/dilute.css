@@ -1,0 +1,6 @@
+#plugin_dilute .dilute-activity { max-width: 640px; margin-inline: auto; }
+#plugin_dilute .dilute-stage { display: block; width: 100%; height: 210px; overflow: visible; }
+#plugin_dilute .dilute-jug { cursor: grab; touch-action: none; user-select: none; outline: none; }
+#plugin_dilute .dilute-jug:active { cursor: grabbing; }
+#plugin_dilute .dilute-footer { display: flex; align-items: center; justify-content: center; gap: 16px; min-height: 40px; }
+#plugin_dilute #dilute-status { font-size: .85em; }

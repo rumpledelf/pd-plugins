@@ -1,0 +1,12 @@
+{
+  "id": "dilute",
+  "title": "Dilute",
+  "description": "Hold a jug to pour water into neat cordial. Watch the glass fill and the colour become lighter as the cordial is diluted.",
+  "page": "/d/dilute",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "dilute/dilute.html",
+  "css": "dilute/dilute.css",
+  "js": ["dilute/dilute.js"],
+  "settings": {}
+}
