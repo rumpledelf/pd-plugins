@@ -1,0 +1,14 @@
+{
+  "id": "sound-waves",
+  "title": "Sound waves",
+  "description": "Play a tone and change its pitch and loudness. Watch the wave grow taller with volume and its peaks move closer together with higher frequency.",
+  "page": "/s/sound",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "sound-waves/sound-waves.html",
+  "css": "sound-waves/sound-waves.css",
+  "js": [
+    "sound-waves/sound-waves.js"
+  ],
+  "settings": {}
+}

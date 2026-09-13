@@ -1,0 +1,13 @@
+<div class="sound-waves-module">
+  <svg class="sound-waves-picture" viewBox="0 0 600 130" role="img" aria-label="A sound wave. Louder makes it taller; higher pitch brings its peaks closer together.">
+    <path d="M65 65 H584" stroke="gainsboro" fill="none"/>
+    <g class="sound-waves-speaker" fill="#333333"><path d="M12 51 H25 L43 35 V95 L25 79 H12Z"/><path class="sound-waves-ripple" d="M49 50 Q64 65 49 80 M56 39 Q82 65 56 91" fill="none" stroke="#0585BA" stroke-width="3" stroke-linecap="round"/></g>
+    <path class="sound-waves-curve" fill="none" stroke="#0585BA" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+  <div class="sound-waves-controls">
+    <button class="sound-waves-toggle" type="button" aria-pressed="false">Play tone</button>
+    <label>Pitch <output class="sound-waves-pitch-value" for="sound-waves-pitch">220 Hz · A3</output><input id="sound-waves-pitch" class="sound-waves-pitch" type="range" min="0" max="36" value="12" step="1"></label>
+    <label>Loudness <output class="sound-waves-volume-value" for="sound-waves-volume">25%</output><input id="sound-waves-volume" class="sound-waves-volume" type="range" min="0" max="100" value="25"></label>
+  </div>
+  <p class="sound-waves-message" aria-live="polite">Louder: taller waves. Higher pitch: closer peaks.</p>
+</div>
