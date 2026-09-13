@@ -1,0 +1,12 @@
+#plugin_filter .filter-module { max-width: 520px; margin-inline: auto; }
+#plugin_filter .filter-scene { display: block; width: 100%; height: 205px; overflow: visible; }
+#plugin_filter .filter-jug { cursor: grab; touch-action: none; outline: none; }
+#plugin_filter .filter-jug:active { cursor: grabbing; }
+#plugin_filter .filter-footer { display: flex; align-items: end; justify-content: center; gap: 10px; min-height: 40px; }
+#plugin_filter .filter-caption { font-size: .8em; height: 2.6em; max-width: 290px; display: flex; align-items: end; }
+#plugin_filter,
+#plugin_filter * { -webkit-tap-highlight-color: transparent; }
+#plugin_filter:focus,
+#plugin_filter :focus,
+#plugin_filter:focus-visible,
+#plugin_filter :focus-visible { outline: none; box-shadow: none; }

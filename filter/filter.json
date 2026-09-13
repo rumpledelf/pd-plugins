@@ -1,0 +1,14 @@
+{
+  "id": "filter",
+  "title": "Filter",
+  "description": "Pour water with green particles through a paper filter. The particles stay in the cone while clear water drips into the beaker.",
+  "page": "/f/filter",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "filter/filter.html",
+  "css": "filter/filter.css",
+  "js": [
+    "filter/filter.js"
+  ],
+  "settings": {}
+}

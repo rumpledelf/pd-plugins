@@ -1,0 +1,27 @@
+<div class="filter-module">
+  <svg class="filter-scene" viewBox="35 -45 310 260" aria-label="A paper filter catches green particles while water passes through into a beaker.">
+    <defs>
+      <clipPath id="filter-jug-clip"><path class="filter-jug-clip" d="M-12.5-58H12.5V-18L48 67Q49 70.5 44 70.5H-44Q-49 70.5-48 67L-12.5-18Z"/></clipPath>
+      <clipPath id="filter-cone-clip"><path d="M200 80H280L240 135Z"/></clipPath>
+      <clipPath id="filter-beaker-clip"><path d="M206.5 88H273.5V199Q273.5 202.5 270 202.5H210Q206.5 202.5 206.5 199Z"/></clipPath>
+    </defs>
+    <ellipse class="filter-jug-shadow" cx="132" cy="209" rx="29" ry="4" fill="#333333" opacity=".12"/>
+    <ellipse cx="240" cy="208" rx="46" ry="4" fill="#333333" opacity=".12"/>
+    <g clip-path="url(#filter-beaker-clip)"><rect class="filter-clean" x="199" y="205" width="82" height="0" fill="#0585BA" opacity=".15"/></g>
+    <path d="M195 87H205V200Q205 204 209 204H271Q275 204 275 200V87H285" fill="none" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M264 156H274M268 170H274M264 184H274" fill="none" stroke="black" stroke-width="3"/>
+    <g clip-path="url(#filter-cone-clip)">
+      <rect class="filter-muddy" x="195" y="135" width="90" height="0" fill="#4CAF50" opacity=".65"/>
+      <g class="filter-residue" fill="#245C28"></g>
+    </g>
+    <path d="M200 80H280L240 135Z" fill="none" stroke="gainsboro" stroke-width="3" stroke-linejoin="round"/>
+    <path class="filter-drips" d="M240 137V201" fill="none" stroke="#999999" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 8" visibility="hidden"/>
+    <g class="filter-splash" fill="#999999" visibility="hidden"><circle cx="236" cy="199" r="1.4"/><circle cx="244" cy="200" r="1.1"/><circle cx="240" cy="197" r="1"/></g>
+    <path class="filter-pour" fill="none" stroke="#4CAF50" stroke-width="5" stroke-linecap="round" visibility="hidden"/>
+    <g clip-path="url(#filter-jug-clip)"><path class="filter-jug-water" fill="#4CAF50" opacity=".75"/></g>
+    <g class="filter-jug" role="button" tabindex="0" aria-label="Hold the flask to pour particle-filled water into the filter">
+      <path class="filter-jug-outline" d="M-19-60H-14V-18L-50 67Q-52 72-44 72H44Q52 72 50 67L14-18V-60H19M-14-60H14" fill="transparent" stroke="black" stroke-width="3" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+    </g>
+  </svg>
+  <div class="filter-footer"><span class="filter-caption" aria-live="polite">Hold the flask to pour. The filter catches particles.</span><button class="filter-reset" type="button">Reset</button></div>
+</div>
