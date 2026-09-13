@@ -1,0 +1,14 @@
+{
+  "id": "divide",
+  "title": "Divide",
+  "description": "Divide two whole numbers. Enter a quotient and remainder to check your answer, or reveal the result.",
+  "page": "/d/divide",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "divide/divide.html",
+  "css": "divide/divide.css",
+  "js": [
+    "divide/divide.js"
+  ],
+  "settings": {}
+}
