@@ -1,0 +1,14 @@
+{
+  "id": "full-empty",
+  "title": "Full and empty",
+  "description": "Drop apples from a moving rail into a bucket. The rail speeds up as the bucket fills; missed apples fall away.",
+  "page": "/f/full",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "full-empty/full-empty.html",
+  "css": "full-empty/full-empty.css",
+  "js": [
+    "full-empty/full-empty.js"
+  ],
+  "settings": {}
+}
