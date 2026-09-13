@@ -1,106 +1,58 @@
-#plugin_piano {
-  margin-top: 18px;
-}
-
-#plugin_piano .piano-module {
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-#plugin_piano .piano-title,
-#plugin_piano .piano-hint {
-  margin: 0 0 10px;
-}
-
+#plugin_piano { margin-top: 18px; }
+#plugin_piano .piano-module { max-width: 660px; margin-inline: auto; }
+#plugin_piano .piano-title, #plugin_piano .piano-hint { margin: 0 0 10px; }
 #plugin_piano .piano-keyboard {
   position: relative;
+  width: calc(100% * 8 / 14);
+  margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
   gap: 0;
-  max-width: 640px;
+  height: 138px;
   padding: 0;
+  touch-action: manipulation;
 }
-
 #plugin_piano .piano-key {
-  font: inherit;
-  cursor: pointer;
-  user-select: none;
-}
-
-#plugin_piano .piano-key-white {
-  position: relative;
-  height: 190px;
+  height: 134px;
+  margin: 0;
   padding: 0 0 12px;
-  align-self: end;
-  border: 1px solid gainsboro;
-  border-radius: 0 0 12px 12px;
-  background: #ffffff;
-  color: #4a4a4a;
+  border: 1px solid #333333;
+  border-radius: 0 0 4px 4px;
+  background: white;
+  color: #333333;
   display: flex;
-  align-items: flex-end;
+  align-items: end;
   justify-content: center;
-  box-shadow: inset 0 -8px 14px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 11px;
+  user-select: none;
+  touch-action: manipulation;
+  outline: none;
+  transition: transform 60ms;
 }
-
+#plugin_piano .piano-key-white { position: relative; }
 #plugin_piano .piano-key-black {
   position: absolute;
   top: 0;
-  width: calc(12.5% - 11px);
-  height: 116px;
-  padding: 0 0 10px;
-  border: 1px solid #1f1f1f;
-  border-radius: 0 0 10px 10px;
-  background: linear-gradient(180deg, #4b4b4b 0%, #000000 100%);
-  color: #f4f4f4;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  z-index: 2;
+  width: 7.6125%;
+  height: 85px;
+  z-index: 1;
+  background: #333333;
+  color: white;
+  padding-bottom: 10px;
+  font-size: 9px;
 }
-
-#plugin_piano .piano-key[data-note="C#4"] { left: calc(12.5% - 6.25%); }
-#plugin_piano .piano-key[data-note="D#4"] { left: calc(25% - 6.25%); }
-#plugin_piano .piano-key[data-note="F#4"] { left: calc(50% - 6.25%); }
-#plugin_piano .piano-key[data-note="G#4"] { left: calc(62.5% - 6.25%); }
-#plugin_piano .piano-key[data-note="A#4"] { left: calc(75% - 6.25%); }
-
-#plugin_piano .piano-key:hover {
-  filter: brightness(1.03);
+#plugin_piano .piano-key[data-note="C#4"] { left: calc(12.5% - 3.80625%); }
+#plugin_piano .piano-key[data-note="D#4"] { left: calc(25% - 3.80625%); }
+#plugin_piano .piano-key[data-note="F#4"] { left: calc(50% - 3.80625%); }
+#plugin_piano .piano-key[data-note="G#4"] { left: calc(62.5% - 3.80625%); }
+#plugin_piano .piano-key[data-note="A#4"] { left: calc(75% - 3.80625%); }
+#plugin_piano .piano-key:active, #plugin_piano .piano-key.is-playing {
+  transform: translateY(3px);
+  background: #0585BA;
+  color: white;
 }
-
-#plugin_piano .piano-key-white:hover {
-  box-shadow: inset 0 -8px 10px rgba(0, 0, 0, 0.1);
-}
-
-#plugin_piano .piano-key:active,
-#plugin_piano .piano-key.is-playing {
-  transform: translateY(2px);
-}
-
-#plugin_piano .piano-key-white:active,
-#plugin_piano .piano-key-white.is-playing {
-  background: linear-gradient(180deg, #f7f7f7 0%, #ececec 100%);
-}
-
-#plugin_piano .piano-key-black:active,
-#plugin_piano .piano-key-black.is-playing {
-  background: linear-gradient(180deg, #636363 0%, #111111 100%);
-}
-
-@media (max-width: 640px) {
-  #plugin_piano .piano-keyboard {
-    padding: 0;
-  }
-
-  #plugin_piano .piano-key-white {
-    height: 148px;
-    font-size: 13px;
-  }
-
-  #plugin_piano .piano-key-black {
-    top: 0;
-    height: 90px;
-    font-size: 11px;
-    width: calc(12.5% - 8px);
-  }
+@media (prefers-reduced-motion: reduce) {
+  #plugin_piano .piano-key { transition: none; }
 }

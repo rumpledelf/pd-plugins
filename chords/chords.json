@@ -1,0 +1,14 @@
+{
+  "id": "chords",
+  "title": "Chords",
+  "description": "Choose a root note and a major or minor chord. Play three notes together and see their piano keys; tap a key to hear a single note.",
+  "page": "/c/chord",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "chords/chords.html",
+  "css": "chords/chords.css",
+  "js": [
+    "chords/chords.js"
+  ],
+  "settings": {}
+}
