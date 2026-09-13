@@ -1,0 +1,14 @@
+{
+  "id": "diffraction",
+  "title": "Diffraction",
+  "description": "Change the width and spacing of five slits and watch the bright bands made by light on a screen spread out or move together.",
+  "page": "/d/diffract",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "diffraction/diffraction.html",
+  "css": "diffraction/diffraction.css",
+  "js": [
+    "diffraction/diffraction.js"
+  ],
+  "settings": {}
+}
