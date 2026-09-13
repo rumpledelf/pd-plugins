@@ -1,0 +1,15 @@
+#plugin_gears .gears-module { max-width: 520px; margin-inline: auto; text-align: center; }
+#plugin_gears .gears-stage { display: block; width: 100%; height: 155px; }
+#plugin_gears .gears-gear { outline: none; cursor: grab; touch-action: none; }
+#plugin_gears .gears-gear:active { cursor: grabbing; }
+#plugin_gears .gears-hub { stroke: #333333; stroke-width: 1.5; fill: gainsboro; }
+#plugin_gears .gears-controls { display: flex; justify-content: center; align-items: center; gap: 10px; }
+#plugin_gears .gears-controls label { display: grid; gap: 0; margin: 0; }
+#plugin_gears .gears-controls select { width: 3.5em; min-width: 0; margin: 0; }
+#plugin_gears .gears-ratio { height: 2em; margin: 5px 0 0; font-size: .8em; }
+#plugin_gears,
+#plugin_gears * { -webkit-tap-highlight-color: transparent; }
+#plugin_gears:focus,
+#plugin_gears :focus,
+#plugin_gears:focus-visible,
+#plugin_gears :focus-visible { outline: none; box-shadow: none; }

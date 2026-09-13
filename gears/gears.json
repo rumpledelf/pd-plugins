@@ -1,0 +1,15 @@
+{
+  "id": "gears",
+  "title": "Gears",
+  "description": "Turn two meshing gears and compare their opposite directions and speeds. Change the second gear's tooth count to explore gear ratios.",
+  "page": "/g/gears",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "gears/gears.html",
+  "css": "gears/gears.css",
+  "js": [
+    "gears/geometry.js",
+    "gears/gears.js"
+  ],
+  "settings": {}
+}
