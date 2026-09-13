@@ -1,0 +1,12 @@
+{
+  "id": "multiply",
+  "title": "Multiply",
+  "description": "Multiply two editable whole numbers. Check your answer, reveal the product or try new numbers.",
+  "page": "/m/multiply",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "multiply/multiply.html",
+  "css": "multiply/multiply.css",
+  "js": ["multiply/multiply.js"],
+  "settings": {}
+}
