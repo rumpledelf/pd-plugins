@@ -1,0 +1,14 @@
+{
+  "id": "harmony",
+  "title": "Harmony",
+  "description": "Listen to two notes together. Keep one note steady and change the other to compare unison, fifths, octaves and close intervals while watching their waves.",
+  "page": "/h/harmony",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "harmony/harmony.html",
+  "css": "harmony/harmony.css",
+  "js": [
+    "harmony/harmony.js"
+  ],
+  "settings": {}
+}

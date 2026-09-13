@@ -1,0 +1,11 @@
+<div class="harmony-module">
+  <svg class="harmony-waves" viewBox="0 0 580 106" role="img" aria-label="Two sound waves: a fixed 220 hertz note and an adjustable second note. Motion slowed for visibility.">
+    <path d="M8 26H572M8 78H572" fill="none" stroke="gainsboro"/>
+    <path class="harmony-base" fill="none" stroke="#0585BA" stroke-width="2.5"/>
+    <path class="harmony-second" fill="none" stroke="#64317B" stroke-width="2.5"/>
+  </svg>
+  <div class="harmony-notes"><span class="bluetext">Base: 220 Hz</span><output class="harmony-frequency purpletext" for="harmony-interval">Second: 330 Hz</output></div>
+  <label class="harmony-slider"><span>Interval <output class="harmony-interval-value" for="harmony-interval">Fifth · 7 semitones</output></span><input id="harmony-interval" type="range" min="0" max="12" value="7" step="0.05" aria-label="Interval above the base note"></label>
+  <div class="harmony-controls"><button class="harmony-toggle" type="button" aria-pressed="false">Play</button><button type="button" data-interval="0">Unison</button><button type="button" data-interval="7">Fifth</button><button type="button" data-interval="12">Octave</button><button type="button" data-interval="1">Clash</button></div>
+  <p class="harmony-caption" aria-live="polite">Compare the blend. What feels harmonious can vary.</p>
+</div>
