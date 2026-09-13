@@ -1,0 +1,20 @@
+<div class="momentum-module">
+  <div class="momentum-masses"><label>Blue <select class="momentum-mass-a"><option value="1">1 kg</option><option value="3">3 kg</option></select></label><label>Purple <select class="momentum-mass-b"><option value="1">1 kg</option><option value="3" selected>3 kg</option></select></label></div>
+  <svg class="momentum-stage" viewBox="0 0 580 130" role="img" aria-label="Two trolleys with spring bumpers collide. Their masses and the push strength change how they move.">
+    <path d="M18 113H562M18 114V85M562 114V85" fill="none" stroke="#999999" stroke-width="2"/>
+    <g class="momentum-cart-a">
+      <path d="M-36 76H36V92H-36Z" fill="#0585BA" stroke="#333333" stroke-width="2"/>
+      <path d="M36 80H40L42 76L46 86L50 76L52 81H56" fill="none" stroke="#333333" stroke-width="2"/>
+      <g stroke="#333333" stroke-width="1.5"><path d="M-25 62H25V76H-25Z" fill="orange"/><g class="momentum-extra-a"><path d="M-25 48H25V62H-25Z" fill="#4CAF50"/><path d="M-25 34H25V48H-25Z" fill="#B7287E"/></g></g>
+      <g class="momentum-wheel-a1"><circle r="9" fill="gainsboro" stroke="#333333" stroke-width="2"/><path d="M-6 0H6M0-6V6" stroke="#333333"/></g><g class="momentum-wheel-a2"><circle r="9" fill="gainsboro" stroke="#333333" stroke-width="2"/><path d="M-6 0H6M0-6V6" stroke="#333333"/></g>
+    </g>
+    <g class="momentum-cart-b">
+      <path d="M-36 76H36V92H-36Z" fill="#64317B" stroke="#333333" stroke-width="2"/>
+      <path d="M-56 81H-52L-50 76L-46 86L-42 76L-40 80H-36" fill="none" stroke="#333333" stroke-width="2"/>
+      <g stroke="#333333" stroke-width="1.5"><path d="M-25 62H25V76H-25Z" fill="orange"/><g class="momentum-extra-b"><path d="M-25 48H25V62H-25Z" fill="#4CAF50"/><path d="M-25 34H25V48H-25Z" fill="#B7287E"/></g></g>
+      <g class="momentum-wheel-b1"><circle r="9" fill="gainsboro" stroke="#333333" stroke-width="2"/><path d="M-6 0H6M0-6V6" stroke="#333333"/></g><g class="momentum-wheel-b2"><circle r="9" fill="gainsboro" stroke="#333333" stroke-width="2"/><path d="M-6 0H6M0-6V6" stroke="#333333"/></g>
+    </g>
+  </svg>
+  <div class="momentum-controls"><label>Speed <input class="momentum-speed" type="range" min="45" max="140" value="100"></label><button class="momentum-push" type="button">Push</button><button class="momentum-reset" type="button">Reset</button></div>
+  <p id="momentum-status" class="momentum-status" aria-live="polite">Choose a speed, then push the trolley.</p>
+</div>

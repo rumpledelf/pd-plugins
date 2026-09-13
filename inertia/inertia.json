@@ -1,0 +1,14 @@
+{
+  "id": "inertia",
+  "title": "Inertia",
+  "description": "Push a trolley carrying a ball into a stop. The trolley stops, but the ball keeps moving before falling and slowing down.",
+  "page": "/i/inertia",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "inertia/inertia.html",
+  "css": "inertia/inertia.css",
+  "js": [
+    "inertia/inertia.js"
+  ],
+  "settings": {}
+}

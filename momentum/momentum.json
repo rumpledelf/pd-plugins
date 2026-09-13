@@ -1,0 +1,14 @@
+{
+  "id": "momentum",
+  "title": "Momentum",
+  "description": "Choose the masses of two trolleys and a speed, then push one into the other. Compare how mass and speed change the collision.",
+  "page": "/m/momentum",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "momentum/momentum.html",
+  "css": "momentum/momentum.css",
+  "js": [
+    "momentum/momentum.js"
+  ],
+  "settings": {}
+}

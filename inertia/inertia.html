@@ -1,0 +1,16 @@
+<div class="inertia-module">
+  <svg class="inertia-stage" viewBox="0 0 580 170" role="img" aria-label="A trolley stops against a block, but the ball it carries keeps moving.">
+    <path d="M25 142H555" stroke="#999999" stroke-width="2"/>
+    <path d="M350 141V113H359V141" fill="gainsboro" stroke="#333333" stroke-width="2"/>
+    <g class="inertia-cart">
+      <path d="M0 103H80V119H0Z" fill="#0585BA" stroke="#333333" stroke-width="2"/>
+      <path d="M0 103V82H-9" fill="none" stroke="#333333" stroke-width="3"/>
+      <g class="inertia-wheel-a"><circle r="10" fill="gainsboro" stroke="#333333" stroke-width="2"/><path d="M-7 0H7M0-7V7" stroke="#333333"/></g>
+      <g class="inertia-wheel-b"><circle r="10" fill="gainsboro" stroke="#333333" stroke-width="2"/><path d="M-7 0H7M0-7V7" stroke="#333333"/></g>
+    </g>
+    <ellipse class="inertia-shadow" cy="141" rx="13" ry="3" fill="#333333" opacity=".12"/>
+    <g class="inertia-ball"><circle r="12" fill="#B7287E" stroke="#333333" stroke-width="1.5"/><path d="M-8-8Q4 0-8 8" fill="none" stroke="#64317B" stroke-width="3"/></g>
+  </svg>
+  <div class="inertia-controls"><label>Speed <input class="inertia-speed" type="range" min="60" max="150" value="100"></label><button class="inertia-push" type="button">Push</button><button class="inertia-reset" type="button">Reset</button></div>
+  <p class="inertia-status" aria-live="polite">Push the trolley towards the stop.</p>
+</div>
