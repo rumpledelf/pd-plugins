@@ -1,0 +1,14 @@
+{
+  "id": "iris",
+  "title": "Iris diaphragm",
+  "description": "Open and close a camera-style iris diaphragm, or move its aperture slider slowly to watch the blades move around the opening.",
+  "page": "/i/iris",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "iris/iris.html",
+  "css": "iris/iris.css",
+  "js": [
+    "iris/iris.js"
+  ],
+  "settings": {}
+}
