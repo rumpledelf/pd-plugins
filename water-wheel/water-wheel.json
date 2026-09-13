@@ -1,0 +1,12 @@
+{
+  "id": "water-wheel",
+  "title": "Water wheel",
+  "description": "Watch buckets on a water wheel scoop water from a stream, lift it and pour it into a raised channel. Change the stream flow or pause to look closer.",
+  "page": "/w/water-wheel",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "water-wheel/water-wheel.html",
+  "css": "water-wheel/water-wheel.css",
+  "js": ["water-wheel/water-wheel.js"],
+  "settings": {}
+}
