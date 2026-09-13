@@ -1,0 +1,14 @@
+{
+  "id": "subtract",
+  "title": "Subtract",
+  "description": "Choose two whole numbers and subtract the second from the first. Enter an answer to check it, reveal the answer, or try new numbers.",
+  "page": "/s/subtract",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "subtract/subtract.html",
+  "css": "subtract/subtract.css",
+  "js": [
+    "subtract/subtract.js"
+  ],
+  "settings": {}
+}
