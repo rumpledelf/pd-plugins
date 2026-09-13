@@ -1,0 +1,18 @@
+<div class="hanoi-module">
+  <div class="hanoi-toolbar"><button class="hanoi-reset" type="button">Reset</button><span class="hanoi-moves">Moves: 0</span></div>
+  <svg class="hanoi-stage" viewBox="0 0 600 167" role="group" aria-label="Towers of Hanoi. Move all four discs to the right peg. Only a smaller disc can go on a larger disc.">
+    <g class="hanoi-peg" data-peg="0" tabindex="0" role="button" aria-label="Left peg">
+      <path d="M100 25V144" stroke="#999999" stroke-width="6" stroke-linecap="round"/><path d="M29 145H171" stroke="#333333" stroke-width="5" stroke-linecap="round"/>
+      <rect x="15" y="10" width="170" height="140" fill="transparent"/><g class="hanoi-discs"></g>
+    </g>
+    <g class="hanoi-peg" data-peg="1" tabindex="0" role="button" aria-label="Middle peg">
+      <path d="M300 25V144" stroke="#999999" stroke-width="6" stroke-linecap="round"/><path d="M229 145H371" stroke="#333333" stroke-width="5" stroke-linecap="round"/>
+      <rect x="215" y="10" width="170" height="140" fill="transparent"/><g class="hanoi-discs"></g>
+    </g>
+    <g class="hanoi-peg" data-peg="2" tabindex="0" role="button" aria-label="Right peg">
+      <path d="M500 25V144" stroke="#999999" stroke-width="6" stroke-linecap="round"/><path d="M429 145H571" stroke="#333333" stroke-width="5" stroke-linecap="round"/>
+      <rect x="415" y="10" width="170" height="140" fill="transparent"/><g class="hanoi-discs"></g>
+    </g>
+  </svg>
+  <p class="hanoi-status" aria-live="polite">Move the stack to the right. Small discs go on larger ones.</p>
+</div>

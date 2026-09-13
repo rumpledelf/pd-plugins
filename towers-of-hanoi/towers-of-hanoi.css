@@ -1,0 +1,15 @@
+#plugin_towers-of-hanoi .hanoi-module { max-width: 600px; margin: auto; }
+#plugin_towers-of-hanoi .hanoi-toolbar { display: flex; align-items: center; justify-content: space-between; height: 36px; }
+#plugin_towers-of-hanoi .hanoi-moves { font-variant-numeric: tabular-nums; }
+#plugin_towers-of-hanoi .hanoi-stage { display: block; width: 100%; height: 167px; overflow: visible; user-select: none; touch-action: none; }
+#plugin_towers-of-hanoi .hanoi-peg { outline: none; cursor: pointer; }
+#plugin_towers-of-hanoi .hanoi-disc { cursor: grab; }
+#plugin_towers-of-hanoi .hanoi-stage[data-dragging="true"] .hanoi-disc { cursor: grabbing; }
+#plugin_towers-of-hanoi .hanoi-status { margin: 0; height: 42px; font-size: 14px; display: flex; align-items: flex-end; justify-content: center; text-align: center; overflow: auto; }
+@media (max-width: 420px) { #plugin_towers-of-hanoi .hanoi-status { font-size: 13px; } }
+#plugin_towers-of-hanoi,
+#plugin_towers-of-hanoi * { -webkit-tap-highlight-color: transparent; }
+#plugin_towers-of-hanoi:focus,
+#plugin_towers-of-hanoi :focus,
+#plugin_towers-of-hanoi:focus-visible,
+#plugin_towers-of-hanoi :focus-visible { outline: none; box-shadow: none; }

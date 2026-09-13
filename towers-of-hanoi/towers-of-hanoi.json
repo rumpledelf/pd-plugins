@@ -1,0 +1,14 @@
+{
+  "id": "towers-of-hanoi",
+  "title": "Towers of Hanoi",
+  "description": "Move four discs from the left peg to the right, one at a time. Only the top disc can move, and a larger disc cannot sit on a smaller one.",
+  "page": "/t/towers-of-hanoi",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "towers-of-hanoi/towers-of-hanoi.html",
+  "css": "towers-of-hanoi/towers-of-hanoi.css",
+  "js": [
+    "towers-of-hanoi/towers-of-hanoi.js"
+  ],
+  "settings": {}
+}
