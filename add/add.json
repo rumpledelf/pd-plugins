@@ -1,0 +1,14 @@
+{
+  "id": "add",
+  "title": "Add",
+  "description": "Choose two whole numbers and add them together. Enter an answer to check it, reveal the answer, or try new numbers.",
+  "page": "/a/add",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "add/add.html",
+  "css": "add/add.css",
+  "js": [
+    "add/add.js"
+  ],
+  "settings": {}
+}
