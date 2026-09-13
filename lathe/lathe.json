@@ -1,0 +1,14 @@
+{
+  "id": "lathe",
+  "title": "Lathe",
+  "description": "Start a lathe and move its cutting tool into a wooden blank to shave a symmetrical turned shape. Stop to inspect your work or begin with a new blank.",
+  "page": "/l/lathe",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "lathe/lathe.html",
+  "css": "lathe/lathe.css",
+  "js": [
+    "lathe/lathe.js"
+  ],
+  "settings": {}
+}

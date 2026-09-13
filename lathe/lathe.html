@@ -1,0 +1,23 @@
+<div class="lathe-module">
+  <svg class="lathe-stage" viewBox="0 0 580 230" role="application" tabindex="0" aria-label="Wood lathe. Start the lathe, then drag the cutting tool into the wood. Arrow keys position the tool; hold Space to cut.">
+    <defs><clipPath id="lathe-stock-clip"><path class="lathe-clip"/></clipPath></defs>
+    <g aria-hidden="true">
+      <path d="M60 160H542V172H60Z" fill="gainsboro" stroke="#999999"/>
+      <path d="M75 172V194H94V172M514 172V194H532V172" fill="#999999"/>
+      <path d="M74 67H107V159H74Z" fill="#0585BA" stroke="#333333"/>
+      <path d="M107 87H125V129H107Z" fill="#999999" stroke="#333333"/>
+      <path d="M503 105H535V112H503Z" fill="#999999" stroke="#333333"/>
+      <path d="M531 89H547V159H521V134Z" fill="#0585BA" stroke="#333333"/>
+      <circle class="lathe-spindle" cx="113" cy="108" r="14" fill="none" stroke="#333333" stroke-dasharray="3 6"/>
+      <path class="lathe-stock" fill="#F2D6A2" stroke="#C9A66B" stroke-width="1.5"/>
+      <g clip-path="url(#lathe-stock-clip)"><path class="lathe-grain" fill="none" stroke="#DDBB7C" stroke-width="1" opacity=".5"/><g class="lathe-woodgrain" fill="none" stroke="#DDBB7C" stroke-width=".8" opacity=".55"><path d="M125 82C210 78 260 95 330 83S445 76 503 82M125 96C172 90 197 91 222 102S301 106 351 97S450 91 503 97M125 120C200 116 231 122 290 117S413 113 503 122M125 133C220 140 310 126 380 133S458 140 503 134"/><ellipse cx="220" cy="99" rx="20" ry="6"/><ellipse cx="220" cy="99" rx="11" ry="2.5"/></g></g>
+      <g class="lathe-shavings"></g>
+      <g class="lathe-tool">
+        <path d="M0 0L-8 17L8 17Z" fill="#0585BA" stroke="#333333" stroke-width="1.5"/>
+        <path d="M-5 17H5V40H-5Z" fill="#999999" stroke="#333333"/>
+        <path d="M-7 40H7V57H-7Z" fill="#64317B" stroke="#333333"/>
+      </g>
+    </g>
+  </svg>
+  <div class="lathe-controls"><button type="button" class="lathe-toggle green">Start</button><button type="button" class="lathe-reset">New blank</button><span class="lathe-message" aria-live="polite">Start, then drag the tool into the wood.</span></div>
+</div>

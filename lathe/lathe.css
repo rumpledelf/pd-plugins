@@ -1,0 +1,12 @@
+#plugin_lathe .lathe-module { max-width: 640px; margin-inline: auto; }
+#plugin_lathe .lathe-stage { width: 100%; height: 202px; display: block; outline: none; touch-action: none; user-select: none; cursor: crosshair; }
+#plugin_lathe .lathe-controls { display: flex; gap: 8px; align-items: center; height: 48px; }
+#plugin_lathe .lathe-message { font-size: .8em; flex: 1; }
+#plugin_lathe .lathe-controls button { flex-shrink: 0; }
+@media(max-width: 400px) { #plugin_lathe .lathe-controls { gap: 5px; } #plugin_lathe .lathe-message { font-size: .7em; } }
+#plugin_lathe,
+#plugin_lathe * { -webkit-tap-highlight-color: transparent; }
+#plugin_lathe:focus,
+#plugin_lathe :focus,
+#plugin_lathe:focus-visible,
+#plugin_lathe :focus-visible { outline: none; box-shadow: none; }
