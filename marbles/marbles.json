@@ -1,0 +1,15 @@
+{
+  "id": "marbles",
+  "title": "Marbles",
+  "description": "Move your shooter around a circle, aim and choose your power. Knock seven marbles out of the ring with rolling collisions.",
+  "page": "/m/marbles",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "marbles/marbles.html",
+  "css": "marbles/marbles.css",
+  "js": [
+    "marbles/physics.js",
+    "marbles/marbles.js"
+  ],
+  "settings": {}
+}

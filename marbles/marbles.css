@@ -1,0 +1,11 @@
+#plugin_marbles .marbles-module { max-width: 520px; margin-inline: auto; }
+#plugin_marbles .marbles-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+#plugin_marbles .marbles-score { font-variant-numeric: tabular-nums; }
+#plugin_marbles .marbles-stage { display: block; width: 100%; height: auto; touch-action: none; user-select: none; outline: none; cursor: grab; }
+#plugin_marbles .marbles-hint { height: 3em; margin: 0; display: flex; align-items: end; justify-content: center; text-align: center; font-size: .9em; }
+#plugin_marbles,
+#plugin_marbles * { -webkit-tap-highlight-color: transparent; }
+#plugin_marbles:focus,
+#plugin_marbles :focus,
+#plugin_marbles:focus-visible,
+#plugin_marbles :focus-visible { outline: none; box-shadow: none; }
