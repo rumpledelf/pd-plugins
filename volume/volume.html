@@ -1,0 +1,42 @@
+<form class="measurement-module" novalidate>
+  <div class="measurement-shapes" role="radiogroup" aria-label="Volume shape">
+    <label><input type="radio" name="volume-shape" value="box" checked> Box</label>
+    <label><input type="radio" name="volume-shape" value="cylinder"> Cylinder</label>
+    <label><input type="radio" name="volume-shape" value="sphere"> Sphere</label>
+  </div>
+  <label class="measurement-units">Units <select aria-label="Dimension units">
+    <optgroup label="Metric"><option value="cm">centimetres (cm)</option><option value="m">metres (m)</option></optgroup>
+    <optgroup label="US customary"><option value="in">inches (in)</option><option value="ft">feet (ft)</option></optgroup>
+  </select></label>
+  <div class="measurement-workspace">
+    <svg class="measurement-preview" viewBox="0 0 140 140" role="img" aria-label="Box dimensions. Diagram not to scale.">
+      <g data-diagram="box">
+        <path d="M29 45L53 23H120V88L96 110H29Z M29 45H96V110 M96 45L120 23" fill="#0585BA" fill-opacity=".15" stroke="#333333" stroke-width="2" stroke-linejoin="round"/>
+        <text x="62" y="131" text-anchor="middle">Length</text>
+        <text x="15" y="79" text-anchor="middle" transform="rotate(-90 15 79)">Height</text>
+        <text x="119" y="112" text-anchor="middle" transform="rotate(-43 119 112)">Width</text>
+      </g>
+      <g data-diagram="cylinder" hidden>
+        <path d="M35 35C35 14 115 14 115 35V102C115 123 35 123 35 102Z" fill="#0585BA" fill-opacity=".15" stroke="#333333" stroke-width="2"/>
+        <ellipse cx="75" cy="35" rx="40" ry="15" fill="none" stroke="#333333" stroke-width="2"/>
+        <path d="M75 35H115" stroke="#999999" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="75" y="13" text-anchor="middle">Radius</text>
+        <text x="20" y="76" text-anchor="middle" transform="rotate(-90 20 76)">Height</text>
+      </g>
+      <g data-diagram="sphere" hidden>
+        <circle cx="70" cy="65" r="43" fill="#0585BA" fill-opacity=".15" stroke="#333333" stroke-width="2"/>
+        <ellipse cx="70" cy="65" rx="43" ry="14" fill="none" stroke="#999999" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <path d="M70 65H113" stroke="#999999" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <circle cx="70" cy="65" r="2" fill="#333333"/>
+        <text x="70" y="132" text-anchor="middle">Radius</text>
+      </g>
+    </svg>
+    <div class="measurement-dimensions">
+      <label class="measurement-field" data-field="length"><span>Length</span><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Length"><span class="measurement-unit">cm</span></label>
+      <label class="measurement-field" data-field="width"><span>Width</span><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Width"><span class="measurement-unit">cm</span></label>
+      <label class="measurement-field" data-field="height"><span>Height</span><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Height"><span class="measurement-unit">cm</span></label>
+      <label class="measurement-field" data-field="radius"><span>Radius</span><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Radius"><span class="measurement-unit">cm</span></label>
+    </div>
+  </div>
+  <div class="measurement-actions"><p class="measurement-result" aria-live="polite"></p><button type="submit">Calculate</button></div>
+</form>

@@ -1,0 +1,14 @@
+{
+  "id": "volume",
+  "title": "Volume",
+  "description": "Calculate volume for a box, cylinder, or sphere. Enter dimensions and switch between metric and US customary units with real measurement conversion.",
+  "page": "/v/volume",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "volume/volume.html",
+  "css": "volume/volume.css",
+  "js": [
+    "volume/volume.js"
+  ],
+  "settings": {}
+}

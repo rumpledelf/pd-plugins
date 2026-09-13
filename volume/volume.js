@@ -8,12 +8,12 @@
     if (!form || !unitSelect || !result) return;
     const factors = {cm: .01, m: 1, in: .0254, ft: .3048};
     const shapes = {
-      rectangle: {fields: ['width', 'height'], calculate: function (m) { return m.width * m.height; }},
-      triangle: {fields: ['base', 'height'], calculate: function (m) { return m.base * m.height / 2; }},
-      circle: {fields: ['radius'], calculate: function (m) { return Math.PI * m.radius * m.radius; }}
+      box: {fields: ['length', 'width', 'height'], calculate: function (m) { return m.length * m.width * m.height; }},
+      cylinder: {fields: ['radius', 'height'], calculate: function (m) { return Math.PI * m.radius * m.radius * m.height; }},
+      sphere: {fields: ['radius'], calculate: function (m) { return 4 / 3 * Math.PI * Math.pow(m.radius, 3); }}
     };
     const fields = {};
-    let unit = 'cm', shape = 'rectangle', calculated = false;
+    let unit = 'cm', shape = 'box', calculated = false;
     root.querySelectorAll('[data-field]').forEach(function (row) {
       const name = row.dataset.field, input = row.querySelector('input');
       fields[name] = {row: row, input: input, metres: null, raw: ''};
@@ -26,8 +26,7 @@
       if (field.raw === text) return;
       field.raw = text;
       const value = Number(text), metres = value * factors[unit];
-      const decimal = /^\+?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(text.trim());
-      field.metres = decimal && Number.isFinite(value) && value > 0 && Number.isFinite(metres) && metres > 0 ? metres : null;
+      field.metres = text.trim() && Number.isFinite(value) && value > 0 && Number.isFinite(metres) && metres > 0 ? metres : null;
     }
     function validate() {
       for (const name of shapes[shape].fields) {
@@ -43,35 +42,27 @@
     function show() {
       const metres = {};
       for (const name of shapes[shape].fields) metres[name] = fields[name].metres;
-      const value = shapes[shape].calculate(metres) / Math.pow(factors[unit], 2);
+      const value = shapes[shape].calculate(metres) / Math.pow(factors[unit], 3);
       if (!Number.isFinite(value) || value <= 0) {
         result.textContent = 'Those dimensions are too large or too small. Try smaller values.';
         calculated = false; return;
       }
-      result.textContent = 'Area: ' + value.toLocaleString('en-AU', {maximumFractionDigits: 2, useGrouping: false}) + ' ' + unit + '²';
+      result.textContent = 'Volume: ' + value.toLocaleString('en-AU', {maximumFractionDigits: 2, useGrouping: false}) + ' ' + unit + '³';
       calculated = true;
     }
     function setShape() {
-      shape = root.querySelector('input[name="area-shape"]:checked').value;
+      shape = root.querySelector('input[name="volume-shape"]:checked').value;
       const visible = shapes[shape].fields;
       Object.keys(fields).forEach(function (name) {
         fields[name].row.hidden = !visible.includes(name);
-        fields[name].row.style.order = visible.indexOf(name);
         fields[name].input.required = visible.includes(name);
+        fields[name].row.style.order = visible.indexOf(name);
       });
-      root.querySelectorAll('[data-diagram]').forEach(function (diagram) {
-        diagram.toggleAttribute('hidden', diagram.dataset.diagram !== shape);
-      });
-      const descriptions = {
-        rectangle: 'Rectangle: width across, height upwards.',
-        triangle: 'Triangle: base across, perpendicular height shown by the dashed line.',
-        circle: 'Circle: radius from its centre to its edge.'
-      };
-      const preview = root.querySelector('.measurement-preview');
-      if (preview) preview.setAttribute('aria-label', descriptions[shape] + ' Diagram not to scale.');
+      root.querySelectorAll('[data-diagram]').forEach(function (diagram) { diagram.toggleAttribute('hidden', diagram.dataset.diagram !== shape); });
+      root.querySelector('.measurement-preview').setAttribute('aria-label', shape + ': ' + visible.join(', ') + '. Diagram not to scale.');
       calculated = false; result.textContent = '';
     }
-    root.querySelectorAll('input[name="area-shape"]').forEach(function (radio) { radio.addEventListener('change', setShape); });
+    root.querySelectorAll('input[name="volume-shape"]').forEach(function (radio) { radio.addEventListener('change', setShape); });
     unitSelect.addEventListener('change', function () {
       const next = unitSelect.value;
       if (!Object.prototype.hasOwnProperty.call(factors, next)) { unitSelect.value = unit; return; }
@@ -95,5 +86,5 @@
     form.addEventListener('submit', function (event) { event.preventDefault(); if (validate()) show(); });
     setShape();
   }
-  boot(document.getElementById('plugin_area'));
+  boot(document.getElementById('plugin_volume'));
 })();

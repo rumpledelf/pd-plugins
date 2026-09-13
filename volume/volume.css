@@ -1,0 +1,20 @@
+#plugin_volume .measurement-module { max-width: 430px; margin: auto; }
+#plugin_volume .measurement-shapes { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+#plugin_volume .measurement-shapes label { display: inline-flex; align-items: center; gap: 4px; margin: 0; white-space: nowrap; }
+#plugin_volume .measurement-shapes input { margin: 0; }
+#plugin_volume .measurement-units { display: flex; align-items: center; gap: 10px; margin: 6px 30px 6px 0; }
+#plugin_volume .measurement-units select { flex: 1; box-sizing: border-box; margin: 0; min-width: 0; width: 0; }
+#plugin_volume .measurement-workspace { display: grid; grid-template-columns: minmax(90px, 1fr) minmax(0, 1.5fr); align-items: center; gap: 8px; height: 132px; }
+#plugin_volume .measurement-preview { display: block; width: 100%; height: 132px; }
+#plugin_volume .measurement-preview text { fill: #333333; font-size: 14px; }
+#plugin_volume [data-diagram][hidden] { display: none; }
+#plugin_volume .measurement-dimensions { display: grid; gap: 4px; align-content: start; height: 122px; }
+#plugin_volume .measurement-field { display: grid; grid-template-columns: 55px minmax(0, 1fr) 22px; gap: 8px; align-items: center; margin: 0; }
+#plugin_volume .measurement-field[hidden] { display: none; }
+#plugin_volume .measurement-field input { width: 100%; min-width: 0; box-sizing: border-box; text-align: center; height: 38px; margin: 0; }
+#plugin_volume .measurement-actions { display: flex; align-items: end; justify-content: space-between; gap: 8px; margin-top: 4px; }
+#plugin_volume .measurement-result { flex: 1; min-width: 0; margin: 0; height: 42px; overflow: auto; display: flex; align-items: flex-end; font-variant-numeric: tabular-nums; }
+@media (max-width: 420px) { #plugin_volume .measurement-shapes { gap: 4px; } }
+
+#plugin_volume, #plugin_volume * { -webkit-tap-highlight-color: transparent; }
+#plugin_volume:focus, #plugin_volume :focus, #plugin_volume:focus-visible, #plugin_volume :focus-visible { outline: none; box-shadow: none; }
