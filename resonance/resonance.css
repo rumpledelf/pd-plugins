@@ -1,0 +1,9 @@
+#plugin_resonance .resonance-module { max-width: 540px; margin-inline: auto; }
+#plugin_resonance .resonance-scene { display: block; width: 100%; height: 165px; }
+#plugin_resonance .resonance-controls { display: grid; grid-template-columns: 80px minmax(0, 1fr) 85px; gap: 12px; align-items: center; height: 48px; }
+#plugin_resonance .resonance-controls label { display: grid; grid-template-columns: 1fr auto; grid-template-rows: 22px 24px; min-width: 0; margin: 0; }
+#plugin_resonance output { white-space: nowrap; font-variant-numeric: tabular-nums; font-size: .85em; }
+#plugin_resonance input { grid-column: 1 / -1; width: 100%; min-width: 0; margin: 0; }
+#plugin_resonance .resonance-status { height: 32px; margin: 4px 0 0; font-size: .8em; display: flex; align-items: end; justify-content: center; text-align: center; overflow: auto; }
+#plugin_resonance, #plugin_resonance * { -webkit-tap-highlight-color: transparent; }
+#plugin_resonance:focus, #plugin_resonance :focus, #plugin_resonance:focus-visible, #plugin_resonance :focus-visible { outline: none; box-shadow: none; }

@@ -1,0 +1,21 @@
+<div class="resonance-module">
+  <svg class="resonance-scene" viewBox="0 0 500 165" role="img" aria-label="Tune a tone to make a wine glass resonate.">
+    <path d="M35 150H465" stroke="#999999" stroke-width="2"/>
+    <path d="M45 73H61L84 55V115L61 97H45Z" fill="#333333"/>
+    <path class="resonance-waves" d="M96 69Q112 85 96 101M108 57Q137 85 108 113" fill="none" stroke="#0585BA" stroke-width="3" opacity="0"/>
+    <ellipse cx="330" cy="149" rx="60" ry="4" fill="gainsboro"/>
+    <g fill="none" stroke="#333333" stroke-width="2" stroke-linejoin="round">
+      <path d="M330 105V141M302 148Q330 135 358 148Z" fill="white"/>
+      <g class="resonance-bowl"><path d="M291 21H369L363 70Q359 104 330 105Q301 104 297 70Z" fill="#0585BA" fill-opacity=".12"/>
+        <path class="resonance-crack" d="M354 36L342 48L350 58L334 72L342 85" stroke-width="1.5" visibility="hidden"/>
+      </g>
+    </g>
+    <g class="resonance-shards" fill="#0585BA" fill-opacity=".18" stroke="#333333" stroke-width="2"></g>
+  </svg>
+  <div class="resonance-controls">
+    <button class="resonance-play" type="button" aria-pressed="false">Play</button>
+    <label>Pitch <output for="resonance-pitch">350 Hz</output><input id="resonance-pitch" type="range" min="250" max="750" value="350" step="1"></label>
+    <button class="resonance-reset" type="button">Reset</button>
+  </div>
+  <p class="resonance-status" aria-live="polite">Change the pitch to make the glass vibrate.</p>
+</div>

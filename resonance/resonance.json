@@ -1,0 +1,14 @@
+{
+  "id": "resonance",
+  "title": "Resonance",
+  "description": "Tune a tone to a wine glass's resonant frequency. Watch its vibration grow, then hold the pitch steady until the glass breaks.",
+  "page": "/r/resonance",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "resonance/resonance.html",
+  "css": "resonance/resonance.css",
+  "js": [
+    "resonance/resonance.js"
+  ],
+  "settings": {}
+}
