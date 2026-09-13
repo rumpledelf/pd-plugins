@@ -1,0 +1,14 @@
+{
+  "id": "area",
+  "title": "Area",
+  "description": "Calculate area for a rectangle, triangle, or circle. Enter dimensions and switch between metric and US customary units with real measurement conversion.",
+  "page": "/a/area",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "area/area.html",
+  "css": "area/area.css",
+  "js": [
+    "area/area.js"
+  ],
+  "settings": {}
+}

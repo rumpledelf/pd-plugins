@@ -1,0 +1,39 @@
+<form class="measurement-module" novalidate>
+  <div class="measurement-shapes" role="radiogroup" aria-label="Area shape">
+    <label><input type="radio" name="area-shape" value="rectangle" checked> Rectangle</label>
+    <label><input type="radio" name="area-shape" value="triangle"> Triangle</label>
+    <label><input type="radio" name="area-shape" value="circle"> Circle</label>
+  </div>
+  <label class="measurement-units">Units <select aria-label="Dimension units">
+    <optgroup label="Metric"><option value="cm">centimetres (cm)</option><option value="m">metres (m)</option></optgroup>
+    <optgroup label="US customary"><option value="in">inches (in)</option><option value="ft">feet (ft)</option></optgroup>
+  </select></label>
+  <div class="measurement-workspace">
+    <svg class="measurement-preview" viewBox="0 0 140 120" role="img" aria-label="Rectangle: width across, height upwards. Diagram not to scale.">
+      <g data-diagram="rectangle">
+        <path d="M29 18H124V88H29Z" fill="#0585BA" fill-opacity=".15" stroke="#333333" stroke-width="2"/>
+        <text x="76" y="109" text-anchor="middle">Width</text>
+        <text x="15" y="55" text-anchor="middle" transform="rotate(-90 15 55)">Height</text>
+      </g>
+      <g data-diagram="triangle" hidden>
+        <path d="M29 88L65 18L124 88Z" fill="#0585BA" fill-opacity=".15" stroke="#333333" stroke-width="2"/>
+        <path d="M65 18V88M65 81H72V88" fill="none" stroke="#999999" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="76" y="109" text-anchor="middle">Base</text>
+        <text x="15" y="55" text-anchor="middle" transform="rotate(-90 15 55)">Height</text>
+      </g>
+      <g data-diagram="circle" hidden>
+        <circle cx="70" cy="57" r="43" fill="#0585BA" fill-opacity=".15" stroke="#333333" stroke-width="2"/>
+        <path d="M70 57H113" stroke="#999999" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <circle cx="70" cy="57" r="2" fill="#333333"/>
+        <text x="70" y="114" text-anchor="middle">Radius</text>
+      </g>
+    </svg>
+    <div class="measurement-dimensions">
+      <label class="measurement-field" data-field="width"><span>Width</span><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Width"><span class="measurement-unit">cm</span></label>
+      <label class="measurement-field" data-field="height"><span>Height</span><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Height"><span class="measurement-unit">cm</span></label>
+      <label class="measurement-field" data-field="base"><span>Base</span><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Base"><span class="measurement-unit">cm</span></label>
+      <label class="measurement-field" data-field="radius"><span>Radius</span><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Radius"><span class="measurement-unit">cm</span></label>
+    </div>
+  </div>
+  <div class="measurement-actions"><p class="measurement-result" aria-live="polite"></p><button type="submit">Calculate</button></div>
+</form>
