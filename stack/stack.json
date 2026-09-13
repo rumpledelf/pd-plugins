@@ -1,0 +1,14 @@
+{
+  "id": "stack",
+  "title": "Stack",
+  "description": "Drag coloured blocks onto one another to make a neat stack. Blocks line up and settle on top; move them apart and stack them again.",
+  "page": "/s/stack",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "stack/stack.html",
+  "css": "stack/stack.css",
+  "js": [
+    "stack/stack.js"
+  ],
+  "settings": {}
+}
