@@ -1,7 +1,7 @@
 {
   "id": "binary",
   "title": "Binary",
-  "description": "Enter a decimal integer and convert it into a binary number.",
+  "description": "Enter a decimal or binary integer and convert it to the other number system.",
   "page": "/b/binary",
   "region": "contentheader",
   "edge": "bottom",

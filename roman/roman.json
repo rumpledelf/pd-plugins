@@ -1,0 +1,14 @@
+{
+  "id": "roman",
+  "title": "Roman Numerals",
+  "description": "Enter a decimal integer or Roman numeral and convert it to the other format.",
+  "page": "/r/roman",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "roman/roman.html",
+  "css": "roman/roman.css",
+  "js": [
+    "roman/roman.js"
+  ],
+  "settings": {}
+}
