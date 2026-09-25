@@ -1,0 +1,21 @@
+<div class="lava-lamp-module">
+  <svg class="lava-lamp-scene" viewBox="0 0 180 250" role="img" aria-label="A lava lamp with soft wax blobs slowly rising, merging, and sinking">
+    <defs>
+      <clipPath id="lava-lamp-glass">
+        <path d="M70 32H110L137 164Q142 181 124 189H56Q38 181 43 164Z"/>
+      </clipPath>
+      <filter id="lava-lamp-merge" x="-50%" y="-25%" width="200%" height="150%" color-interpolation-filters="sRGB">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="4"/>
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"/>
+      </filter>
+    </defs>
+    <path d="M56 189H124L111 205L123 233Q126 242 117 242H63Q54 242 57 233L69 205Z" fill="#333333"/>
+    <path d="M70 32H110L137 164Q142 181 124 189H56Q38 181 43 164Z" fill="whitesmoke" stroke="#999999" stroke-width="1.5"/>
+    <g clip-path="url(#lava-lamp-glass)">
+      <g class="lava-lamp-wax" fill="#B7287E" filter="url(#lava-lamp-merge)">
+        <ellipse class="lava-lamp-pool" cx="90" cy="187" rx="43" ry="13"/>
+      </g>
+    </g>
+    <path d="M76 10H104L112 35H68Z" fill="#333333"/>
+  </svg>
+</div>

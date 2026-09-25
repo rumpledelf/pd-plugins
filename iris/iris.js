@@ -19,12 +19,14 @@
     const point = (r, a) => `${r * Math.cos(a)} ${r * Math.sin(a)}`;
     function draw() {
       const radius = 78 * value;
-      const twist = -.65 + value * .48;
+      // Each straight edge pivots at its fixed point on the rim. The
+      // opening corners are intersections of neighboring edges, not hinges.
+      const twist = .58 - Math.acos(radius * Math.cos(step / 2) / 103) - step / 2;
       blades.forEach((blade, i) => {
         const a = i * step;
-        // Adjacent blades share both inner and outer boundaries: the aperture
-        // is one regular octagon, with no cracks as its radius changes.
-        blade.setAttribute('d', `M${point(radius, a + twist)}L${point(radius, a + step + twist)}L${point(103, a + step + .58)}A103 103 0 0 0 ${point(103, a + .58)}Z`);
+        // Draw the visible part between neighboring blades. Continue the
+        // opening edge straight to its pivot; the next blade covers the rest.
+        blade.setAttribute('d', `M${point(radius, a + twist)}L${point(radius, a + step + twist)}L${point(103, a + .58)}A103 103 0 0 0 ${point(103, a - step + .58)}Z`);
       });
       slider.value = String(Math.round(value * 100));
       slider.setAttribute('aria-valuetext', value < .005 ? 'Closed' : `${Math.round(value * 100)} percent open`);

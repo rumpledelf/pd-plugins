@@ -1,0 +1,14 @@
+{
+  "id": "lava-lamp",
+  "title": "Lava Lamp",
+  "description": "Watch soft wax blobs slowly rise, merge, separate, and sink inside a lava lamp.",
+  "page": "/l/lava-lamp",
+  "region": "contentheader",
+  "edge": "bottom",
+  "html": "lava-lamp/lava-lamp.html",
+  "css": "lava-lamp/lava-lamp.css",
+  "js": [
+    "lava-lamp/lava-lamp.js"
+  ],
+  "settings": {}
+}
