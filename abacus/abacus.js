@@ -10,24 +10,41 @@
     const colours = ['#64317B', '#0585BA', '#B7287E', '#4CAF50'];
     const columns = places.map(() => ({ upper: false, lower: 0, beads: [] }));
     const hint = root.querySelector('.abacus-hint');
-    let held = null;
+    const totalEl = root.querySelector('.abacus-total');
+    let held = null, bumpTimer = 0;
     function element(tag, attrs, parent) {
       const node = document.createElementNS(ns, tag);
       Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
       parent.append(node); return node;
     }
-    function render(columnIndex, explain = true) {
+    function clack(bead, delay = 0) {
+      bead.style.transitionDelay = delay ? `${delay}ms` : '';
+      bead.classList.remove('is-clacking');
+      void bead.offsetWidth;
+      bead.classList.add('is-clacking');
+    }
+    function bumpTotal() {
+      totalEl.classList.add('is-bumping');
+      clearTimeout(bumpTimer);
+      bumpTimer = setTimeout(() => totalEl.classList.remove('is-bumping'), 180);
+    }
+    function render(columnIndex, explain = true, delay = 0) {
       const c = columns[columnIndex];
       c.beads.forEach((bead, index) => {
         const upper = index === 0;
         const active = upper ? c.upper : index <= c.lower;
+        const wasActive = bead.dataset.active === 'true';
         const y = upper ? (active ? 70 : 46) : (active ? 96 : 113) + (index - 1) * 20;
+        if (explain && bead.dataset.active !== undefined && wasActive !== active) clack(bead, delay);
+        else bead.style.transitionDelay = delay ? `${delay}ms` : '';
         bead.setAttribute('transform', `translate(${60 + columnIndex * 93.3333} ${y})`);
         bead.setAttribute('aria-pressed', String(active));
         bead.dataset.active = String(active);
       });
       const total = columns.reduce((sum, col, i) => sum + (Number(col.upper) * 5 + col.lower) * places[i], 0);
-      root.querySelector('.abacus-total').textContent = total.toLocaleString('en-AU');
+      const formatted = total.toLocaleString('en-AU');
+      if (explain && totalEl.textContent !== formatted) bumpTotal();
+      totalEl.textContent = formatted;
       if (explain) hint.textContent = `${names[columnIndex]}: (${c.upper ? 5 : 0} + ${c.lower}) × ${places[columnIndex]} = ${(Number(c.upper) * 5 + c.lower) * places[columnIndex]}`;
     }
     function change(col, beadIndex, direction) {
@@ -84,7 +101,14 @@
     stage.addEventListener('lostpointercapture', cancel);
     root.querySelector('.abacus-reset').addEventListener('click', () => {
       held = null;
-      columns.forEach((c, i) => { c.upper = false; c.lower = 0; render(i, false); });
+      const hadActive = columns.some(c => c.upper || c.lower > 0);
+      columns.forEach((c, i) => {
+        const changed = c.upper || c.lower > 0;
+        c.upper = false; c.lower = 0;
+        if (changed) c.beads.forEach(b => clack(b, i * 45));
+        render(i, false, i * 45);
+      });
+      if (hadActive) bumpTotal();
       hint.textContent = 'Towards the bar: top bead = 5; each lower bead = 1.';
     });
   }

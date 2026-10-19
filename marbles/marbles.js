@@ -7,8 +7,9 @@
     const q = name => root.querySelector('.marbles-' + name);
     const ns = 'http://www.w3.org/2000/svg';
     const palette = ['orange', '#0585BA', '#64317B', '#B7287E', '#4CAF50', '#0585BA', '#64317B', '#B7287E'];
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     let world = P.createWorld(), rim = Math.PI / 2, angle = -Math.PI / 2;
-    let moving = false, gesture = null, key = null, chargeStart = 0, frame = 0, last = 0, restStart = null;
+    let moving = false, gesture = null, key = null, chargeStart = 0, frame = 0, last = 0, restStart = null, lastCount = -1, winStart = 0, scoreTimer = 0;
     const nodes = world.balls.map(b => {
       const group = document.createElementNS(ns, 'g'); group.dataset.ball = b.id;
       group.innerHTML = `<ellipse cy="${b.r - 1}" rx="${b.r * .9}" ry="3" fill="#333333" opacity=".15"/><g class="marbles-art"><circle r="${b.r}" fill="${palette[b.id]}" stroke="#333333" stroke-width="1.2"/><path d="M${-b.r * .7} ${b.r * .3}C${b.r * .8} ${b.r * .8} ${-b.r * .8} ${-b.r * .8} ${b.r * .7} ${-b.r * .3}" fill="none" stroke="${palette[(b.id + 2) % palette.length]}" stroke-width="3" stroke-linecap="round"/></g>`;
@@ -18,12 +19,28 @@
     function draw(now = performance.now()) {
       world.balls.forEach((b, i) => {
         const drift = b.out ? 1 - Math.pow(1 - Math.min(1, (world.time - b.outTime) / .7), 3) : 0;
-        nodes[i].setAttribute('transform', `translate(${b.x + (b.exitX || 0) * drift} ${b.y + (b.exitY || 0) * drift})`);
-        nodes[i].querySelector('.marbles-art').setAttribute('transform', `rotate(${b.rotation * 180 / Math.PI + drift * 55})`);
+        let hop = 0, spinBonus = 0, scale = 1;
+        if (i === 0 && winStart && !reduced.matches) {
+          const wt = (now - winStart) / 850;
+          if (wt >= 0 && wt < 1) {
+            hop = Math.abs(Math.sin(wt * Math.PI * 3)) * (1 - wt * .35) * 11;
+            spinBonus = Math.sin(wt * Math.PI) * 360;
+            scale = 1 + Math.sin(wt * Math.PI * 3) * (1 - wt) * .12;
+          }
+        }
+        nodes[i].setAttribute('transform', `translate(${b.x + (b.exitX || 0) * drift} ${b.y + (b.exitY || 0) * drift - hop})` + (Math.abs(scale - 1) > .005 ? ` scale(${scale.toFixed(3)})` : ''));
+        nodes[i].querySelector('.marbles-art').setAttribute('transform', `rotate(${b.rotation * 180 / Math.PI + drift * 55 + spinBonus})`);
         nodes[i].dataset.out = String(b.out);
       });
       const count = world.balls.filter(b => b.id && b.out).length;
-      q('score').textContent = `Out: ${count} / 7`;
+      if (count !== lastCount) {
+        if (lastCount >= 0 && count > lastCount && !reduced.matches) {
+          q('score').classList.add('is-scoring');
+          clearTimeout(scoreTimer);
+          scoreTimer = setTimeout(() => q('score').classList.remove('is-scoring'), 180);
+        }
+        lastCount = count; q('score').textContent = `Out: ${count} / 7`;
+      }
       const cue = world.balls[0], dx = Math.cos(angle), dy = Math.sin(angle);
       const ready = !moving && count < 7;
       q('aim').setAttribute('visibility', ready ? 'visible' : 'hidden');
@@ -43,12 +60,14 @@
           if (restStart === null) restStart = now;
           if (now - restStart > 850) {
             moving = false; placeShooter();
-            q('hint').textContent = world.balls.slice(1).every(b => b.out) ? 'All seven out! Nicely done.' : 'Move around the edge, or aim for your next shot.';
+            const allOut = world.balls.slice(1).every(b => b.out);
+            if (allOut && !winStart) winStart = now;
+            q('hint').textContent = allOut ? 'All seven out! Nicely done.' : 'Move around the edge, or aim for your next shot.';
           }
         } else restStart = null;
       }
       draw(now);
-      if (moving || gesture?.mode === 'charge' || key !== null) frame = requestAnimationFrame(tick);
+      if (moving || gesture?.mode === 'charge' || key !== null || (winStart && now - winStart < 850 && !reduced.matches)) frame = requestAnimationFrame(tick);
     }
     function wake() { if (!frame) { last = 0; frame = requestAnimationFrame(tick); } }
     function shoot(now) {
@@ -105,7 +124,8 @@
     document.addEventListener('visibilitychange', () => { if (document.hidden) cancel(); });
     q('reset').addEventListener('click', () => {
       cancelAnimationFrame(frame); frame = 0; gesture = null; key = null; moving = false;
-      world = P.createWorld(); rim = Math.PI / 2; angle = -Math.PI / 2; restStart = null;
+      world = P.createWorld(); rim = Math.PI / 2; angle = -Math.PI / 2; restStart = null; lastCount = -1; winStart = 0;
+      q('score').classList.remove('is-scoring');
       q('hint').textContent = 'Drag the shooter around the edge. Aim, then hold and release.'; draw();
     });
     draw();

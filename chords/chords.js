@@ -65,8 +65,12 @@
           osc.type='triangle';osc.frequency.setValueAtTime(440*Math.pow(2,(midi-69)/12),start);
           gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(peak,start+.02);gain.gain.exponentialRampToValueAtTime(.0001,start+.7);
           osc.connect(gain);gain.connect(master);voices.add(voice);
-          keys.get(midi)?.classList.add('is-playing');
-          osc.onended=()=>{voices.delete(voice);osc.disconnect();gain.disconnect();if(!voices.size)keys.forEach(key=>key.classList.remove('is-playing'));};
+          const key=keys.get(midi);
+          if(key){
+            key.classList.add('is-playing');
+            window.setTimeout(()=>{if(token===generation)key.classList.remove('is-playing');},140);
+          }
+          osc.onended=()=>{voices.delete(voice);osc.disconnect();gain.disconnect();if(!voices.size)keys.forEach(k=>k.classList.remove('is-playing'));};
           osc.start(start);osc.stop(start+.72);
         });
         root.dataset.audioState=current.state;

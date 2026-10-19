@@ -32,18 +32,63 @@
       });
       score.textContent = 'Moves: ' + moves;
     }
-    function settle(node, from, to, done) {
+    function celebrateWin() {
+      if (reduced.matches) return;
+      cancelAnimationFrame(motion);
+      const start = performance.now();
+      const nodes = Array.from(pegs[2].querySelectorAll('.hanoi-disc'));
+      function wave(now) {
+        if (!root.isConnected) return;
+        const elapsed = now - start;
+        let active = false;
+        nodes.forEach(function (node, level) {
+          const p = position(2, level + 1);
+          const t = (elapsed - level * 55) / 520;
+          if (t > 0 && t < 1) {
+            active = true;
+            const hop = Math.sin(t * Math.PI) * (8 + level * 2);
+            const tilt = Math.sin(t * Math.PI * 3) * (1 - t) * 4 * (level % 2 ? -1 : 1);
+            const squash = Math.sin(t * Math.PI * 2) * (1 - t) * .08;
+            node.setAttribute('transform', 'translate(' + p.x + ' ' + (p.y - hop).toFixed(2) + ') rotate(' + tilt.toFixed(2) + ' 0 12.5) scale(' + (1 + squash).toFixed(3) + ' ' + (1 - squash).toFixed(3) + ')');
+          } else if (t >= 1) {
+            node.setAttribute('transform', 'translate(' + p.x + ' ' + p.y + ')');
+          } else {
+            active = true;
+          }
+        });
+        if (active) motion = requestAnimationFrame(wave);
+      }
+      motion = requestAnimationFrame(wave);
+    }
+    function settle(node, from, to, mode, done) {
       cancelAnimationFrame(motion);
       const start = performance.now(); busy = true;
+      const duration = reduced.matches ? 0 : mode === 'reject' ? 420 : 340;
+      const dist = Math.hypot(to.x - from.x, to.y - from.y);
+      const arc = !reduced.matches && mode !== 'cancel' ? Math.min(28, Math.abs(to.x - from.x) * .12 + 8) : 0;
       function step(now) {
         if (!root.isConnected) { busy = false; return; }
-        const t = reduced.matches ? 1 : Math.min(1, (now - start) / 300);
-        const ease = 1 - Math.pow(1 - t, 3);
-        // A small damped landing settles the disc without bouncing the stack.
-        const bounce = t > .65 ? Math.sin((t - .65) / .35 * Math.PI) * 2 : 0;
-        node.setAttribute('transform', 'translate(' + (from.x + (to.x - from.x) * ease) + ' ' + (from.y + (to.y - from.y) * ease - bounce) + ')');
+        const t = duration ? Math.min(1, (now - start) / duration) : 1;
+        if (mode === 'reject' && t < .35) {
+          const st = t / .35;
+          const shake = Math.sin(st * Math.PI * 3) * (1 - st * .3);
+          node.setAttribute('transform', 'translate(' + (from.x + shake * 9).toFixed(2) + ' ' + from.y.toFixed(2) + ') rotate(' + (shake * 6).toFixed(2) + ' 0 12.5)');
+          motion = requestAnimationFrame(step);
+          return;
+        }
+        const mt = mode === 'reject' ? (t - .35) / .65 : t;
+        const ease = 1 - Math.pow(1 - mt, 3);
+        const bounce = !reduced.matches && mt > .68 ? Math.sin((mt - .68) / .32 * Math.PI) * Math.min(5, 2 + dist * .01) : 0;
+        const squash = !reduced.matches && mt > .68 ? Math.sin((mt - .68) / .32 * Math.PI * 1.5) * (1 - mt) * .12 : 0;
+        const tilt = !reduced.matches && mt < .75 && Math.abs(to.x - from.x) > 10 ? Math.sin(mt / .75 * Math.PI) * Math.sign(to.x - from.x) * 4 : 0;
+        const x = from.x + (to.x - from.x) * ease;
+        const y = from.y + (to.y - from.y) * ease - Math.sin(mt * Math.PI) * arc - bounce;
+        let transform = 'translate(' + x.toFixed(2) + ' ' + y.toFixed(2) + ')';
+        if (Math.abs(tilt) > .05) transform += ' rotate(' + tilt.toFixed(2) + ' 0 12.5)';
+        if (Math.abs(squash) > .003) transform += ' translate(0 25) scale(' + (1 + squash).toFixed(3) + ' ' + (1 - squash).toFixed(3) + ') translate(0 -25)';
+        node.setAttribute('transform', transform);
         if (t < 1) motion = requestAnimationFrame(step);
-        else { busy = false; if (done) done(); }
+        else { node.setAttribute('transform', 'translate(' + to.x + ' ' + to.y + ')'); busy = false; if (done) done(); }
       }
       motion = requestAnimationFrame(step);
     }
@@ -57,13 +102,15 @@
         render();
         const node = pegs[destination].querySelector('[data-size="' + size + '"]');
         const target = position(destination, stacks[destination].length);
-        status.textContent = stacks[2].length === 4 ? 'All four across! ' + moves + ' moves' + (moves === 15 ? ' — the fewest possible.' : '. Can you do it in 15?') : 'Move the stack to the right. Small discs go on larger ones.';
-        settle(node, heldPosition || {x: original.x, y: original.y - 9}, target);
+        const won = stacks[2].length === 4;
+        status.textContent = won ? 'All four across! ' + moves + ' moves' + (moves === 15 ? ' — the fewest possible.' : '. Can you do it in 15?') : 'Move the stack to the right. Small discs go on larger ones.';
+        settle(node, heldPosition || {x: original.x, y: original.y - 9}, target, 'land', won ? celebrateWin : null);
       } else {
         render();
-        status.textContent = destination === from ? 'Move the stack to the right. Small discs go on larger ones.' : 'That disc needs an empty peg or a larger disc underneath.';
+        const isSame = destination === from || destination === null;
+        status.textContent = isSame ? 'Move the stack to the right. Small discs go on larger ones.' : 'That disc needs an empty peg or a larger disc underneath.';
         const node = pegs[from].querySelector('[data-size="' + size + '"]');
-        settle(node, heldPosition || {x: original.x, y: original.y - 9}, original);
+        settle(node, heldPosition || {x: original.x, y: original.y - 9}, original, isSame ? 'cancel' : 'reject');
       }
     }
     function choose(index) {
@@ -84,7 +131,7 @@
       if (disc && Number(disc.dataset.size) !== top(index)) { status.textContent = 'Only the top disc can move.'; return; }
       event.preventDefault();
       const p = point(event);
-      pointer = {id: event.pointerId, index: index, start: p, from: selected === null ? index : selected, canDrag: selected === null && !!disc, dragged: false, current: null};
+      pointer = {id: event.pointerId, index: index, start: p, from: selected === null ? index : selected, canDrag: selected === null && !!disc, dragged: false, current: null, tilt: 0};
       stage.setPointerCapture(event.pointerId);
     });
     stage.addEventListener('pointermove', function (event) {
@@ -93,9 +140,11 @@
       if (!pointer.dragged && Math.hypot(dx, dy) < 5) return;
       pointer.dragged = true; stage.dataset.dragging = 'true';
       const origin = position(pointer.from, stacks[pointer.from].length);
-      pointer.current = {x: origin.x + dx, y: origin.y + dy};
+      const nextX = origin.x + dx, nextY = origin.y + dy;
+      if (!reduced.matches && pointer.current) pointer.tilt = Math.max(-8, Math.min(8, pointer.tilt * .6 + (nextX - pointer.current.x) * .5));
+      pointer.current = {x: nextX, y: nextY};
       const node = pegs[pointer.from].querySelector('[data-size="' + top(pointer.from) + '"]');
-      node.setAttribute('transform', 'translate(' + pointer.current.x + ' ' + pointer.current.y + ')');
+      node.setAttribute('transform', 'translate(' + pointer.current.x.toFixed(2) + ' ' + pointer.current.y.toFixed(2) + ')' + (Math.abs(pointer.tilt) > .1 ? ' rotate(' + pointer.tilt.toFixed(2) + ' 0 12.5)' : ''));
       // Lift the entire source layer above the other pegs while dragging.
       stage.appendChild(pegs[pointer.from]);
     });

@@ -4,9 +4,12 @@
     root.dataset.pluginBooted = 'true';
     const scene = root.querySelector('.oc-scene');
     const caption = root.querySelector('.oc-caption');
-    let open = false;
+    let open = false, turnTimer = 0;
     function toggle() {
       open = !open;
+      scene.classList.add('is-turning');
+      clearTimeout(turnTimer);
+      turnTimer = setTimeout(() => scene.classList.remove('is-turning'), 240);
       scene.classList.toggle('is-open', open);
       scene.setAttribute('aria-pressed', String(open));
       scene.setAttribute('aria-label', open ? 'Close the door' : 'Open the door');

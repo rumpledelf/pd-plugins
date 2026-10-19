@@ -16,14 +16,15 @@
       tick.setAttribute('transform', 'rotate(' + i * 6 + ' 115 127)');
       ticks.appendChild(tick);
     }
-    let running = false, elapsed = 0, started = 0, frame = 0;
+    let running = false, elapsed = 0, started = 0, frame = 0, pressTimer = 0, resetTimer = 0;
     function value(now) { return elapsed + (running ? now - started : 0); }
-    function draw(now) {
+    function draw(now, angleOverride) {
       const ms = value(now);
       const centiseconds = Math.floor(ms / 10);
       display.textContent = String(Math.floor(centiseconds / 6000)).padStart(2, '0') + ':' + String(Math.floor(centiseconds / 100) % 60).padStart(2, '0') + '.' + String(centiseconds % 100).padStart(2, '0');
       const seconds = reduced.matches ? Math.floor(ms / 1000) : ms / 1000;
-      hand.setAttribute('transform', 'rotate(' + ((seconds % 60) * 6) + ' 115 127)');
+      const deg = angleOverride !== undefined ? angleOverride : (seconds % 60) * 6;
+      hand.setAttribute('transform', 'rotate(' + deg.toFixed(2) + ' 115 127)');
     }
     function tick(now) {
       if (!root.isConnected) { elapsed = value(now); running = false; return; }
@@ -37,6 +38,9 @@
     }
     function toggle() {
       const now = performance.now();
+      watch.classList.add('is-pressing');
+      clearTimeout(pressTimer);
+      pressTimer = setTimeout(() => watch.classList.remove('is-pressing'), 150);
       if (running) { elapsed = value(now); running = false; cancelAnimationFrame(frame); }
       else { started = now; running = true; frame = requestAnimationFrame(tick); }
       draw(now); update();
@@ -45,7 +49,26 @@
     watch.addEventListener('click', toggle);
     watch.addEventListener('keydown', function (event) { if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); if (!event.repeat) toggle(); } });
     root.querySelector('.stopwatch-reset').addEventListener('click', function () {
-      cancelAnimationFrame(frame); running = false; elapsed = 0; draw(performance.now()); update(); announcement.textContent = 'Stopwatch reset.';
+      const now = performance.now();
+      const fromDeg = ((value(now) / 1000) % 60) * 6;
+      const shortest = fromDeg > 180 ? fromDeg - 360 : fromDeg;
+      cancelAnimationFrame(frame); running = false; elapsed = 0; update();
+      watch.classList.add('is-resetting');
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => watch.classList.remove('is-resetting'), 180);
+      announcement.textContent = 'Stopwatch reset.';
+      if (reduced.matches || Math.abs(shortest) < .5) { draw(now, 0); return; }
+      const resetStart = now;
+      function flyback(tNow) {
+        if (!root.isConnected || running) return;
+        const t = Math.min(1, (tNow - resetStart) / 320);
+        const c1 = 1.70158, c3 = c1 + 1;
+        const ease = 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+        draw(tNow, shortest * (1 - ease));
+        if (t < 1) frame = requestAnimationFrame(flyback);
+        else draw(tNow, 0);
+      }
+      frame = requestAnimationFrame(flyback);
     });
   }
   boot(document.getElementById('plugin_stopwatch'));

@@ -10,7 +10,7 @@
     const reduced=matchMedia('(prefers-reduced-motion: reduce)');
     const colors=['white','#0585BA','#64317B','#B7287E','#999999','#0585BA','#64317B'];
     let world=physics.createWorld(),angle=0,phase='ready',gesture=null,key=null;
-    let frame=0,last=0,chargeStarted=0,settleStarted=null,eventIndex=0,count=-1;
+    let frame=0,last=0,chargeStarted=0,settleStarted=null,eventIndex=0,count=-1,winStarted=0,scoreTimer=0;
     const ns='http://www.w3.org/2000/svg';
     const nodes=world.balls.map(ball=>{
       const group=document.createElementNS(ns,'g');
@@ -44,12 +44,25 @@
           x+=(p.x-x)*ease;y+=(p.y-y)*ease;
           scale=reduced.matches?(t<1?1:0):1-.92*ease;
           opacity=t<.65?1:Math.max(0,(1-t)/.35);
+        }else if(index===0 && winStarted && !reduced.matches){
+          const wt=(now-winStarted)/850;
+          if(wt>=0 && wt<1){
+            y-=Math.abs(Math.sin(wt*Math.PI*3))*(1-wt*.35)*12;
+            scale=1+Math.sin(wt*Math.PI*3)*(1-wt)*.14;
+          }
         }
         nodes[index].setAttribute('transform',`translate(${x} ${y}) scale(${scale})`);nodes[index].setAttribute('opacity',opacity);
         nodes[index].dataset.pocketed=String(ball.pocketed);
       });
       const pocketed=world.balls.filter(ball=>ball.id && ball.pocketed && world.time-ball.pocketTime>=.7).length;
-      if(pocketed!==count){count=pocketed;q('score').textContent=`Pocketed: ${count} / 6`;}
+      if(pocketed!==count){
+        if(count>=0 && pocketed>count && !reduced.matches){
+          q('score').classList.add('is-scoring');
+          clearTimeout(scoreTimer);
+          scoreTimer=setTimeout(()=>q('score').classList.remove('is-scoring'),180);
+        }
+        count=pocketed;q('score').textContent=`Pocketed: ${count} / 6`;
+      }
       const cue=world.balls[0],dx=Math.cos(angle),dy=Math.sin(angle);
       const aiming=phase==='ready' && !cue.pocketed && count<6;
       q('aim').setAttribute('visibility',aiming?'visible':'hidden');
@@ -79,12 +92,13 @@
           if(now-settleStarted>650 && dropsDone){
             const respawned=physics.respawnCue(world);phase='ready';
             const allIn=world.balls.slice(1).every(ball=>ball.pocketed);
+            if(allIn && !winStarted)winStarted=now;
             status.textContent=allIn?'All six pocketed. Nicely done!':respawned?'Cue ball back. Drag to aim your next shot.':'Drag to aim. Hold still, then release to shoot.';
           }
         }else settleStarted=null;
       }
       draw(now);
-      if(phase==='rolling' || gesture?.mode==='charging' || key!==null)frame=requestAnimationFrame(tick);
+      if(phase==='rolling' || gesture?.mode==='charging' || key!==null || (winStarted && now-winStarted<850 && !reduced.matches))frame=requestAnimationFrame(tick);
     }
     function wake(){if(!frame){last=0;frame=requestAnimationFrame(tick);}}
     function shoot(now){
@@ -123,7 +137,8 @@
     table.addEventListener('blur',()=>{if(gesture || key!==null)cancel();});
     document.addEventListener('visibilitychange',()=>{if(document.hidden && (gesture || key!==null))cancel();});
     q('reset').addEventListener('click',()=>{
-      cancelAnimationFrame(frame);frame=0;gesture=null;key=null;world=physics.createWorld();angle=0;phase='ready';settleStarted=null;eventIndex=0;count=-1;
+      cancelAnimationFrame(frame);frame=0;gesture=null;key=null;world=physics.createWorld();angle=0;phase='ready';settleStarted=null;eventIndex=0;count=-1;winStarted=0;
+      q('score').classList.remove('is-scoring');
       status.textContent='Drag to aim. Hold still, then release to shoot.';draw(performance.now());
     });
     draw(performance.now());

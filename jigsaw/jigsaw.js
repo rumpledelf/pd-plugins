@@ -51,7 +51,18 @@
     }
     function home(piece) { return {x: board.x + piece.index % cols * w, y: board.y + Math.floor(piece.index / cols) * h}; }
     function tray(piece) { return {x: (small ? 20 : 345) + piece.tray % 3 * 100, y: (small ? 340 : 25) + Math.floor(piece.tray / 3) * (h + 30)}; }
-    function put(piece, p) { piece.x = p.x; piece.y = p.y; piece.node.setAttribute('transform', 'translate(' + p.x + ' ' + p.y + ')'); }
+    function put(piece, p, scale, tilt) {
+      piece.x = p.x; piece.y = p.y;
+      let transform = 'translate(' + p.x.toFixed(2) + ' ' + p.y.toFixed(2) + ')';
+      if ((scale && Math.abs(scale - 1) > .004) || (tilt && Math.abs(tilt) > .08)) {
+        const cx = w / 2, cy = h / 2;
+        transform += ' translate(' + cx + ' ' + cy + ')';
+        if (tilt && Math.abs(tilt) > .08) transform += ' rotate(' + tilt.toFixed(2) + ')';
+        if (scale && Math.abs(scale - 1) > .004) transform += ' scale(' + scale.toFixed(3) + ')';
+        transform += ' translate(' + (-cx) + ' ' + (-cy) + ')';
+      }
+      piece.node.setAttribute('transform', transform);
+    }
     function build() {
     generation++; drag = null; clearSelection();
     defs.replaceChildren(); targets.replaceChildren(); layer.replaceChildren(); pieces.length = 0;
@@ -75,7 +86,7 @@
       layer.appendChild(node);
       const target = el('path', {d: path, fill: 'whitesmoke', stroke: 'gainsboro', 'stroke-width': 1, 'data-slot': index});
       targets.appendChild(target);
-      pieces.push({index: index, node: node, target: target, path: path, tray: index, locked: false, moving: false, x: 0, y: 0});
+      pieces.push({index: index, node: node, target: target, path: path, tray: index, locked: false, moving: false, x: 0, y: 0, tilt: 0});
     }
     layout(); shuffle();
     const token = generation, image = new Image();
@@ -96,7 +107,7 @@
       stage.setAttribute('viewBox', small ? '0 0 330 ' + (340 + trayHeight) : '0 0 660 ' + Math.max(340, 25 + trayHeight));
       generation++; drag = null; clearSelection();
       pieces.forEach(function (piece) {
-        piece.moving = false;
+        piece.moving = false; piece.tilt = 0;
         const target = home(piece); piece.target.setAttribute('transform', 'translate(' + target.x + ' ' + target.y + ')');
         put(piece, piece.locked ? target : tray(piece));
       });
@@ -107,22 +118,64 @@
       for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
       if (order.every(function (value, index) { return value === index; })) order.push(order.shift());
       pieces.forEach(function (piece, index) {
-        piece.tray = order[index]; piece.locked = false; piece.moving = false;
+        piece.tray = order[index]; piece.locked = false; piece.moving = false; piece.tilt = 0;
         piece.node.dataset.locked = 'false'; piece.node.setAttribute('tabindex', 0); piece.node.setAttribute('aria-disabled', 'false');
         put(piece, tray(piece));
       });
       status.textContent = 'Drag the pieces into place.';
     }
-    function animate(piece, destination, done) {
-      const from = {x: piece.x, y: piece.y}, start = performance.now(), token = generation;
-      piece.moving = true;
+    function celebrateBoard() {
+      if (reduced.matches) return;
+      const start = performance.now(), token = generation;
+      function wave(now) {
+        if (token !== generation || !root.isConnected) return;
+        const elapsed = now - start;
+        let active = false;
+        pieces.forEach(function (p) {
+          const col = p.index % cols, row = Math.floor(p.index / cols);
+          const delay = (col + row) * 55;
+          const t = (elapsed - delay) / 480;
+          const pos = home(p);
+          if (t > 0 && t < 1) {
+            active = true;
+            const hop = Math.sin(t * Math.PI) * 7;
+            const scale = 1 + Math.sin(t * Math.PI) * .045;
+            put(p, {x: pos.x, y: pos.y - hop}, scale, 0);
+          } else if (t >= 1) {
+            put(p, pos, 1, 0);
+          } else {
+            active = true;
+          }
+        });
+        if (active) requestAnimationFrame(wave);
+      }
+      requestAnimationFrame(wave);
+    }
+    function animate(piece, destination, mode, done) {
+      const from = {x: piece.x, y: piece.y}, startTilt = piece.tilt || 0, start = performance.now(), token = generation;
+      piece.moving = true; piece.tilt = 0;
+      const duration = reduced.matches ? 0 : mode === 'reject' ? 420 : 320;
       function frame(now) {
         if (token !== generation || !root.isConnected) { piece.moving = false; return; }
-        const t = reduced.matches ? 1 : Math.min(1, (now - start) / 240);
-        const ease = 1 - Math.pow(1 - t, 3);
-        put(piece, {x: from.x + (destination.x - from.x) * ease, y: from.y + (destination.y - from.y) * ease});
+        const t = duration ? Math.min(1, (now - start) / duration) : 1;
+        if (mode === 'reject' && t < .34) {
+          const st = t / .34;
+          const shake = Math.sin(st * Math.PI * 3) * (1 - st * .3);
+          put(piece, {x: from.x + shake * 8, y: from.y}, 1.03, shake * 7);
+          requestAnimationFrame(frame);
+          return;
+        }
+        const mt = mode === 'reject' ? (t - .34) / .66 : t;
+        const ease = 1 - Math.pow(1 - mt, 3);
+        const arc = !reduced.matches && mode === 'reject' ? Math.sin(mt * Math.PI) * 16 : 0;
+        let scale = 1, tilt = startTilt * (1 - ease);
+        if (!reduced.matches && mode === 'snap') {
+          scale = mt < .65 ? 1.06 - .09 * (mt / .65) : .97 + .03 * Math.sin((mt - .65) / .35 * Math.PI * 1.5);
+          if (mt >= .65) scale = 1 + Math.sin((mt - .65) / .35 * Math.PI) * .045;
+        }
+        put(piece, {x: from.x + (destination.x - from.x) * ease, y: from.y + (destination.y - from.y) * ease - arc}, scale, tilt);
         if (t < 1) requestAnimationFrame(frame);
-        else { piece.moving = false; if (done) done(); }
+        else { piece.moving = false; put(piece, destination, 1, 0); if (done) done(); }
       }
       requestAnimationFrame(frame);
     }
@@ -130,14 +183,18 @@
       clearSelection();
       if (correct) {
         piece.locked = true; piece.node.dataset.locked = 'true'; piece.node.setAttribute('tabindex', -1); piece.node.setAttribute('aria-disabled', 'true');
-        animate(piece, home(piece), function () {
+        animate(piece, home(piece), 'snap', function () {
           const count = pieces.filter(function (p) { return p.locked; }).length;
-          if (count === pieces.length && pieces.every(function (p) { return !p.moving; })) { stage.dataset.complete = 'true'; status.textContent = 'The ' + animals[animalIndex][0] + ', all together!'; }
+          if (count === pieces.length && pieces.every(function (p) { return !p.moving; })) {
+            stage.dataset.complete = 'true';
+            status.textContent = 'The ' + animals[animalIndex][0] + ', all together!';
+            celebrateBoard();
+          }
           else status.textContent = count + ' of ' + pieces.length + ' pieces in place.';
         });
       } else {
         status.textContent = 'Not quite — try another space.';
-        animate(piece, tray(piece));
+        animate(piece, tray(piece), 'reject');
       }
     }
     function point(event) {
@@ -153,11 +210,13 @@
       event.preventDefault(); clearSelection();
       const p = point(event); drag = {id: event.pointerId, piece: piece, x: p.x - piece.x, y: p.y - piece.y};
       layer.appendChild(piece.node); stage.setPointerCapture(event.pointerId);
+      if (!reduced.matches) put(piece, {x: piece.x, y: piece.y}, 1.05, 0);
     });
     stage.addEventListener('pointermove', function (event) {
       if (!drag || drag.id !== event.pointerId) return;
-      const p = point(event);
-      put(drag.piece, {x: p.x - drag.x, y: p.y - drag.y});
+      const p = point(event), nextX = p.x - drag.x, nextY = p.y - drag.y;
+      if (!reduced.matches) drag.piece.tilt = Math.max(-9, Math.min(9, (drag.piece.tilt || 0) * .6 + (nextX - drag.piece.x) * .65));
+      put(drag.piece, {x: nextX, y: nextY}, reduced.matches ? 1 : 1.05, drag.piece.tilt);
     });
     function end(event, cancelled) {
       if (!drag || drag.id !== event.pointerId) return;

@@ -120,50 +120,139 @@
     const player = root.querySelector('.maze-player'), mouse = root.querySelector('.maze-mouse');
     const status = root.querySelector('.maze-status'), reduced = matchMedia('(prefers-reduced-motion: reduce)');
     if (!stage || !walls || !player) return;
+    const tail = mouse.querySelector('path');
     let cells = [], current = -1, facing = 0, pointer = null, completed = false, animation = 0;
-    function drawPlayer() {
+    let renderX = 0, renderY = 0, renderAngle = 0, stepPhase = 0, bonkDir = null, bonkStart = 0, winStart = 0, lastFrame = 0;
+    function cellCenter(index) {
+      const p = position(index);
+      return {x: OFFSET + (p.x + .5) * CELL, y: OFFSET + (p.y + .5) * CELL};
+    }
+    function syncAria() {
       const p = position(current);
-      player.setAttribute('transform', 'translate(' + (OFFSET + (p.x + .5) * CELL) + ' ' + (OFFSET + (p.y + .5) * CELL) + ')');
-      mouse.setAttribute('transform', 'rotate(' + facing + ')');
       const location = current === -1 ? 'outside the entrance on the left' : current === SIZE * SIZE ? 'at the cheese outside the exit on the right' : 'at row ' + (p.y + 1) + ', column ' + (p.x + 1);
       stage.setAttribute('aria-label', 'Mouse ' + location + '. Reach the exit at the bottom right. Drag or swipe. Click the maze, then use arrow keys.');
       player.dataset.cell = current;
     }
+    function applyTransform(x, y, angle, scaleX, scaleY, tailWiggle) {
+      player.setAttribute('transform', 'translate(' + x.toFixed(2) + ' ' + y.toFixed(2) + ')');
+      mouse.setAttribute('transform', 'rotate(' + angle.toFixed(2) + ')' + (scaleX !== 1 || scaleY !== 1 ? ' scale(' + scaleX.toFixed(3) + ' ' + scaleY.toFixed(3) + ')' : ''));
+      if (tail) tail.setAttribute('d', 'M-8 1Q-15 ' + (-8 + tailWiggle).toFixed(2) + ' -14 ' + (2 + tailWiggle * .6).toFixed(2));
+    }
+    function tick(now) {
+      animation = 0;
+      if (!root.isConnected) return;
+      const dt = lastFrame ? Math.min(.05, (now - lastFrame) / 1000) : .016;
+      lastFrame = now;
+      const target = cellCenter(current);
+      if (reduced.matches) {
+        renderX = target.x; renderY = target.y; renderAngle = facing;
+        applyTransform(renderX, renderY, renderAngle, 1, 1, 0);
+        return;
+      }
+      let active = false;
+      const dx = target.x - renderX, dy = target.y - renderY, dist = Math.hypot(dx, dy);
+      if (dist > .25) {
+        const pull = 1 - Math.exp(-26 * dt);
+        renderX += dx * pull; renderY += dy * pull;
+        stepPhase += dist * .18;
+        active = true;
+      } else {
+        renderX = target.x; renderY = target.y;
+      }
+      let diff = ((facing - renderAngle + 540) % 360) - 180;
+      if (Math.abs(diff) > .3) {
+        renderAngle += diff * (1 - Math.exp(-28 * dt));
+        active = true;
+      } else {
+        renderAngle = facing;
+      }
+      let offsetX = 0, offsetY = 0, wobble = 0, sx = 1, sy = 1, tailWiggle = 0;
+      if (dist > .5) {
+        wobble = Math.sin(stepPhase) * 9 * Math.min(1, dist / 10);
+        tailWiggle = Math.sin(stepPhase * 1.4) * 5;
+        sx = 1 + Math.min(.1, dist / 160);
+        sy = 1 - Math.min(.07, dist / 220);
+      }
+      if (bonkDir !== null) {
+        const bt = (now - bonkStart) / 280;
+        if (bt < 1) {
+          const dir = DIRECTIONS[bonkDir];
+          const lunge = Math.sin(bt * Math.PI * 2.5) * (1 - bt) * 5.5;
+          offsetX += dir.x * lunge; offsetY += dir.y * lunge;
+          wobble += Math.sin(bt * Math.PI * 5) * (1 - bt) * 14;
+          const squash = Math.max(0, Math.sin(bt * Math.PI * 2)) * (1 - bt) * .18;
+          sx *= 1 - squash; sy *= 1 + squash;
+          active = true;
+        } else {
+          bonkDir = null;
+        }
+      }
+      if (winStart) {
+        const wt = (now - winStart) / 950;
+        if (wt < 1) {
+          const hop = Math.abs(Math.sin(wt * Math.PI * 3)) * (1 - wt * .4) * 8;
+          offsetY -= hop;
+          wobble += Math.sin(wt * Math.PI * 6) * 15 * (1 - wt);
+          tailWiggle = Math.sin(wt * Math.PI * 10) * 6 * (1 - wt);
+          sx = 1 + Math.sin(wt * Math.PI * 6) * .08 * (1 - wt);
+          sy = 1 - Math.sin(wt * Math.PI * 6) * .08 * (1 - wt);
+          active = true;
+        } else {
+          winStart = 0;
+        }
+      }
+      applyTransform(renderX + offsetX, renderY + offsetY, renderAngle + wobble, sx, sy, tailWiggle);
+      if (active) animation = requestAnimationFrame(tick);
+      else lastFrame = 0;
+    }
+    function wake() {
+      if (reduced.matches) {
+        const t = cellCenter(current);
+        renderX = t.x; renderY = t.y; renderAngle = facing;
+        applyTransform(renderX, renderY, renderAngle, 1, 1, 0);
+        return;
+      }
+      if (!animation) { lastFrame = performance.now(); animation = requestAnimationFrame(tick); }
+    }
+    function bonk(direction) {
+      facing = [-90, 0, 90, 180][direction];
+      bonkDir = direction; bonkStart = performance.now();
+      wake();
+      return false;
+    }
     function celebrate() {
       completed = true; status.textContent = 'Found it! Time for a little cheese.';
-      if (reduced.matches) return;
-      const start = performance.now();
-      function frame(now) {
-        if (!root.isConnected) return;
-        const t = Math.min(1, (now - start) / 650);
-        mouse.setAttribute('transform', 'rotate(' + (facing + Math.sin(t * Math.PI * 6) * 12 * (1 - t)) + ')');
-        if (t < 1) animation = requestAnimationFrame(frame);
-      }
-      animation = requestAnimationFrame(frame);
+      winStart = performance.now();
+      wake();
     }
-    function move(direction) {
+    function move(direction, fromDrag) {
       if (completed) return false;
       const dir = DIRECTIONS[direction];
       if (!dir) return false;
       if (current === -1) {
-        if (direction !== 1) return false;
+        if (direction !== 1) return fromDrag ? false : bonk(direction);
         current = 0;
       } else {
-        if (cells[current] & dir.wall) return false;
+        if (cells[current] & dir.wall) return fromDrag ? false : bonk(direction);
         if (current === 0 && direction === 3) current = -1;
         else if (current === SIZE * SIZE - 1 && direction === 1) current = SIZE * SIZE;
         else {
           const p = position(current), nx = p.x + dir.x, ny = p.y + dir.y;
-          if (nx < 0 || nx >= SIZE || ny < 0 || ny >= SIZE) return false;
+          if (nx < 0 || nx >= SIZE || ny < 0 || ny >= SIZE) return fromDrag ? false : bonk(direction);
           current = ny * SIZE + nx;
         }
       }
-      facing = [-90, 0, 90, 180][direction]; drawPlayer();
+      bonkDir = null;
+      facing = [-90, 0, 90, 180][direction];
+      syncAria(); wake();
       if (current === SIZE * SIZE) celebrate();
       return true;
     }
     function newMaze() {
-      cancelAnimationFrame(animation); pointer = null; completed = false; current = -1; facing = 0;
+      cancelAnimationFrame(animation); animation = 0; lastFrame = 0;
+      pointer = null; completed = false; current = -1; facing = 0; bonkDir = null; winStart = 0;
+      const startPos = cellCenter(current);
+      renderX = startPos.x; renderY = startPos.y; renderAngle = facing;
       cells = generate(Math.random); walls.replaceChildren();
       cells.forEach(function (cell, index) {
         const x = OFFSET + index % SIZE * CELL, y = OFFSET + Math.floor(index / SIZE) * CELL;
@@ -175,7 +264,8 @@
         const node = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         node.setAttribute('d', path); node.dataset.cell = index; node.dataset.walls = cell; walls.appendChild(node);
       });
-      drawPlayer(); status.textContent = 'Drag or swipe. Click the maze, then use arrow keys.';
+      syncAria(); applyTransform(renderX, renderY, renderAngle, 1, 1, 0);
+      status.textContent = 'Drag or swipe. Click the maze, then use arrow keys.';
     }
     function point(event) {
       const matrix = stage.getScreenCTM();
@@ -203,7 +293,7 @@
         if (!outsideDoor && (x < 0 || x >= SIZE || y < 0 || y >= SIZE)) continue;
         const cell = position(current), dx = x - cell.x, dy = y - cell.y;
         if (Math.abs(dx) + Math.abs(dy) !== 1) continue;
-        move(dx === 1 ? 1 : dx === -1 ? 3 : dy === 1 ? 2 : 0);
+        move(dx === 1 ? 1 : dx === -1 ? 3 : dy === 1 ? 2 : 0, true);
       }
       pointer.previous = p;
     });
@@ -213,16 +303,16 @@
       if (cancelled || gesture.drag) return;
       const p = point(event), dx = p.x - gesture.start.x, dy = p.y - gesture.start.y;
       if (Math.hypot(dx, dy) < 12) return;
-      move(Math.abs(dx) > Math.abs(dy) ? dx > 0 ? 1 : 3 : dy > 0 ? 2 : 0);
+      move(Math.abs(dx) > Math.abs(dy) ? dx > 0 ? 1 : 3 : dy > 0 ? 2 : 0, false);
     }
     stage.addEventListener('pointerup', function (event) { end(event, false); });
     stage.addEventListener('pointercancel', function (event) { end(event, true); });
     stage.addEventListener('lostpointercapture', function (event) { end(event, true); });
     root.addEventListener('keydown', function (event) {
       const dir = {ArrowUp: 0, ArrowRight: 1, ArrowDown: 2, ArrowLeft: 3}[event.key];
-      if (dir !== undefined) { event.preventDefault(); move(dir); }
+      if (dir !== undefined) { event.preventDefault(); move(dir, false); }
     });
-    root.querySelectorAll('[data-direction]').forEach(function (button) { button.addEventListener('click', function () { move(Number(button.dataset.direction)); }); });
+    root.querySelectorAll('[data-direction]').forEach(function (button) { button.addEventListener('click', function () { move(Number(button.dataset.direction), false); }); });
     root.querySelector('.maze-new').addEventListener('click', function () {
       newMaze(); stage.focus({preventScroll: true});
     });
